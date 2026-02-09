@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Review Information - VetGPT</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .review-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .credentials-box {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .credentials-box .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .credentials-box .value {
+            font-size: 1rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-family: monospace;
+        }
+
+        .credentials-box .value:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-list {
+            counter-reset: steps;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            counter-increment: steps;
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .step-list li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .feature-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-tag strong {
+            color: var(--text-primary);
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .note-box {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .note-box p {
+            color: #fbbf24;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .feature-grid { grid-template-columns: 1fr; }
+            .container { padding: 2rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="review-badge">Confidential — For App Review Only</div>
+        <h1>VetGPT — App Review Information</h1>
+        <p class="subtitle">Thank you for reviewing VetGPT. This page contains demo credentials, feature walkthrough instructions, and technical notes to assist with your review.</p>
+
+        <h2>Demo Account Credentials</h2>
+        <div class="credentials-box">
+            <div class="label">Email</div>
+            <div class="value">reviewer@vetgpt.app</div>
+            <div class="label">Password</div>
+            <div class="value">AppReview2026!</div>
+        </div>
+        <p>This account is pre-configured with sample pet profiles (a dog, a cat, and a goldfish) along with sample health data so you can explore all features without needing to set up from scratch.</p>
+
+        <div class="note-box">
+            <p><strong>Note:</strong> All AI features require an active internet connection. During beta, all Premium features are unlocked for all users at no charge.</p>
+        </div>
+
+        <h2>Feature Walkthrough</h2>
+        <ol class="step-list">
+            <li><strong>Sign in</strong> using the demo credentials above. You'll land on the Home screen showing the pet carousel, daily wellness tips, and quick actions.</li>
+            <li><strong>Swipe through pet cards</strong> on the home screen to see different pets (dog, cat, fish). Each has a Health Score and species-specific tip.</li>
+            <li><strong>Tap "AI Health Dashboard"</strong> on any pet's overview to see the AI-generated Health Score breakdown, recommended actions, health strengths, and areas to watch.</li>
+            <li><strong>Open "AI Chat"</strong> from the bottom navigation. Select a pet, then ask a question like "What health issues should I watch for?" The AI responds with context about that specific pet.</li>
+            <li><strong>Test document scanning:</strong> In AI Chat, tap the attachment icon and upload or photograph a prescription label or vet document. The AI will extract and present the key information.</li>
+            <li><strong>Visit the Health tab</strong> to see the logging interface — Symptoms, Meds, Inventory, Visits, and species-specific tabs (e.g., "Water" for fish).</li>
+            <li><strong>Check the Pets tab</strong> to see all pet profiles, digital wallet (vaccine/insurance cards), pet journey (weekly photos), and medical records.</li>
+            <li><strong>Test reminders:</strong> Tap "Reminder" from Quick Actions on the home screen to create a test reminder. Notifications will fire at the configured time.</li>
+        </ol>
+
+        <h2>Key Features by Category</h2>
+        <div class="feature-grid">
+            <div class="feature-tag">
+                <strong>🤖 AI Chat</strong>
+                Pet-aware health assistant
+            </div>
+            <div class="feature-tag">
+                <strong>📄 Document Scanning</strong>
+                Prescription &amp; vaccine extraction
+            </div>
+            <div class="feature-tag">
+                <strong>📊 Health Scores</strong>
+                AI-calculated 0–100 rating
+            </div>
+            <div class="feature-tag">
+                <strong>💊 Medication Tracking</strong>
+                Doses, refills, reminders
+            </div>
+            <div class="feature-tag">
+                <strong>🎙️ Voice Recording</strong>
+                Vet visit transcription
+            </div>
+            <div class="feature-tag">
+                <strong>📸 Photo Analysis</strong>
+                Symptom &amp; wellness checks
+            </div>
+            <div class="feature-tag">
+                <strong>🐠 Species-Specific</strong>
+                50+ species, custom tracking
+            </div>
+            <div class="feature-tag">
+                <strong>🔔 Smart Reminders</strong>
+                Meds, visits, vaccines
+            </div>
+        </div>
+
+        <h2>AI Disclosure</h2>
+        <p>VetGPT uses third-party AI services to power its intelligent features:</p>
+        <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.95rem;">
+            <li><strong>Text and vision AI</strong> — Used for document scanning, photo analysis, health chat, health scores, and wellness tips</li>
+            <li><strong>Speech-to-text AI</strong> — Used for vet visit voice recording transcription</li>
+        </ul>
+        <p>All AI features include clear disclaimers that they do not constitute veterinary advice and that users should consult a licensed veterinarian for medical decisions. The AI is positioned as an informational tool, not a diagnostic one.</p>
+
+        <h2>Permissions Used</h2>
+        <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.95rem;">
+            <li><strong>Camera:</strong> For scanning prescriptions, vaccine cards, documents, and taking pet photos</li>
+            <li><strong>Photo Library:</strong> For uploading existing photos and documents</li>
+            <li><strong>Microphone:</strong> For voice recording of vet visits</li>
+            <li><strong>Notifications:</strong> For medication reminders, appointment alerts, and wellness tips</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>If you have any questions during your review, please contact us at <a href="mailto:support@vetgpt.app" style="color: var(--link-color);">support@vetgpt.app</a>. We are happy to assist and typically respond within 24 hours.</p>
+    </div>
+</body>
+</html>

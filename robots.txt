@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /reviewers.html
+
+Sitemap: https://vetgpt.app/sitemap.xml

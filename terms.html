@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - VetGPT</title>
+    <meta name="description" content="VetGPT Terms of Service - AI-powered pet health tracking for 50+ species">
+    <meta property="og:title" content="Terms of Service - VetGPT">
+    <meta property="og:description" content="Terms of Service for VetGPT, the AI-powered pet health management app.">
+    <meta property="og:url" content="https://vetgpt.app/terms.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1030 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.warning {
+            border-left: 3px solid #f59e0b;
+        }
+
+        .highlight-box.important {
+            border-left: 3px solid var(--accent-pink);
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            .container { padding: 2rem 1.25rem 3rem; }
+            .header-inner { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-inner">
+            <a href="https://vetgpt.app" class="logo-link">
+                <div class="logo-icon">🐾</div>
+                VetGPT
+            </a>
+            <nav class="nav-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy</a>
+                <a href="https://vetgpt.app/terms.html">Terms</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last Updated: February 8, 2026</p>
+
+        <p>Welcome to VetGPT. These Terms of Service ("Terms") govern your access to and use of the VetGPT mobile application, website (vetgpt.app), and related services (collectively, the "Service") operated by VetGPT ("we," "us," or "our").</p>
+
+        <p>By downloading, installing, or using VetGPT, you agree to be bound by these Terms. If you do not agree, please do not use the Service.</p>
+
+        <h2>1. Description of Service</h2>
+        <p>VetGPT is an AI-powered pet health management application that helps pet owners track, organize, and understand their pets' health information. The Service includes:</p>
+        <ul>
+            <li>Pet health profile management for 50+ species</li>
+            <li>Medication tracking and reminders</li>
+            <li>Veterinary visit logging and document storage</li>
+            <li>AI-powered document scanning and data extraction</li>
+            <li>AI health chat assistant with pet-specific context</li>
+            <li>Health scores, wellness tips, and proactive insights</li>
+            <li>Voice recording and transcription of vet visits</li>
+            <li>Photo analysis for health monitoring</li>
+        </ul>
+
+        <h2>2. Important Medical Disclaimer</h2>
+        <div class="highlight-box important">
+            <p><strong>VetGPT is NOT a substitute for professional veterinary care.</strong></p>
+            <p>The AI-powered features in VetGPT, including health assessments, symptom analysis, wellness tips, and health scores, are provided for <strong>informational and organizational purposes only</strong>. They do not constitute veterinary advice, diagnosis, or treatment.</p>
+            <p>Always consult a licensed veterinarian for medical decisions regarding your pet's health. If your pet is experiencing a medical emergency, contact your veterinarian or an emergency animal hospital immediately.</p>
+            <p style="margin-bottom:0;">VetGPT's AI features are designed to help you be a more informed pet owner and better communicate with your veterinarian — not to replace them.</p>
+        </div>
+
+        <h2>3. Account Registration</h2>
+        <p>To use VetGPT, you must create an account by providing a valid email address and password, or by signing in through a supported authentication provider (such as Google). You agree to:</p>
+        <ul>
+            <li>Provide accurate and complete registration information</li>
+            <li>Maintain the security of your account credentials</li>
+            <li>Notify us immediately of any unauthorized access to your account</li>
+            <li>Accept responsibility for all activities that occur under your account</li>
+        </ul>
+        <p>You must be at least 13 years old to create an account. If you are between 13 and 18, you must have parental or guardian consent to use the Service.</p>
+
+        <h2>4. Subscription Plans &amp; Billing</h2>
+
+        <h3>4.1 Free Tier</h3>
+        <p>VetGPT offers a free tier that includes basic pet health tracking features with limited AI functionality. The free tier allows up to 2 pet profiles and a limited number of AI interactions per month.</p>
+
+        <h3>4.2 Premium Subscription</h3>
+        <p>VetGPT Premium unlocks unlimited pets, unlimited AI interactions, document and photo scanning, voice recording and transcription, AI-personalized daily tips, health scores with AI insights, and additional features. Premium is available as a monthly or annual subscription. Current pricing is displayed within the app and on the applicable app store listing.</p>
+
+        <h3>4.3 Billing</h3>
+        <p>Premium subscriptions are billed through the Apple App Store or Google Play Store. By subscribing, you authorize the applicable platform to charge your payment method on a recurring basis. All billing, refunds, and payment disputes are handled by the respective app store in accordance with their terms.</p>
+
+        <h3>4.4 Cancellation</h3>
+        <p>You may cancel your Premium subscription at any time through your device's app store settings. Upon cancellation:</p>
+        <ul>
+            <li>You retain access to Premium features until the end of your current billing period</li>
+            <li>Your account will revert to the free tier at the end of the billing period</li>
+            <li>Your data, pet profiles, and health records will be preserved and remain accessible</li>
+            <li>No partial refunds are issued for unused portions of a billing period</li>
+        </ul>
+
+        <h3>4.5 Price Changes</h3>
+        <p>We may adjust subscription pricing from time to time. We will provide at least 30 days' notice of any price increases. Continued use of the Service after a price change takes effect constitutes acceptance of the new pricing.</p>
+
+        <h2>5. Acceptable Use</h2>
+        <p>You agree to use VetGPT in compliance with all applicable laws and these Terms. You agree <strong>not</strong> to:</p>
+        <ul>
+            <li>Use the Service for any unlawful purpose</li>
+            <li>Upload content that is harmful, offensive, defamatory, or infringes on others' rights</li>
+            <li>Attempt to gain unauthorized access to any part of the Service, other accounts, or systems</li>
+            <li>Reverse engineer, decompile, or disassemble any part of the Service</li>
+            <li>Use the AI features to generate content that is misleading, harmful, or that impersonates veterinary professionals</li>
+            <li>Use automated tools, bots, or scripts to access the Service (except as expressly authorized)</li>
+            <li>Resell, redistribute, or commercially exploit the Service without our written consent</li>
+            <li>Circumvent any usage limits, rate limits, or access controls</li>
+        </ul>
+
+        <h2>6. Your Content &amp; Data</h2>
+
+        <h3>6.1 Ownership</h3>
+        <p>You retain ownership of all content you submit to VetGPT, including pet photos, health records, documents, audio recordings, and other data ("Your Content"). By using the Service, you grant us a limited license to process, store, and display Your Content solely to provide and improve the Service.</p>
+
+        <h3>6.2 Data Processing</h3>
+        <p>To provide AI-powered features, Your Content may be processed by third-party AI services (such as language models and speech-to-text services). This processing is done solely to deliver the features you use and is governed by our <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>.</p>
+
+        <h3>6.3 Data Portability</h3>
+        <p>You may export your pet health data at any time through the app's export features. We believe your data belongs to you.</p>
+
+        <h3>6.4 Data Deletion</h3>
+        <p>You may delete individual pets, health records, or your entire account at any time. Account deletion permanently removes all associated data from our systems, subject to any legal retention requirements.</p>
+
+        <h2>7. Intellectual Property</h2>
+        <p>The VetGPT name, logo, app design, code, AI algorithms, and all other intellectual property related to the Service are owned by VetGPT and protected by applicable intellectual property laws. These Terms do not grant you any right, title, or interest in our intellectual property except for the limited right to use the Service as described herein.</p>
+
+        <h2>8. AI-Generated Content</h2>
+        <div class="highlight-box warning">
+            <p>VetGPT uses artificial intelligence to provide health insights, analyze documents, assess symptoms, and generate wellness tips. While we strive for accuracy, AI-generated content may contain errors, inaccuracies, or omissions.</p>
+            <p style="margin-bottom:0;"><strong>You should not rely solely on AI-generated content for making health decisions about your pet.</strong> Always verify important information with a qualified veterinarian.</p>
+        </div>
+
+        <h2>9. Third-Party Services</h2>
+        <p>VetGPT may integrate with or link to third-party services, including but not limited to:</p>
+        <ul>
+            <li>AI service providers for intelligent features</li>
+            <li>Cloud storage providers for data hosting</li>
+            <li>Payment processors (via app stores)</li>
+            <li>Pet supply retailers (affiliate links)</li>
+        </ul>
+        <p>We are not responsible for the availability, content, or practices of third-party services. Your use of third-party services is subject to their respective terms and privacy policies.</p>
+
+        <h2>10. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by applicable law:</p>
+        <ul>
+            <li>VetGPT is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied</li>
+            <li>We do not warrant that the Service will be uninterrupted, error-free, or that any AI-generated content will be accurate or complete</li>
+            <li>We are not liable for any decisions made based on information provided by VetGPT, including AI-generated health assessments or recommendations</li>
+            <li>In no event shall our total liability to you exceed the amount you paid for the Service in the twelve (12) months preceding the claim</li>
+            <li>We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or damages related to your pet's health</li>
+        </ul>
+
+        <h2>11. Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless VetGPT, its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or related to your use of the Service, your violation of these Terms, or your violation of any rights of another party.</p>
+
+        <h2>12. Termination</h2>
+        <p>We reserve the right to suspend or terminate your account at our discretion if you violate these Terms or engage in conduct that we determine is harmful to other users, the Service, or our business. We will make reasonable efforts to notify you before or promptly after termination, except where doing so would compromise safety or legal compliance.</p>
+        <p>You may terminate your account at any time by deleting your account through the app or by contacting us at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>.</p>
+
+        <h2>13. Changes to These Terms</h2>
+        <p>We may update these Terms from time to time. When we make material changes, we will:</p>
+        <ul>
+            <li>Update the "Last Updated" date at the top of this page</li>
+            <li>Notify you through the app or via email for significant changes</li>
+            <li>Provide at least 14 days' notice before changes take effect for material modifications</li>
+        </ul>
+        <p>Your continued use of the Service after changes become effective constitutes acceptance of the updated Terms.</p>
+
+        <h2>14. Dispute Resolution</h2>
+        <p>If you have a dispute with VetGPT, we encourage you to contact us first at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a> so we can try to resolve it directly. We are committed to working with you to find a fair resolution.</p>
+        <p>If we are unable to resolve the dispute informally, you and VetGPT agree to resolve any claims through binding arbitration on an individual basis, rather than through class actions or jury trials, except where prohibited by applicable law. This arbitration agreement does not prevent you from bringing issues to the attention of federal, state, or local agencies that may seek relief on your behalf.</p>
+
+        <h2>15. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the State of Arizona, United States, without regard to its conflict of law provisions.</p>
+
+        <h2>16. Severability</h2>
+        <p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that the remaining provisions remain in full force and effect.</p>
+
+        <h2>17. Entire Agreement</h2>
+        <p>These Terms, together with our <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>, constitute the entire agreement between you and VetGPT regarding your use of the Service and supersede all prior agreements and understandings.</p>
+
+        <h2>18. Contact Us</h2>
+        <p>If you have any questions about these Terms of Service, please contact us:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:support@vetgpt.app">support@vetgpt.app</a></li>
+            <li><strong>Website:</strong> <a href="https://vetgpt.app">https://vetgpt.app</a></li>
+            <li><strong>Support:</strong> <a href="https://vetgpt.app/support.html">https://vetgpt.app/support.html</a></li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>
+                <a href="https://vetgpt.app/terms.html">Terms of Service</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </div>
+            <p>&copy; 2026 VetGPT. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

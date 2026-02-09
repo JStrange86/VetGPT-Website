@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exotic Pet Health Tracker — AI-Powered Care for 60+ Species | VetGPT</title>
+    <meta name="description" content="The only pet health app built for exotic pets. Track health, scan vet documents, and get AI insights for reptiles, fish, birds, amphibians, and 60+ species.">
+    <meta name="keywords" content="exotic pet health tracker, exotic pet care app, reptile health app, fish health tracker, bird health app, exotic pet vet records, AI pet health">
+    <meta property="og:title" content="Exotic Pet Health Tracker — VetGPT">
+    <meta property="og:description" content="Finally, a pet health app that understands your exotic pets. AI-powered tracking for reptiles, fish, birds, amphibians, and 60+ species.">
+    <meta property="og:url" content="https://vetgpt.app/exotic-pet-care">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta name="google-site-verification" content="cS_PEnntd5jCrhO8IQeaqdVgAfihW4sY8IhcbLePvEU" />
+    <link rel="canonical" href="https://vetgpt.app/exotic-pet-care">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #060610;
+            --bg-secondary: #0c0c1a;
+            --bg-card: #141428;
+            --text-primary: #eeeef2;
+            --text-secondary: #9898b0;
+            --text-muted: #6a6a82;
+            --accent-green: #10b981;
+            --accent-emerald: #34d399;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-orange: #f59e0b;
+            --border-color: #1e1e36;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(6, 6, 16, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(30, 30, 54, 0.5);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--accent-green);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover { opacity: 0.9; }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.04) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--accent-emerald);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            max-width: 800px;
+            margin: 0 auto 1.25rem;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 0.85rem 2.25rem;
+            background: var(--accent-green);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.35);
+        }
+
+        .hero-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        /* Species Marquee */
+        .species-bar {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .species-bar::before,
+        .species-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .species-bar::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-primary), transparent);
+        }
+
+        .species-bar::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-primary), transparent);
+        }
+
+        .species-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .species-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .species-tag .emoji {
+            font-size: 1.1rem;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .problem-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-card .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon.green { background: rgba(16, 185, 129, 0.12); }
+        .card-icon.purple { background: rgba(139, 92, 246, 0.12); }
+        .card-icon.cyan { background: rgba(6, 182, 212, 0.12); }
+        .card-icon.orange { background: rgba(245, 158, 11, 0.12); }
+        .card-icon.pink { background: rgba(236, 72, 153, 0.12); }
+        .card-icon.blue { background: rgba(59, 130, 246, 0.12); }
+
+        .feature-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Species Categories Section */
+        .species-section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .category-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .category-card .cat-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .category-card .species-list {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .category-card .tracking {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.78rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .compare-table thead th {
+            padding: 1rem;
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .compare-table thead th:first-child {
+            color: var(--text-secondary);
+        }
+
+        .compare-table thead th:nth-child(2) {
+            color: var(--accent-green);
+        }
+
+        .compare-table thead th:nth-child(3) {
+            color: var(--text-muted);
+        }
+
+        .compare-table tbody td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(30, 30, 54, 0.4);
+            color: var(--text-secondary);
+        }
+
+        .compare-table .check { color: var(--accent-green); font-weight: 700; font-size: 1.1rem; }
+        .compare-table .cross { color: #ef4444; font-size: 1.1rem; }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 650px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(6, 182, 212, 0.06));
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+        }
+
+        .cta-box h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-box .hero-cta {
+            animation: none;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .problem-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .category-grid { grid-template-columns: 1fr; }
+            .hero { padding: 7rem 1.25rem 3rem; }
+            .problem, .features, .species-section, .comparison, .cta-section { padding: 3rem 1.25rem; }
+            .compare-table { font-size: 0.8rem; }
+            .compare-table thead th, .compare-table tbody td { padding: 0.65rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="https://vetgpt.app" class="nav-logo">
+                <img src="https://vetgpt.app/logo-black.png" alt="VetGPT" class="nav-logo-img" width="32" height="32">
+                VetGPT
+            </a>
+            <a href="https://vetgpt.app/#download" class="nav-cta">Get Early Access</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">🦎 Built for exotic pet owners</div>
+        <h1>Every pet app forgot about <span class="gradient">your pets</span></h1>
+        <p class="hero-sub">VetGPT is the first AI health tracker built for exotic pets — reptiles, fish, birds, amphibians, and 60+ species — with tracking features no other app offers.</p>
+        <a href="https://vetgpt.app/#download" class="hero-cta">Get Early Access — Free</a>
+        <p class="hero-note">All premium features free during beta · iOS &amp; Android</p>
+    </section>
+
+    <!-- Species Marquee -->
+    <div class="species-bar">
+        <div class="species-track">
+            <div class="species-tag"><span class="emoji">🦎</span> Bearded Dragons</div>
+            <div class="species-tag"><span class="emoji">🐍</span> Ball Pythons</div>
+            <div class="species-tag"><span class="emoji">🐠</span> Goldfish</div>
+            <div class="species-tag"><span class="emoji">🦜</span> Parrots</div>
+            <div class="species-tag"><span class="emoji">🐸</span> Axolotls</div>
+            <div class="species-tag"><span class="emoji">🐢</span> Tortoises</div>
+            <div class="species-tag"><span class="emoji">🦔</span> Hedgehogs</div>
+            <div class="species-tag"><span class="emoji">🐓</span> Chickens</div>
+            <div class="species-tag"><span class="emoji">🕷️</span> Tarantulas</div>
+            <div class="species-tag"><span class="emoji">🦀</span> Hermit Crabs</div>
+            <div class="species-tag"><span class="emoji">🐟</span> Bettas</div>
+            <div class="species-tag"><span class="emoji">🐊</span> Geckos</div>
+            <div class="species-tag"><span class="emoji">🐰</span> Rabbits</div>
+            <div class="species-tag"><span class="emoji">🐹</span> Guinea Pigs</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="species-tag"><span class="emoji">🦎</span> Bearded Dragons</div>
+            <div class="species-tag"><span class="emoji">🐍</span> Ball Pythons</div>
+            <div class="species-tag"><span class="emoji">🐠</span> Goldfish</div>
+            <div class="species-tag"><span class="emoji">🦜</span> Parrots</div>
+            <div class="species-tag"><span class="emoji">🐸</span> Axolotls</div>
+            <div class="species-tag"><span class="emoji">🐢</span> Tortoises</div>
+            <div class="species-tag"><span class="emoji">🦔</span> Hedgehogs</div>
+            <div class="species-tag"><span class="emoji">🐓</span> Chickens</div>
+            <div class="species-tag"><span class="emoji">🕷️</span> Tarantulas</div>
+            <div class="species-tag"><span class="emoji">🦀</span> Hermit Crabs</div>
+            <div class="species-tag"><span class="emoji">🐟</span> Bettas</div>
+            <div class="species-tag"><span class="emoji">🐊</span> Geckos</div>
+            <div class="species-tag"><span class="emoji">🐰</span> Rabbits</div>
+            <div class="species-tag"><span class="emoji">🐹</span> Guinea Pigs</div>
+        </div>
+    </div>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-title">Every species deserves smart health tracking</h2>
+        <p class="section-desc">Every pet health app was built for dogs and cats. If you keep reptiles, fish, or birds, you're stuck with apps that don't understand your animals.</p>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon">🚫</div>
+                <h3>No species-specific tracking</h3>
+                <p>Generic apps don't track water parameters, shedding cycles, humidity levels, or egg production. They just give you a text field.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📱</div>
+                <h3>Juggling multiple apps</h3>
+                <p>One app for your snake's feeding log, another for your fish tank's water tests, a spreadsheet for your chickens. Nothing talks to each other.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">🤖</div>
+                <h3>AI that doesn't get it</h3>
+                <p>Try asking an AI chatbot about your bearded dragon's health — without context about their basking temps, shedding history, or feeding schedule.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📋</div>
+                <h3>Manual everything</h3>
+                <p>No app scans your exotic vet's prescriptions or records your vet visits. You're typing everything by hand, if you track it at all.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="section-label">The Solution</div>
+        <h2 class="section-title">One app for all your pets. Finally.</h2>
+        <p class="section-desc">VetGPT combines species-specific tracking with AI intelligence — no other app does both.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="card-icon green">🌡️</div>
+                <h3>Species-Specific Tracking</h3>
+                <p>Water parameters for fish, shedding logs for reptiles, egg production for poultry, humidity for amphibians — real tracking, not text fields.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon purple">📄</div>
+                <h3>Scan Vet Documents</h3>
+                <p>Photograph prescriptions, vaccine records, and lab results. AI extracts medication names, dosages, and dates automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon cyan">💬</div>
+                <h3>AI That Knows Your Pets</h3>
+                <p>Ask anything about your bearded dragon's health. The AI knows their husbandry data, vet history, medications, and species needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon orange">🏠</div>
+                <h3>Enclosure Management</h3>
+                <p>Track aquariums, terrariums, cages, and coops. Link multiple pets to shared enclosures. Log parameters per habitat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon pink">📊</div>
+                <h3>AI Health Scores</h3>
+                <p>A 0–100 score per pet based on care compliance, vet visits, and health patterns — with specific actions to improve it.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon blue">📸</div>
+                <h3>Health Journey</h3>
+                <p>Weekly photos to track changes over time. AI analyzes appearance and provides species-aware observations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Species Categories -->
+    <section class="species-section">
+        <div class="section-label">60+ Species Supported</div>
+        <h2 class="section-title">Built for every species you keep</h2>
+
+        <div class="category-grid">
+            <a href="https://vetgpt.app/reptile-health-tracker" class="category-card">
+                <div class="cat-emoji">🦎</div>
+                <h3>Reptiles</h3>
+                <div class="species-list">Bearded dragons, ball pythons, leopard geckos, chameleons, tortoises, blue tongue skinks</div>
+                <span class="tracking">Shedding · Husbandry · Feeding logs →</span>
+            </a>
+            <a href="https://vetgpt.app/aquarium-fish-health" class="category-card">
+                <div class="cat-emoji">🐠</div>
+                <h3>Fish &amp; Aquatics</h3>
+                <div class="species-list">Goldfish, bettas, cichlids, koi, saltwater fish, corals, shrimp</div>
+                <span class="tracking">Water parameters · Tank management →</span>
+            </a>
+            <div class="category-card">
+                <div class="cat-emoji">🦜</div>
+                <h3>Birds</h3>
+                <div class="species-list">Parrots, cockatiels, finches, budgies, conures, macaws</div>
+                <span class="tracking">Weight · Diet · Behavior tracking</span>
+            </div>
+            <div class="category-card">
+                <div class="cat-emoji">🐸</div>
+                <h3>Amphibians</h3>
+                <div class="species-list">Axolotls, tree frogs, pacman frogs, newts, salamanders</div>
+                <span class="tracking">Water quality · Humidity · Feeding</span>
+            </div>
+            <div class="category-card">
+                <div class="cat-emoji">🐹</div>
+                <h3>Small Mammals</h3>
+                <div class="species-list">Hamsters, guinea pigs, ferrets, hedgehogs, chinchillas, rats</div>
+                <span class="tracking">Weight · Diet · Health symptoms</span>
+            </div>
+            <div class="category-card">
+                <div class="cat-emoji">🐓</div>
+                <h3>Poultry</h3>
+                <div class="species-list">Chickens, ducks, quail, geese, turkeys</div>
+                <span class="tracking">Egg production · Flock health</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="section-label">Why VetGPT</div>
+        <h2 class="section-title">What you get that no other app offers</h2>
+
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>VetGPT</th>
+                    <th>Other Apps</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exotic pet support (60+ species)</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>Species-specific tracking (water params, shedding, eggs)</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>AI document scanning (prescriptions, lab results)</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>Vet visit voice recording + AI transcription</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>AI health chat with full pet context</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>AI health scores (0–100)</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>Enclosure management (tanks, terrariums, coops)</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+                <tr>
+                    <td>Multi-species in one app</td>
+                    <td class="check">✓</td>
+                    <td class="cross">✗</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Your exotic pets deserve better</h2>
+            <p>Join pet owners who are finally tracking their pets' health with an app that actually understands their species.</p>
+            <a href="https://vetgpt.app/#download" class="hero-cta">Get Early Access — Free</a>
+            <p class="hero-note">All premium features free during beta · iOS &amp; Android</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://vetgpt.app">Home</a>
+            <a href="https://vetgpt.app/privacy.html">Privacy</a>
+            <a href="https://vetgpt.app/terms.html">Terms</a>
+            <a href="https://vetgpt.app/support.html">Support</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 VetGPT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

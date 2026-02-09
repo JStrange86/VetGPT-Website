@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - VetGPT</title>
+    <meta name="description" content="VetGPT Privacy Policy - How we collect, use, and protect your data in our AI-powered pet health app.">
+    <meta property="og:title" content="Privacy Policy - VetGPT">
+    <meta property="og:description" content="Learn how VetGPT protects your privacy and handles your pet health data.">
+    <meta property="og:url" content="https://vetgpt.app/privacy.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1030 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Quick summary box */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(16, 185, 129, 0.08));
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .summary-box h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-item .icon {
+            color: var(--accent-green);
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.green {
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .highlight-box.purple {
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .highlight-box.pink {
+            border-left: 3px solid var(--accent-pink);
+        }
+
+        /* Data table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .data-table thead th {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tbody td {
+            color: var(--text-secondary);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(42, 42, 62, 0.5);
+            vertical-align: top;
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            .container { padding: 2rem 1.25rem 3rem; }
+            .header-inner { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 0.8rem; }
+            .data-table thead th,
+            .data-table tbody td { padding: 0.5rem 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-inner">
+            <a href="https://vetgpt.app" class="logo-link">
+                <div class="logo-icon">🐾</div>
+                VetGPT
+            </a>
+            <nav class="nav-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy</a>
+                <a href="https://vetgpt.app/terms.html">Terms</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: February 8, 2026</p>
+
+        <p class="intro">VetGPT ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and share your information when you use the VetGPT mobile application and related services (the "Service"). We believe your data belongs to you — we collect only what's needed to deliver the features you use.</p>
+
+        <!-- Quick Summary Box -->
+        <div class="summary-box">
+            <h3>🔒 Privacy at a Glance</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>We <strong>never sell</strong> your personal data</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>All data is <strong>encrypted</strong> in transit and at rest</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>Your data is <strong>isolated</strong> and accessible only to you</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>You can <strong>export or delete</strong> your data at any time</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>AI processing is <strong>on-demand only</strong>, not retained</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">✓</span>
+                    <span>We do <strong>not</strong> use your data to train AI models</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>1. Information We Collect</h2>
+
+        <h3>1.1 Information You Provide</h3>
+        <p>When you use VetGPT, you may provide the following types of information:</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Account Information</strong></td>
+                    <td>Email address, password, display name</td>
+                    <td>Authentication, account management</td>
+                </tr>
+                <tr>
+                    <td><strong>Pet Profiles</strong></td>
+                    <td>Pet name, species, breed, age, weight, photo, medical conditions, allergies</td>
+                    <td>Health tracking, AI personalization</td>
+                </tr>
+                <tr>
+                    <td><strong>Health Records</strong></td>
+                    <td>Medications, dosages, symptoms, vet visits, vaccines, weight logs, vitals</td>
+                    <td>Health management, reminders, health scores</td>
+                </tr>
+                <tr>
+                    <td><strong>Documents &amp; Photos</strong></td>
+                    <td>Prescription photos, vaccine cards, lab results, vet documents, symptom photos, pet photos</td>
+                    <td>AI document scanning, photo analysis, health records</td>
+                </tr>
+                <tr>
+                    <td><strong>Audio Recordings</strong></td>
+                    <td>Vet visit voice recordings</td>
+                    <td>Transcription and AI extraction of visit details</td>
+                </tr>
+                <tr>
+                    <td><strong>Species-Specific Data</strong></td>
+                    <td>Water parameters, husbandry logs, feeding records, shedding logs, egg production</td>
+                    <td>Species-appropriate health tracking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.2 Information Collected Automatically</h3>
+        <p>When you use VetGPT, we may automatically collect:</p>
+        <ul>
+            <li><strong>Device information:</strong> Device type, operating system version, and app version</li>
+            <li><strong>Usage data:</strong> Features used, interactions with the app, and error logs</li>
+            <li><strong>Push notification tokens:</strong> Required to deliver reminders and alerts to your device</li>
+        </ul>
+        <p>We do <strong>not</strong> collect precise location data, contact lists, browsing history, or any data unrelated to providing the Service.</p>
+
+        <h3>1.3 Information We Do NOT Collect</h3>
+        <div class="highlight-box green">
+            <p>We want to be explicit about what we <strong>don't</strong> do:</p>
+            <ul>
+                <li>We do not collect your location data</li>
+                <li>We do not access your contacts or phone book</li>
+                <li>We do not track you across other apps or websites</li>
+                <li>We do not collect financial or payment information (payments are processed entirely by Apple or Google)</li>
+                <li>We do not use advertising identifiers or tracking pixels</li>
+            </ul>
+        </div>
+
+        <h2>2. How We Use Your Data</h2>
+        <p>We use your information solely to provide and improve the VetGPT Service. Specifically:</p>
+        <ul>
+            <li><strong>Deliver core features:</strong> Store and display your pet health records, medications, vet visits, and other health data</li>
+            <li><strong>Power AI features:</strong> Process documents, photos, and voice recordings through AI services to extract and analyze health information</li>
+            <li><strong>Generate insights:</strong> Calculate health scores, create personalized wellness tips, and provide AI health chat responses using your pet's health context</li>
+            <li><strong>Send reminders:</strong> Deliver medication reminders, appointment alerts, and wellness notifications you've configured</li>
+            <li><strong>Improve the Service:</strong> Analyze aggregate, anonymized usage patterns to improve features and fix bugs</li>
+            <li><strong>Communicate with you:</strong> Respond to support requests and send important service announcements</li>
+        </ul>
+
+        <div class="highlight-box purple">
+            <p style="margin-bottom: 0;"><strong>We do not sell, rent, or share your personal data or pet health information with third parties for advertising, marketing, or any purpose unrelated to providing the Service.</strong></p>
+        </div>
+
+        <h2>3. AI and Data Processing</h2>
+        <p>VetGPT uses third-party artificial intelligence services to power its intelligent features. Understanding how your data interacts with these services is important to us:</p>
+
+        <h3>3.1 What AI Services We Use</h3>
+        <ul>
+            <li><strong>Text and Vision AI:</strong> Used for document scanning, photo analysis, health chat, health score generation, and wellness tips. Your pet's relevant health context is included in AI requests so the AI can provide personalized responses.</li>
+            <li><strong>Speech-to-Text AI:</strong> Used exclusively for transcribing vet visit voice recordings.</li>
+        </ul>
+
+        <h3>3.2 How AI Processing Works</h3>
+        <ul>
+            <li>Your data is sent to AI services <strong>only when you actively use an AI feature</strong> (e.g., starting a chat, scanning a document, recording a visit)</li>
+            <li>AI services process your data to generate a response and <strong>do not retain your data</strong> beyond the scope of that request</li>
+            <li><strong>Your data is not used to train AI models.</strong> We use API services with data processing agreements that prohibit the use of customer data for model training</li>
+            <li>AI-generated content (health insights, tips, assessments) is provided for informational purposes only and does not constitute veterinary advice</li>
+        </ul>
+
+        <h3>3.3 AI Chat History</h3>
+        <p>Your AI chat conversations are stored in your account so you can reference them later. You can delete individual conversations or your entire chat history at any time through the app.</p>
+
+        <h2>4. Data Storage and Security</h2>
+
+        <h3>4.1 Where Your Data Is Stored</h3>
+        <p>Your data is stored on secure cloud infrastructure provided by our database service provider. All data is hosted in the United States.</p>
+
+        <h3>4.2 Security Measures</h3>
+        <p>We implement industry-standard security measures to protect your data:</p>
+        <ul>
+            <li><strong>Encryption in transit:</strong> All data transmitted between your device and our servers uses TLS/SSL encryption</li>
+            <li><strong>Encryption at rest:</strong> Your stored data is encrypted on our database servers</li>
+            <li><strong>Row-level security:</strong> Database-level access controls ensure your data is isolated and accessible only through your authenticated account</li>
+            <li><strong>Authentication:</strong> Your account is protected by secure password hashing and session management</li>
+            <li><strong>Secure file storage:</strong> Documents, photos, and audio recordings are stored in encrypted cloud storage with access controls</li>
+        </ul>
+
+        <h3>4.3 Data Retention</h3>
+        <p>We retain your data for as long as your account is active and you choose to keep it. When you delete specific records, pet profiles, or your entire account, the associated data is permanently deleted from our systems within 30 days, except where retention is required by law.</p>
+
+        <h2>5. Third-Party Services</h2>
+        <p>We work with a limited number of trusted third-party service providers to deliver the Service:</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Purpose</th>
+                    <th>Data Shared</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cloud Database</strong></td>
+                    <td>Data storage, authentication</td>
+                    <td>All account and pet health data (encrypted)</td>
+                </tr>
+                <tr>
+                    <td><strong>AI Text &amp; Vision</strong></td>
+                    <td>Chat, document scanning, photo analysis, health insights</td>
+                    <td>Relevant pet context and uploaded content (per-request, not retained)</td>
+                </tr>
+                <tr>
+                    <td><strong>AI Speech-to-Text</strong></td>
+                    <td>Vet visit voice transcription</td>
+                    <td>Audio recordings (per-request, not retained)</td>
+                </tr>
+                <tr>
+                    <td><strong>App Distribution</strong></td>
+                    <td>App delivery and updates</td>
+                    <td>Standard app store metadata</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>All third-party providers are contractually obligated to protect your data, use it only for the specified purposes, and comply with applicable data protection regulations. We do not share your data with any providers beyond those necessary to operate the Service.</p>
+
+        <h2>6. Your Rights and Choices</h2>
+        <p>You have full control over your data in VetGPT:</p>
+
+        <div class="highlight-box green">
+            <ul>
+                <li><strong>Access:</strong> View all your data at any time through the app</li>
+                <li><strong>Edit:</strong> Modify any pet profile, health record, or account information</li>
+                <li><strong>Export:</strong> Generate and download comprehensive health reports for your records or to share with your veterinarian</li>
+                <li><strong>Delete:</strong> Delete individual records, pet profiles, AI chat history, or your entire account</li>
+                <li><strong>Notifications:</strong> Control which reminders and notifications you receive through app settings and device settings</li>
+                <li><strong>AI features:</strong> Choose when to use AI features — data is only sent to AI services when you initiate an AI interaction</li>
+            </ul>
+        </div>
+
+        <p>To exercise any of these rights, you can use the relevant feature within the app or contact us at <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a>.</p>
+
+        <h2>7. Account Deletion</h2>
+        <p>You can delete your account at any time from the Profile section within the app. When you delete your account:</p>
+        <ul>
+            <li>All pet profiles and associated health data are permanently deleted</li>
+            <li>All uploaded documents, photos, and audio recordings are permanently deleted</li>
+            <li>All AI chat history is permanently deleted</li>
+            <li>Your authentication credentials are removed</li>
+            <li>This action is irreversible</li>
+        </ul>
+        <p>If you are unable to delete your account through the app, contact us at <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a> and we will process your request within 30 days.</p>
+
+        <h2>8. Children's Privacy</h2>
+        <p>VetGPT is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected data from a child under 13 without verified parental consent, we will take steps to delete that information as quickly as possible.</p>
+        <p>If you believe we may have collected information from a child under 13, please contact us immediately at <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a>.</p>
+
+        <h2>9. California Privacy Rights (CCPA)</h2>
+        <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
+        <ul>
+            <li><strong>Right to Know:</strong> You can request disclosure of the categories and specific pieces of personal information we have collected about you</li>
+            <li><strong>Right to Delete:</strong> You can request deletion of personal information we have collected</li>
+            <li><strong>Right to Opt-Out of Sale:</strong> We do not sell personal information, so this right does not apply</li>
+            <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
+        </ul>
+        <p>To exercise your CCPA rights, contact us at <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a>.</p>
+
+        <h2>10. International Users</h2>
+        <p>VetGPT is currently operated from and primarily serves users in the United States. If you access the Service from outside the United States, please be aware that your data will be transferred to, stored, and processed in the United States. By using the Service, you consent to this transfer. We are committed to protecting your data regardless of where you are located.</p>
+
+        <h2>11. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. When we make material changes, we will:</p>
+        <ul>
+            <li>Update the "Last Updated" date at the top of this page</li>
+            <li>Notify you through the app or via email for significant changes</li>
+            <li>Provide at least 14 days' notice before changes take effect for material modifications</li>
+        </ul>
+        <p>We encourage you to review this Privacy Policy periodically. Your continued use of VetGPT after changes are posted constitutes your acceptance of the updated policy.</p>
+
+        <h2>12. Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:</p>
+        <ul>
+            <li><strong>Privacy inquiries:</strong> <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a></li>
+            <li><strong>General support:</strong> <a href="mailto:support@vetgpt.app">support@vetgpt.app</a></li>
+            <li><strong>Website:</strong> <a href="https://vetgpt.app">https://vetgpt.app</a></li>
+        </ul>
+        <p>We will respond to all privacy-related inquiries within 30 days.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>
+                <a href="https://vetgpt.app/terms.html">Terms of Service</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </div>
+            <p>&copy; 2026 VetGPT. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

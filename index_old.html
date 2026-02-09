@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VetGPT — AI Pet Health Tracking</title>
+<meta name="description" content="Track every vet visit, lab result, and medication in one app. AI that knows your pet's full history — so you never start from zero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#030305;--bg2:#06060b;--bg3:#0a0a12;--bg4:#0e0e18;
+--text:#eeeef0;--muted:#8e8e9a;--dim:#44444f;--faint:#1e1e28;
+--green:#22c55e;--greenglow:rgba(34,197,94,0.12);--greenborder:rgba(34,197,94,.12);
+--purple:#a855f7;--pink:#ec4899;--cyan:#06b6d4;--orange:#f97316;
+--border:rgba(34,197,94,.08);--borderh:rgba(34,197,94,.2);
+--r:12px;
+--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+html{background:#030305}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:transparent;position:relative;z-index:1;color:var(--text);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(34,197,94,.035) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.6rem 2rem;backdrop-filter:blur(24px) saturate(1.4);background:rgba(3,3,5,0.7);border-bottom:1px solid var(--border);transition:background .3s}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;text-decoration:none;color:var(--text)}
+.logo-img{width:42px;height:42px;border-radius:10px;object-fit:cover;box-shadow:0 0 12px rgba(34,197,94,.3),0 0 24px rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.2)}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-family:var(--mono);letter-spacing:.02em;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a.active{color:var(--green)}
+.nav-cta{font-weight:500!important;color:var(--bg)!important;background:var(--green)!important;padding:.45rem 1.1rem;border-radius:6px;font-size:.78rem!important;transition:transform .2s,box-shadow .2s;letter-spacing:.04em!important;text-transform:uppercase}
+.nav-cta:hover{transform:scale(1.04);box-shadow:0 6px 24px rgba(34,197,94,.2)}
+.species-nav{position:fixed;top:53px;left:0;right:0;z-index:99;display:flex;justify-content:center;gap:.65rem;padding:.5rem 1rem;backdrop-filter:blur(20px) saturate(1.3);background:rgba(3,3,5,.55);border-bottom:1px solid rgba(34,197,94,.08);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.species-nav::-webkit-scrollbar{display:none}
+.species-chip{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem 1rem .45rem .75rem;border:1px solid rgba(34,197,94,.18);border-radius:6px;background:rgba(34,197,94,.04);color:rgba(238,238,240,.75);font-family:var(--mono);font-size:.78rem;font-weight:400;letter-spacing:.04em;text-decoration:none;transition:all .25s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;white-space:nowrap}
+.species-chip::before{content:'';position:absolute;top:3px;left:3px;width:3px;height:3px;border-radius:50%;background:rgba(34,197,94,.3);transition:all .25s}
+.species-chip::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.15),transparent);opacity:0;transition:opacity .25s}
+.species-chip:hover{border-color:rgba(34,197,94,.4);color:var(--green);transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,197,94,.12)}
+.species-chip:hover::before{background:var(--green);box-shadow:0 0 6px var(--green)}
+.species-chip:hover::after{opacity:1}
+.species-chip .chip-icon{font-size:1rem;line-height:1}
+.species-chip .chip-label{text-transform:uppercase;font-weight:500}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;overflow:hidden;background:transparent;padding:8rem 1rem 1.5rem;gap:.4rem}
+/* Carousel-centric: Small text above big carousel */
+.hero-carousel-centric .carousel-wrapper{max-width:1200px;width:100%;z-index:3}
+.hero-text-compact{position:relative;z-index:3;text-align:center;max-width:750px;padding:0 1rem;margin-bottom:.3rem}
+.hero-headline-sm{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1rem,2vw,1.35rem);font-weight:600;line-height:1.35;letter-spacing:-.01em;margin:0 0 .3rem;color:rgba(238,238,240,.92)}
+.hero-headline-sm .accent{color:var(--green);font-weight:700}
+.hero-sub-sm{font-size:clamp(.75rem,1.3vw,.85rem);color:var(--muted);line-height:1.5;margin:0;max-width:550px;margin-left:auto;margin-right:auto}
+.hero-carousel-centric .hero-reassurance{margin-top:.8rem;font-size:.78rem;z-index:3}
+/* Founder hook - emotional connection */
+.founder-hook{position:relative;z-index:3;margin-top:1.5rem;padding:1.5rem 2rem;max-width:680px;text-align:center;background:rgba(10,10,18,0.75);border:1px solid rgba(168,85,247,.2);border-radius:16px;backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+.founder-hook::before{content:'';position:absolute;inset:0;border-radius:16px;background:linear-gradient(135deg,rgba(168,85,247,.05) 0%,transparent 50%,rgba(34,197,94,.03) 100%);pointer-events:none}
+.founder-quote{position:relative;font-size:clamp(.88rem,1.6vw,1rem);color:rgba(238,238,240,.9);line-height:1.7;margin:0 0 .75rem;font-style:normal;font-weight:400}
+.founder-quote .accent{color:var(--green);font-weight:600}
+.founder-quote .accent-pain{color:rgba(168,85,247,.9);font-weight:500}
+.founder-sig{font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+.founder-cta{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08)}
+.founder-reassurance{font-size:clamp(.95rem,1.8vw,1.1rem);font-weight:600;color:var(--text);margin:0 0 .4rem}
+.founder-reassurance .accent{color:var(--green)}
+.founder-subtext{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--muted);margin:0 0 1rem;line-height:1.5}
+.founder-subtext .accent{color:var(--green);font-weight:500}
+.founder-subtext .accent-pain{color:rgba(168,85,247,.9);font-weight:500}
+.btn-sm{padding:.6rem 1.4rem;font-size:.85rem}
+.aurora{position:absolute;inset:0;z-index:0;overflow:hidden}
+.ab{position:absolute;border-radius:50%;filter:blur(130px);will-change:transform,opacity;opacity:.4}
+.ab:nth-child(1){width:min(650px,75vw);height:min(650px,75vw);background:radial-gradient(circle,rgba(34,197,94,.18),transparent 70%);top:8%;left:12%;animation:aDrift1 16s ease-in-out infinite}
+.ab:nth-child(2){width:min(500px,65vw);height:min(500px,65vw);background:radial-gradient(circle,rgba(168,85,247,.14),transparent 70%);top:30%;right:8%;animation:aDrift2 18s ease-in-out infinite}
+.ab:nth-child(3){width:min(550px,70vw);height:min(550px,70vw);background:radial-gradient(circle,rgba(6,182,212,.12),transparent 70%);bottom:12%;left:30%;animation:aDrift3 14s ease-in-out infinite}
+@keyframes aDrift1{0%,100%{opacity:.35;transform:translate(0,0) scale(1)}50%{opacity:.55;transform:translate(35px,-25px) scale(1.06)}}
+@keyframes aDrift2{0%,100%{opacity:.3;transform:translate(0,0) scale(1)}50%{opacity:.5;transform:translate(-40px,20px) scale(1.1)}}
+@keyframes aDrift3{0%,100%{opacity:.3;transform:translate(0,0) scale(.95)}50%{opacity:.5;transform:translate(25px,-35px) scale(1.08)}}
+
+#circuitCanvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
+
+.hero-vig{position:absolute;inset:0;z-index:2;background:
+  radial-gradient(ellipse 52% 50% at 50% 48%,rgba(3,3,5,.92) 0%,rgba(3,3,5,.7) 35%,rgba(3,3,5,.18) 65%,transparent 85%),
+  linear-gradient(to bottom,rgba(3,3,5,.7) 0%,rgba(3,3,5,.15) 12%,transparent 30%,transparent 78%,rgba(3,3,5,.85) 100%)}
+
+.hero-content{position:relative;z-index:3;text-align:center;max-width:780px;padding:0 1.5rem}
+
+/* Headline */
+.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.4rem,5.8vw,4.4rem);line-height:1.08;letter-spacing:-.045em;margin-bottom:.8rem;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .15s both;text-shadow:0 0 80px rgba(3,3,5,.95),0 0 40px rgba(3,3,5,.9)}
+.hero h1 .accent{font-family:'Outfit',sans-serif;font-weight:700;color:var(--green);display:inline-block;text-shadow:0 0 40px rgba(34,197,94,.3),0 0 80px rgba(34,197,94,.15);position:relative;letter-spacing:-.03em}
+.hero h1 .accent::after{content:'';position:absolute;bottom:-.05em;left:2%;right:2%;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.4;border-radius:2px}
+
+/* Subtitle - the problem statement */
+.hero-sub{font-size:clamp(1rem,1.9vw,1.18rem);color:#b0b0bc;max-width:560px;margin:0 auto .8rem;font-weight:400;line-height:1.7;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .3s both;text-shadow:0 0 30px rgba(3,3,5,.9)}
+
+/* "Never start from zero" callout */
+.zero-badge{display:inline-flex;align-items:center;gap:.65rem;margin-bottom:2rem;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .4s both;padding:.55rem 1.2rem;border:1px solid rgba(34,197,94,.25);border-radius:100px;background:rgba(34,197,94,.06);backdrop-filter:blur(8px)}
+.zero-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 8px var(--green)}50%{opacity:.5;box-shadow:0 0 18px var(--green)}}
+.zero-text{font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(34,197,94,.9)}
+
+/* CTA */
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:.85rem;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .5s both}
+section[id]{scroll-margin-top:7rem}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;background:var(--green);color:var(--bg);font-family:var(--mono);font-weight:500;font-size:.88rem;padding:.85rem 1.75rem;border-radius:8px;text-decoration:none;letter-spacing:.03em;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;position:relative;text-transform:uppercase}
+.btn-primary::after{content:'';position:absolute;inset:-2px;border-radius:10px;background:var(--green);opacity:.15;filter:blur(22px);transition:opacity .3s;z-index:-1}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 48px rgba(34,197,94,.3)}
+.btn-primary:hover::after{opacity:.4}
+.hero-reassurance{display:inline-flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--text);font-family:var(--mono);letter-spacing:.04em;padding:.55rem 1.2rem;border:1px solid rgba(34,197,94,.25);border-radius:8px;background:rgba(34,197,94,.06);backdrop-filter:blur(8px)}
+.hero-reassurance .platform-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.5);animation:pulse-dot 2s ease-in-out infinite}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ═══════════════════════════════════════════════════
+   SHARED — circuit theme for all body sections
+   ═══════════════════════════════════════════════════ */
+.container{max-width:1080px;margin:0 auto;padding:0 2rem}
+.section-label{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(34,197,94,.5);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.section-label::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);opacity:.5;box-shadow:0 0 6px var(--green);animation:pulse-dot 3s ease-in-out infinite}
+.section-label::after{content:'';flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,rgba(34,197,94,.2),transparent)}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.12}
+h2 .accent{color:var(--green)}h2 .accent-cyan{color:var(--cyan)}h2 .accent-pink{color:var(--pink)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.s1{transition-delay:.04s}.s2{transition-delay:.08s}.s3{transition-delay:.12s}
+.s4{transition-delay:.16s}.s5{transition-delay:.2s}.s6{transition-delay:.24s}
+.hud-panel{position:relative;background:rgba(10,10,18,0.92);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .4s,box-shadow .4s}
+.hud-panel:hover{border-color:var(--borderh);box-shadow:0 0 40px rgba(34,197,94,.04)}
+.hud-panel::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.25),transparent);z-index:1}
+.hud-corner{position:absolute;width:10px;height:10px;opacity:.2;z-index:2}
+.hud-corner.tl{top:4px;left:4px;border-top:1px solid var(--green);border-left:1px solid var(--green)}
+.hud-corner.tr{top:4px;right:4px;border-top:1px solid var(--green);border-right:1px solid var(--green)}
+.hud-corner.bl{bottom:4px;left:4px;border-bottom:1px solid var(--green);border-left:1px solid var(--green)}
+.hud-corner.br{bottom:4px;right:4px;border-bottom:1px solid var(--green);border-right:1px solid var(--green)}
+.section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(34,197,94,.12) 20%,rgba(34,197,94,.08) 50%,rgba(34,197,94,.12) 80%,transparent 95%);position:relative}
+.section-divider::before,.section-divider::after{content:'';position:absolute;top:-2px;width:5px;height:5px;border-radius:50%;background:rgba(34,197,94,.2)}
+.section-divider::before{left:20%}
+.section-divider::after{right:20%}
+
+/* ═══ THE REALITY — vet chaos ═══ */
+.reality{padding:6rem 2rem;position:relative;z-index:1;background:rgba(3,3,5,0.75)}
+.reality h2{margin-bottom:1rem}
+.reality-sub{color:var(--muted);font-size:.95rem;margin-bottom:2.5rem;max-width:580px;line-height:1.65;margin-left:auto;margin-right:auto}
+.reality-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;max-width:820px;position:relative;margin:0 auto}
+.reality-cell{background:rgba(3,3,5,0.9);padding:1.7rem;transition:background .3s;position:relative}
+.reality-cell:hover{background:rgba(34,197,94,.015)}
+.reality-icon{font-size:1.2rem;margin-bottom:.65rem;width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(34,197,94,.1);border-radius:8px;background:rgba(34,197,94,.03)}
+.reality-where{font-family:var(--mono);font-size:.62rem;font-weight:400;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.45rem}
+.reality-q{font-weight:500;font-size:.92rem;margin-bottom:.35rem;color:var(--text)}
+.reality-a{font-size:.82rem;color:var(--muted);line-height:1.55}
+.reality-a strong{color:var(--green);font-weight:600}
+
+/* ═══ THE DIFFERENCE — contextual AI ═══ */
+.difference{padding:6rem 2rem;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(3,3,5,0.78)}
+.difference::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,197,94,.02) 0%,transparent 40%,transparent 60%,rgba(34,197,94,.01) 100%);pointer-events:none}
+.diff-inner{max-width:820px;margin:0 auto}
+.diff-comparison{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem}
+.diff-card{position:relative;padding:2rem 1.5rem;border-radius:var(--r);overflow:hidden}
+.diff-card.before{background:rgba(10,10,18,0.92);border:1px solid rgba(236,72,153,.1)}
+.diff-card.before::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(236,72,153,.2),transparent)}
+.diff-card.after{background:rgba(10,10,18,0.92);border:1px solid rgba(34,197,94,.15)}
+.diff-card.after::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.3),transparent)}
+.diff-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .65rem;border-radius:4px;margin-bottom:1.2rem}
+.diff-card.before .diff-badge{color:rgba(236,72,153,.8);background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.12)}
+.diff-card.after .diff-badge{color:rgba(34,197,94,.9);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.15)}
+.diff-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.diff-list li{font-size:.88rem;color:var(--muted);line-height:1.5;display:flex;gap:.5rem;align-items:flex-start}
+.diff-list li::before{content:'×';color:var(--pink);font-family:var(--mono);font-weight:500;font-size:.9rem;line-height:1.5;flex-shrink:0}
+.diff-card.after .diff-list li::before{content:'→';color:var(--green)}
+.diff-punchline{text-align:center;padding:1.5rem;background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.12);border-radius:var(--r);position:relative}
+.diff-punchline::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.3}
+.diff-punchline p{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.2vw,1.45rem);letter-spacing:-.02em}
+.diff-punchline p .accent{color:var(--green)}
+.diff-punchline .sub{font-family:'DM Sans',sans-serif;font-weight:400;font-size:.88rem;color:var(--muted);margin-top:.4rem;display:block}
+
+/* ═══ JOURNEY TIMELINE ═══ */
+.journey{padding:6rem 2rem;position:relative;z-index:1;background:rgba(3,3,5,0.75)}
+.journey h2{margin-bottom:1rem}
+.journey-sub{color:var(--muted);font-size:.95rem;margin-bottom:3rem;max-width:560px;line-height:1.65;margin-left:auto;margin-right:auto}
+.timeline{position:relative;max-width:720px;display:flex;flex-direction:column;gap:0;margin:0 auto}
+.timeline::before{content:'';position:absolute;top:0;bottom:0;left:23px;width:1px;background:linear-gradient(180deg,rgba(34,197,94,.3),rgba(34,197,94,.08),rgba(34,197,94,.3))}
+.tl-step{position:relative;padding:0 0 2.5rem 60px;display:flex;flex-direction:column;gap:.3rem}
+.tl-step:last-child{padding-bottom:0}
+.tl-node{position:absolute;left:14px;top:2px;width:19px;height:19px;border-radius:50%;border:2px solid var(--green);background:rgba(3,3,5,0.95);display:grid;place-items:center;z-index:1}
+.tl-node::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);opacity:.6}
+.tl-step:first-child .tl-node{box-shadow:0 0 12px rgba(34,197,94,.3)}
+.tl-step:first-child .tl-node::after{opacity:1;animation:pulse-dot 2s ease-in-out infinite}
+.tl-when{font-family:var(--mono);font-size:.62rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.tl-what{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-.01em}
+.tl-detail{font-size:.85rem;color:var(--muted);line-height:1.55}
+.tl-tag{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;font-family:var(--mono);font-size:.6rem;font-weight:400;color:rgba(34,197,94,.7);background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.12);padding:.2rem .55rem;border-radius:4px;letter-spacing:.02em;width:fit-content}
+
+/* ═══ FEATURES ═══ */
+.features{padding:6rem 2rem;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(3,3,5,0.78)}
+.features::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,197,94,.015) 0%,transparent 40%,transparent 60%,rgba(34,197,94,.01) 100%);pointer-events:none}
+.features h2{margin-bottom:3rem}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto}
+.feat{position:relative;background:rgba(10,10,18,0.92);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .4s,box-shadow .4s;overflow:hidden}
+.feat:hover{transform:translateY(-4px);border-color:var(--borderh);box-shadow:0 0 40px rgba(34,197,94,.05),0 20px 50px rgba(0,0,0,.4)}
+.feat::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.3),transparent);transition:opacity .3s}
+.feat:hover::before{opacity:1;left:5%;right:5%}
+.feat::after{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:linear-gradient(180deg,rgba(34,197,94,.04) 0%,transparent 35%);opacity:0;transition:opacity .3s}
+.feat:hover::after{opacity:1}
+.feat-icon{font-size:1.4rem;margin-bottom:.65rem;width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(34,197,94,.12);border-radius:8px;background:rgba(34,197,94,.04)}
+.feat h3{font-family:'Bricolage Grotesque';font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.feat p{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* ═══ MID CTA ═══ */
+.cta-mid{padding:4rem 2rem;text-align:center;position:relative;z-index:1;background:rgba(3,3,5,0.75)}
+.cta-mid h3{font-family:'Bricolage Grotesque';font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:700;margin-bottom:.4rem;letter-spacing:-.02em}
+.cta-mid p{color:var(--muted);margin-bottom:1.25rem;font-size:.92rem}
+
+/* ═══ SPECIES BAND — compact, lower on page ═══ */
+.species-band{padding:5rem 2rem;position:relative;z-index:1;text-align:center;background:rgba(3,3,5,0.8)}
+.species-band h2{margin-bottom:.5rem}
+.species-sub{color:var(--muted);font-size:.92rem;margin-bottom:2rem}
+.species-marquee{overflow:hidden;margin-bottom:1.75rem;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.sm-track{display:flex;gap:.5rem;width:max-content;animation:marquee 56s linear infinite}
+.sm-item{flex-shrink:0;background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.1);border-radius:6px;padding:.3rem .65rem;font-family:var(--mono);font-size:.68rem;font-weight:400;color:rgba(34,197,94,.6);white-space:nowrap;display:flex;align-items:center;gap:.3rem;letter-spacing:.02em}
+.sm-item .emoji{font-size:.85rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.species-stat{font-family:var(--mono);font-size:.72rem;color:var(--dim);letter-spacing:.04em}
+.species-stat strong{color:var(--green);font-weight:600;font-size:.85rem}
+
+/* ═══ TESTI ═══ */
+.testi{padding:6rem 2rem;position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(3,3,5,0.85)}
+.testi h2{margin-bottom:2.5rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto}
+.testi-card{position:relative;background:rgba(10,10,18,0.9);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;overflow:hidden;transition:border-color .3s}
+.testi-card:hover{border-color:var(--borderh)}
+.testi-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.2),transparent)}
+.testi-stars{color:var(--green);font-size:.72rem;letter-spacing:.06em;margin-bottom:.75rem;font-family:var(--mono)}
+.testi-quote{font-size:.88rem;line-height:1.6;margin-bottom:1rem;color:rgba(238,238,240,.85)}
+.testi-author{display:flex;align-items:center;gap:.5rem}
+.testi-av{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-weight:500;font-size:.7rem;color:var(--green);border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.05);font-family:var(--mono)}
+.testi-name{font-weight:600;font-size:.82rem}
+.testi-pet{font-size:.68rem;color:var(--dim);font-family:var(--mono)}
+
+/* ═══ STORY ═══ */
+.story{padding:6rem 2rem;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(3,3,5,0.88)}
+.story::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(168,85,247,.01) 0%,transparent 50%);pointer-events:none}
+.story-inner{max-width:640px;margin:0 auto;text-align:center}
+.story-frame{position:relative;border:1px solid var(--border);border-radius:var(--r);padding:2.5rem 2rem;background:rgba(10,10,18,0.92);overflow:hidden}
+.story-frame::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(236,72,153,.2),transparent)}
+.story-frame .hud-corner{opacity:.15}
+.story-frame .hud-corner.tl,.story-frame .hud-corner.tr,.story-frame .hud-corner.bl,.story-frame .hud-corner.br{border-color:var(--pink)}
+.story blockquote{font-size:clamp(1.05rem,2.2vw,1.35rem);line-height:1.65;margin-bottom:1.75rem;position:relative;font-weight:300;color:rgba(238,238,240,.9)}
+.story mark{background:none;color:var(--pink)}
+.story-author{display:inline-flex;align-items:center;gap:.65rem;border:1px solid var(--border);padding:.4rem .85rem .4rem .4rem;border-radius:8px;background:rgba(3,3,5,.5)}
+.story-av{width:34px;height:34px;border-radius:6px;display:grid;place-items:center;font-weight:500;font-size:.8rem;color:var(--cyan);border:1px solid rgba(6,182,212,.2);background:rgba(6,182,212,.05);font-family:var(--mono)}
+.story-meta strong{display:block;font-size:.85rem}
+.story-meta span{font-size:.68rem;color:var(--dim);font-family:var(--mono)}
+
+/* ═══ CTA ALONE ═══ */
+.cta-alone{padding:4.5rem 2rem;text-align:center;position:relative;z-index:1;background:rgba(3,3,5,0.75)}
+
+/* ═══ FINAL CTA ═══ */
+/* Feature Showcase Carousel */
+.feature-showcase{padding:0 0 3rem;position:relative;z-index:2;overflow:hidden;background:rgba(3,3,5,0.7)}
+
+/* ═══ DESKTOP CAROUSEL (fade transitions) ═══ */
+.carousel-wrapper{position:relative;max-width:1200px;margin:0 auto;padding:0 .5rem;width:100%}
+.carousel-track{position:relative;width:100%;aspect-ratio:16/8;border-radius:12px;overflow:hidden;background:rgba(10,10,12,.6);border:1px solid rgba(34,197,94,.1)}
+.carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease-in-out}
+.carousel-slide.active{opacity:1}
+.carousel-slide img{width:100%;height:100%;object-fit:contain;object-position:center}
+.carousel-caption{text-align:center;margin-top:1.25rem;min-height:3rem}
+.caption-label{display:block;font-family:var(--mono);font-size:.85rem;font-weight:600;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+.caption-desc{display:block;font-size:.9rem;color:var(--muted)}
+.carousel-dots{display:flex;justify-content:center;gap:.6rem;margin-top:1rem}
+.carousel-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(34,197,94,.3);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+.carousel-dot:hover{border-color:var(--green)}
+.carousel-dot.active{background:var(--green);border-color:var(--green);box-shadow:0 0 12px rgba(34,197,94,.4)}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(34,197,94,.2);background:rgba(3,3,5,.8);color:var(--text);font-size:1.5rem;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);z-index:5}
+.carousel-nav:hover{background:rgba(34,197,94,.15);border-color:var(--green);color:var(--green)}
+.carousel-nav.prev{left:1.5rem}
+.carousel-nav.next{right:1.5rem}
+
+/* ═══ MOBILE SCROLL-SNAP CAROUSEL ═══ */
+.mobile-carousel{display:none;width:100%;position:relative;z-index:3}
+.mobile-scroll{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
+.mobile-scroll::-webkit-scrollbar{display:none}
+.mobile-scroll-item{flex:0 0 100%;scroll-snap-align:center;padding:0 12px;box-sizing:border-box}
+.mobile-scroll-img{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:rgba(10,10,12,.6);border:1px solid rgba(34,197,94,.1)}
+.mobile-scroll-img img{width:100%;height:100%;object-fit:contain;object-position:center}
+.mobile-caption{text-align:center;margin-top:1rem;padding:0 .5rem}
+.mobile-caption-label{display:block;font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem}
+.mobile-caption-desc{display:block;font-size:.8rem;color:var(--muted);line-height:1.4}
+.mobile-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.75rem}
+.mobile-dot{width:8px;height:8px;border-radius:50%;border:1px solid rgba(34,197,94,.3);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+.mobile-dot.active{background:var(--green);border-color:var(--green);box-shadow:0 0 10px rgba(34,197,94,.4)}
+
+/* ═══ MOBILE: SHOW SCROLL CAROUSEL, HIDE FADE ═══ */
+@media(max-width:768px){
+.carousel-wrapper{display:none!important}
+.mobile-carousel{display:block}
+}
+.cta-final{padding:6rem 2rem;text-align:center;position:relative;z-index:1;background:rgba(3,3,5,0.8)}
+.cta-card{max-width:560px;margin:0 auto;background:rgba(10,10,18,0.92);border:1px solid var(--border);border-radius:16px;padding:2.75rem 1.75rem;position:relative;overflow:hidden;transition:border-color .3s}
+.cta-card:hover{border-color:var(--borderh)}
+.cta-card::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--green),var(--cyan),transparent)}
+.cta-card::after{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:linear-gradient(180deg,rgba(34,197,94,.04) 0%,transparent 25%);pointer-events:none}
+.cta-final h2{font-size:clamp(1.3rem,2.5vw,1.85rem);margin-bottom:.4rem}
+.cta-final p{color:var(--muted);font-size:.92rem;margin-bottom:1.5rem}
+.store-row{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.store-btn{display:flex;align-items:center;gap:.6rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--text);padding:.7rem 1.15rem;border-radius:10px;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s,background .3s;font-family:var(--mono)}
+.store-btn:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(34,197,94,.1);background:rgba(34,197,94,.12)}
+.store-btn svg{width:18px;height:18px;flex-shrink:0;color:var(--green)}
+.store-text{text-align:left;font-size:.55rem;line-height:1.2;letter-spacing:.02em}
+.store-text strong{display:block;font-size:.82rem;font-family:'DM Sans',sans-serif;font-weight:600}
+/* Beta badge large */
+.beta-badge-lg{display:inline-block;font-family:var(--mono);font-size:.75rem;letter-spacing:.15em;color:var(--green);padding:.4rem 1.2rem;border:1px solid rgba(34,197,94,.25);border-radius:6px;background:rgba(34,197,94,.06);margin-bottom:1rem}
+/* Waitlist form */
+.waitlist-form{display:flex;gap:.5rem;max-width:460px;margin:1.5rem auto 1rem}
+.waitlist-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.75rem 1rem;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none;transition:border-color .25s}
+.waitlist-input:focus{border-color:var(--green)}
+.waitlist-input::placeholder{color:rgba(238,238,240,.3)}
+.waitlist-btn{background:var(--green);color:#030305;font-family:var(--mono);font-size:.82rem;font-weight:600;padding:.75rem 1.4rem;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.waitlist-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,.25)}
+.waitlist-success{font-family:var(--mono);font-size:.85rem;color:var(--green);padding:1rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;max-width:460px;margin:1.5rem auto 1rem}
+.success-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--green);color:#030305;font-size:.7rem;font-weight:700;margin-right:.5rem}
+/* Coming soon pill on store buttons */
+.store-btn{position:relative}
+.coming-soon-pill{position:absolute;top:-8px;right:-8px;background:rgba(168,85,247,.9);color:#fff;font-family:var(--mono);font-size:.5rem;font-weight:700;letter-spacing:.1em;padding:.2rem .5rem;border-radius:4px}
+/* Toast */
+.toast{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:rgba(20,20,25,.95);border:1px solid rgba(34,197,94,.25);color:var(--text);font-family:var(--mono);font-size:.82rem;padding:.75rem 1.5rem;border-radius:10px;z-index:9999;transition:bottom .4s cubic-bezier(.16,1,.3,1);backdrop-filter:blur(16px);box-shadow:0 12px 40px rgba(0,0,0,.4);max-width:90vw;text-align:center}
+.toast.show{bottom:2rem}
+
+/* ═══ FOOTER ═══ */
+footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid var(--border);position:relative;z-index:1;background:rgba(3,3,5,0.9)}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;margin-bottom:.75rem;flex-wrap:wrap}
+.footer-links a{color:var(--dim);text-decoration:none;font-size:.72rem;font-family:var(--mono);letter-spacing:.03em;transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+.footer-copy{font-size:.65rem;color:var(--dim);font-family:var(--mono);letter-spacing:.02em}
+
+/* ═══ STICKY ═══ */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;padding:.75rem 1.25rem calc(.75rem + env(safe-area-inset-bottom,0px));background:rgba(3,3,5,.92);backdrop-filter:blur(20px);border-top:1px solid var(--border)}
+.sticky-cta.vis{display:block}
+.sticky-cta a{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;background:var(--green);color:var(--bg);padding:.8rem;border-radius:8px;font-family:var(--mono);font-weight:500;font-size:.82rem;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:860px){
+.species-nav{gap:.4rem;padding:.4rem .75rem}
+.species-chip{padding:.35rem .7rem .35rem .55rem;font-size:.68rem}
+.species-chip .chip-icon{font-size:.85rem}
+.feat-grid{grid-template-columns:repeat(2,1fr)}
+.testi-grid{grid-template-columns:1fr;max-width:440px}
+.diff-comparison{grid-template-columns:1fr}
+.reality-grid{grid-template-columns:1fr}
+.nav-links a:not(.nav-cta){display:none}
+.ab{filter:blur(90px)}
+}
+@media(max-width:600px){
+.hero{min-height:auto;padding:7rem .5rem 1rem}
+.hero-carousel-centric .carousel-wrapper{max-width:100%;padding:0;margin-left:-.5rem;margin-right:-.5rem;width:calc(100% + 1rem)}
+.carousel-track{aspect-ratio:1/1}
+.hero-text-compact{padding:0 .5rem}
+.hero-headline-sm{font-size:.95rem}
+.founder-hook{margin-top:1rem;padding:1.2rem 1.25rem;max-width:95%}
+.founder-quote{font-size:.85rem;line-height:1.65}
+.hero-sub-sm{font-size:.75rem}
+.reality,.difference,.journey,.features,.testi,.story,.cta-final,.cta-mid,.cta-alone,.species-band{padding:4.5rem 1.25rem}
+.feat-grid{grid-template-columns:1fr}
+.store-row{flex-direction:column;align-items:center}
+.store-btn{width:100%;max-width:260px;justify-content:center}
+.waitlist-form{flex-direction:column;padding:0 1rem}
+.waitlist-btn{width:100%}
+.cta-card{padding:2rem 1.25rem}
+.zero-badge{padding:.4rem .85rem}
+.zero-text{font-size:.65rem}
+.hero-reassurance{font-size:.75rem;padding:.45rem 1rem}
+.story-frame{padding:1.75rem 1.25rem}
+.diff-card{padding:1.5rem 1.25rem}
+.tl-step{padding-left:50px}
+}
+</style>
+</head>
+<body>
+<!-- Full-page circuit animation -->
+<canvas id="circuitCanvas"></canvas>
+<div class="grain"></div>
+
+<nav>
+<a href="#" class="logo"><img src="/images/logo.png" alt="VetGPT" class="logo-img"> VetGPT</a>
+<div class="nav-links">
+<a href="#problem">The Problem</a>
+<a href="#how-it-works">How It Works</a>
+<a href="#journey">The Journey</a>
+<a href="#features">Features</a>
+<a href="#download" class="nav-cta">Join Beta</a>
+</div>
+</nav>
+
+<div class="species-nav">
+<a href="#download" class="species-chip"><span class="chip-icon">🐕</span><span class="chip-label">Dogs</span></a>
+<a href="#download" class="species-chip"><span class="chip-icon">🐈</span><span class="chip-label">Cats</span></a>
+<a href="#download" class="species-chip"><span class="chip-icon">🦜</span><span class="chip-label">Birds</span></a>
+<a href="#download" class="species-chip"><span class="chip-icon">🦎</span><span class="chip-label">Reptiles</span></a>
+<a href="#download" class="species-chip"><span class="chip-icon">🐴</span><span class="chip-label">Horses</span></a>
+</div>
+
+<div class="sticky-cta" id="stickyCta"><a href="#download">Join the Beta &rarr;</a></div>
+
+<!-- ═══════════ HERO: CAROUSEL AS THE STAR ═══════════ -->
+<section class="hero hero-carousel-centric">
+<div class="aurora">
+<div class="ab"></div><div class="ab"></div><div class="ab"></div>
+</div>
+<div class="hero-vig"></div>
+
+<!-- Small text - context only, not the focus -->
+<div class="hero-text-compact">
+<p class="hero-headline-sm">Every vet visit. Every test result. <span class="accent">One app that remembers.</span></p>
+<p class="hero-sub-sm">You're juggling Apple Notes, your camera roll, and ChatGPT trying to track your pet's health. VetGPT replaces all of it.</p>
+</div>
+
+<!-- THE STAR: Full-size carousel -->
+<div class="carousel-wrapper">
+<div class="carousel-track" id="carouselTrack">
+<div class="carousel-slide active">
+<img src="/images/feature-prescription.jpg" alt="Prescription scanning feature" loading="eager">
+</div>
+<div class="carousel-slide">
+<img src="/images/feature-vet-visit.jpg" alt="Vet visit recording feature" loading="lazy">
+</div>
+<div class="carousel-slide">
+<img src="/images/feature-symptom.jpg" alt="Symptom checker feature" loading="lazy">
+</div>
+<div class="carousel-slide">
+<img src="/images/feature-overview.jpg" alt="Pet health dashboard" loading="lazy">
+</div>
+<div class="carousel-slide">
+<img src="/images/feature-senior.jpg" alt="Senior pet health management" loading="lazy">
+</div>
+<div class="carousel-slide">
+<img src="/images/feature-exotic.jpg" alt="Exotic pet support" loading="lazy">
+</div>
+</div>
+<div class="carousel-caption" id="carouselCaption">
+<span class="caption-label">Prescription Scanning</span>
+<span class="caption-desc">Snap a photo → medication added automatically</span>
+</div>
+<div class="carousel-dots" id="carouselDots">
+<button class="carousel-dot active" data-index="0" aria-label="Prescription Scanning"></button>
+<button class="carousel-dot" data-index="1" aria-label="Vet Visit Recording"></button>
+<button class="carousel-dot" data-index="2" aria-label="Symptom Checker"></button>
+<button class="carousel-dot" data-index="3" aria-label="Health Dashboard"></button>
+<button class="carousel-dot" data-index="4" aria-label="Senior Pet Care"></button>
+<button class="carousel-dot" data-index="5" aria-label="Exotic Pets"></button>
+</div>
+<button class="carousel-nav prev" id="carouselPrev" aria-label="Previous slide">‹</button>
+<button class="carousel-nav next" id="carouselNext" aria-label="Next slide">›</button>
+</div>
+
+<!-- MOBILE SCROLL-SNAP CAROUSEL (shown only on mobile) -->
+<div class="mobile-carousel" id="mobileCarousel">
+<div class="mobile-scroll" id="mobileScroll">
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-prescription.jpg" alt="Prescription scanning feature" loading="eager">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Prescription Scanning</span>
+<span class="mobile-caption-desc">Snap a photo → medication added automatically</span>
+</div>
+</div>
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-vet-visit.jpg" alt="Vet visit recording feature" loading="lazy">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Vet Visit Recording</span>
+<span class="mobile-caption-desc">Hit record → AI extracts diagnoses & action items</span>
+</div>
+</div>
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-symptom.jpg" alt="Symptom checker feature" loading="lazy">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Symptom Checker</span>
+<span class="mobile-caption-desc">Select symptom + photo → get answers in seconds</span>
+</div>
+</div>
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-overview.jpg" alt="Pet health dashboard" loading="lazy">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Health Dashboard</span>
+<span class="mobile-caption-desc">AI chat, health scores, and everything at a glance</span>
+</div>
+</div>
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-senior.jpg" alt="Senior pet health management" loading="lazy">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Senior Pet Care</span>
+<span class="mobile-caption-desc">Track meds, monitor health scores, catch changes early</span>
+</div>
+</div>
+<div class="mobile-scroll-item">
+<div class="mobile-scroll-img">
+<img src="/images/feature-exotic.jpg" alt="Exotic pet support" loading="lazy">
+</div>
+<div class="mobile-caption">
+<span class="mobile-caption-label">Exotic Pet Support</span>
+<span class="mobile-caption-desc">Water params, feeding schedules, enclosures — 60+ species</span>
+</div>
+</div>
+</div>
+<div class="mobile-dots" id="mobileDots">
+<button class="mobile-dot active" data-index="0"></button>
+<button class="mobile-dot" data-index="1"></button>
+<button class="mobile-dot" data-index="2"></button>
+<button class="mobile-dot" data-index="3"></button>
+<button class="mobile-dot" data-index="4"></button>
+<button class="mobile-dot" data-index="5"></button>
+</div>
+</div>
+
+<div class="hero-reassurance"><span class="platform-dot"></span> iOS & Android &nbsp;·&nbsp; Free during beta</div>
+
+<!-- Founder hook - emotional connection -->
+<div class="founder-hook">
+<p class="founder-quote">We lost <span class="accent-pain">three dogs</span> in <span class="accent-pain">seven months</span>. My wife was pregnant, then caring for our newborn. We were <span class="accent-pain">overwhelmed</span> — recording vet visits on my phone, pasting lab results into ChatGPT at 2am, trying to make sense of it all. But ChatGPT didn't know my dogs. I had to <span class="accent-pain">start from zero</span> every time. I built VetGPT so <span class="accent">you never have to</span>.</p>
+<span class="founder-sig">— Josh, Founder</span>
+<div class="founder-cta">
+<p class="founder-reassurance">You're <span class="accent">not alone</span> anymore.</p>
+<p class="founder-subtext">Whether it's <span class="accent-pain">2am</span> or <span class="accent-pain">2pm</span> — VetGPT <span class="accent">knows your pet</span> and is ready to help.</p>
+<a href="#download" class="btn-primary btn-sm">Get Early Access →</a>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ THE REALITY ═══════════ -->
+<section class="reality" id="problem">
+<div class="container">
+<div class="section-label reveal">SOUND FAMILIAR?</div>
+<h2 class="reveal">This is how you're managing<br>your pet's health <span class="accent-pink">right now</span></h2>
+<p class="reality-sub reveal">Vet visits pile up. Lab results stack up. Medications change. And all of it lives in different places.</p>
+
+<div class="reality-grid">
+<div class="reality-cell reveal s1">
+<div class="reality-icon">📱</div>
+<div class="reality-where">Apple Notes</div>
+<p class="reality-q">"Started drinking more water 3 weeks ago…or was it 4?"</p>
+<p class="reality-a">You're tracking symptoms in scattered notes you can barely find later. <strong>VetGPT logs everything in one place.</strong></p>
+</div>
+<div class="reality-cell reveal s2">
+<div class="reality-icon">📸</div>
+<div class="reality-where">Camera Roll</div>
+<p class="reality-q">"I took a photo of that lump last month. Where is it?"</p>
+<p class="reality-a">Progress photos buried in 3,000 selfies. <strong>VetGPT's Health Journey tracks changes week by week.</strong></p>
+</div>
+<div class="reality-cell reveal s3">
+<div class="reality-icon">🤖</div>
+<div class="reality-where">ChatGPT</div>
+<p class="reality-q">"My dog is 14, has arthritis, takes gabapentin…" — again.</p>
+<p class="reality-a">Copy-pasting the same context every single time. <strong>VetGPT's AI already knows your pet.</strong></p>
+</div>
+<div class="reality-cell reveal s4">
+<div class="reality-icon">📋</div>
+<div class="reality-where">The Vet's Office</div>
+<p class="reality-q">"When did the vomiting start? What meds is she on?"</p>
+<p class="reality-a">You blank. The vet waits. <strong>VetGPT gives you a complete health report in one tap.</strong></p>
+</div>
+<div class="reality-cell reveal s5">
+<div class="reality-icon">📄</div>
+<div class="reality-where">Kitchen Drawer</div>
+<p class="reality-q">"I know that lab report is here somewhere…"</p>
+<p class="reality-a">Paper records, prescriptions, vaccine cards. <strong>Scan them once — AI extracts everything.</strong></p>
+</div>
+<div class="reality-cell reveal s6">
+<div class="reality-icon">🧠</div>
+<div class="reality-where">Your Memory</div>
+<p class="reality-q">"Did I give the morning dose? Was it 50mg or 100mg?"</p>
+<p class="reality-a">Medication tracking in your head is a disaster waiting to happen. <strong>Auto-reminders. One-tap logging.</strong></p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ THE DIFFERENCE ═══════════ -->
+<section class="difference" id="how-it-works">
+<div class="container">
+<div class="diff-inner">
+<div class="section-label reveal">THE DIFFERENCE</div>
+<h2 class="reveal">You shouldn't have to start from <span class="accent">zero</span><br>every single time</h2>
+
+<div class="diff-comparison">
+<div class="diff-card before reveal s1">
+<div class="diff-badge">✕ Without VetGPT</div>
+<ul class="diff-list">
+<li>Open ChatGPT. Paste your pet's entire history. Again.</li>
+<li>Scroll through 2,000 photos to find that lump from last month</li>
+<li>Forget what the vet said by the time you get home</li>
+<li>Scramble for lab results during the next appointment</li>
+<li>Miss a medication dose because life got busy</li>
+</ul>
+</div>
+<div class="diff-card after reveal s2">
+<div class="diff-badge">→ With VetGPT</div>
+<ul class="diff-list">
+<li>Open AI Chat. It already knows every detail. Just ask.</li>
+<li>Weekly Health Journey photos, organized and AI-analyzed</li>
+<li>Record the vet visit — AI extracts diagnoses, meds, follow-ups</li>
+<li>One-tap health report with your pet's full history</li>
+<li>Smart reminders with auto-tracking. Never miss a dose.</li>
+</ul>
+</div>
+</div>
+
+<div class="diff-punchline reveal">
+<p>The AI already <span class="accent">knows everything.</span></p>
+<span class="sub">Every symptom, every medication, every vet visit, every lab result — all in context, all the time.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-mid">
+<div class="container">
+<h3 class="reveal">Stop copy-pasting your pet's history into ChatGPT.</h3>
+<p class="reveal">VetGPT remembers so you don't have to.</p>
+<a href="#download" class="btn-primary reveal">Join the Beta &rarr;</a>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ THE JOURNEY ═══════════ -->
+<section class="journey" id="journey">
+<div class="container">
+<div class="section-label reveal">THE VET JOURNEY</div>
+<h2 class="reveal">From first symptom to <span class="accent">treatment plan</span></h2>
+<p class="journey-sub reveal">This is how VetGPT tracks your pet's health over time — not just snapshots, but the full story.</p>
+
+<div class="timeline">
+<div class="tl-step reveal s1">
+<div class="tl-node"></div>
+<span class="tl-when">Week 1</span>
+<span class="tl-what">You notice something's off</span>
+<span class="tl-detail">Your dog starts drinking more water than usual. You log the symptom and start tracking daily intake.</span>
+<span class="tl-tag">📝 Symptom logged + photos</span>
+</div>
+<div class="tl-step reveal s2">
+<div class="tl-node"></div>
+<span class="tl-when">Week 3</span>
+<span class="tl-what">First vet visit</span>
+<span class="tl-detail">You record the appointment. AI transcribes the vet's notes and extracts blood work orders and follow-up instructions.</span>
+<span class="tl-tag">🎙️ Visit recorded + AI extracted</span>
+</div>
+<div class="tl-step reveal s3">
+<div class="tl-node"></div>
+<span class="tl-when">Week 5</span>
+<span class="tl-what">Lab results come back</span>
+<span class="tl-detail">You scan the lab report. AI pulls out abnormal values and explains what they mean in plain language — in the context of your pet's symptoms.</span>
+<span class="tl-tag">📄 Document scanned + analyzed</span>
+</div>
+<div class="tl-step reveal s4">
+<div class="tl-node"></div>
+<span class="tl-when">Week 6</span>
+<span class="tl-what">Diagnosis and new medication</span>
+<span class="tl-detail">Cushing's disease. New medication prescribed. You snap a photo of the bottle — VetGPT extracts the name, dosage, frequency, and sets up reminders.</span>
+<span class="tl-tag">💊 Medication auto-tracked</span>
+</div>
+<div class="tl-step reveal s5">
+<div class="tl-node"></div>
+<span class="tl-when">Week 8+</span>
+<span class="tl-what">Monitoring progress</span>
+<span class="tl-detail">Weekly photos show visible improvement. Water intake normalizes. You open AI chat and ask "how is she responding to treatment?" — and it knows everything.</span>
+<span class="tl-tag">📈 AI tracks progress over time</span>
+</div>
+</div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section class="features" id="features">
+<div class="container">
+<div class="section-label reveal">WHAT VETGPT DOES</div>
+<h2 class="reveal">Built for the <span class="accent">hard parts</span> of pet ownership</h2>
+<div class="feat-grid">
+<div class="feat reveal s1"><div class="feat-icon">📄</div><h3>Scan Anything</h3><p>Prescriptions, vaccine cards, lab results, vet invoices — photograph it and AI extracts everything.</p></div>
+<div class="feat reveal s2"><div class="feat-icon">🎙️</div><h3>Record Vet Visits</h3><p>Hit record during the appointment. AI transcribes and pulls out diagnoses, medications, and follow-ups.</p></div>
+<div class="feat reveal s3"><div class="feat-icon">💬</div><h3>AI That Knows Your Pet</h3><p>Ask anything about your pet's health. AI has their full context — meds, conditions, vet history, symptoms, weight.</p></div>
+<div class="feat reveal s4"><div class="feat-icon">💊</div><h3>Medication Tracking</h3><p>Auto-reminders, dose logging, inventory tracking, low-stock alerts. Never miss a dose or run out.</p></div>
+<div class="feat reveal s5"><div class="feat-icon">📸</div><h3>Health Journey</h3><p>Weekly photos to track visible changes over time. AI analyzes coat, weight, mobility — spots what you might miss.</p></div>
+<div class="feat reveal s6"><div class="feat-icon">💯</div><h3>AI Health Score</h3><p>A 0-100 score based on medication compliance, vet visits, symptoms, and weight — with specific action items.</p></div>
+</div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ TESTI ═══════════ -->
+<section class="testi">
+<div class="container">
+<div class="section-label reveal">FROM PET PARENTS</div>
+<h2 class="reveal">Built for people who've <span class="accent">been there</span></h2>
+<div class="testi-grid">
+<div class="testi-card reveal s1"><div class="testi-stars">■ ■ ■ ■ ■</div><p class="testi-quote">"My senior dog has 4 medications and sees the vet every 3 weeks. Before VetGPT I was drowning. Now everything's in one place."</p><div class="testi-author"><div class="testi-av">J</div><div><div class="testi-name">Jennifer L.</div><div class="testi-pet">Buddy, 14yr Lab</div></div></div></div>
+<div class="testi-card reveal s2"><div class="testi-stars">■ ■ ■ ■ ■</div><p class="testi-quote">"The prescription scanner alone is worth it. I just take a photo and it knows the medication, dosage, everything. No more typing."</p><div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Mike T.</div><div class="testi-pet">3 dogs, 1 cat</div></div></div></div>
+<div class="testi-card reveal s3"><div class="testi-stars">■ ■ ■ ■ ■</div><p class="testi-quote">"I was pasting lab results into ChatGPT at 2am. VetGPT already knows my dog's history. I just ask and it answers in context."</p><div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Alex R.</div><div class="testi-pet">Luna, 11yr Dachshund</div></div></div></div>
+</div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════ SPECIES BAND (compact, low on page) ═══════════ -->
+<section class="species-band" id="species">
+<div class="container">
+<div class="section-label reveal" style="justify-content:center">WORKS FOR ALL YOUR PETS</div>
+<h2 class="reveal">Not just dogs and cats</h2>
+<p class="species-sub reveal">VetGPT supports 64+ species across 11 categories — with species-specific tracking for each one.</p>
+
+<div class="species-marquee reveal">
+<div class="sm-track">
+<span class="sm-item"><span class="emoji">🐕</span> Dogs</span>
+<span class="sm-item"><span class="emoji">🐈</span> Cats</span>
+<span class="sm-item"><span class="emoji">🦎</span> Bearded Dragons</span>
+<span class="sm-item"><span class="emoji">🐍</span> Ball Pythons</span>
+<span class="sm-item"><span class="emoji">🐢</span> Tortoises</span>
+<span class="sm-item"><span class="emoji">🐠</span> Goldfish</span>
+<span class="sm-item"><span class="emoji">🐟</span> Bettas</span>
+<span class="sm-item"><span class="emoji">🦜</span> Parrots</span>
+<span class="sm-item"><span class="emoji">🐰</span> Rabbits</span>
+<span class="sm-item"><span class="emoji">🐹</span> Hamsters</span>
+<span class="sm-item"><span class="emoji">🦔</span> Hedgehogs</span>
+<span class="sm-item"><span class="emoji">🐓</span> Chickens</span>
+<span class="sm-item"><span class="emoji">🦆</span> Ducks</span>
+<span class="sm-item"><span class="emoji">🐴</span> Horses</span>
+<span class="sm-item"><span class="emoji">🐐</span> Goats</span>
+<span class="sm-item"><span class="emoji">🦀</span> Hermit Crabs</span>
+<span class="sm-item"><span class="emoji">🕷️</span> Tarantulas</span>
+<span class="sm-item"><span class="emoji">🐸</span> Frogs</span>
+<span class="sm-item"><span class="emoji">🐊</span> Geckos</span>
+<span class="sm-item"><span class="emoji">🐕</span> Dogs</span>
+<span class="sm-item"><span class="emoji">🐈</span> Cats</span>
+<span class="sm-item"><span class="emoji">🦎</span> Bearded Dragons</span>
+<span class="sm-item"><span class="emoji">🐍</span> Ball Pythons</span>
+<span class="sm-item"><span class="emoji">🐢</span> Tortoises</span>
+<span class="sm-item"><span class="emoji">🐠</span> Goldfish</span>
+<span class="sm-item"><span class="emoji">🐟</span> Bettas</span>
+<span class="sm-item"><span class="emoji">🦜</span> Parrots</span>
+<span class="sm-item"><span class="emoji">🐰</span> Rabbits</span>
+<span class="sm-item"><span class="emoji">🐹</span> Hamsters</span>
+<span class="sm-item"><span class="emoji">🦔</span> Hedgehogs</span>
+<span class="sm-item"><span class="emoji">🐓</span> Chickens</span>
+<span class="sm-item"><span class="emoji">🦆</span> Ducks</span>
+<span class="sm-item"><span class="emoji">🐴</span> Horses</span>
+<span class="sm-item"><span class="emoji">🐐</span> Goats</span>
+<span class="sm-item"><span class="emoji">🦀</span> Hermit Crabs</span>
+<span class="sm-item"><span class="emoji">🕷️</span> Tarantulas</span>
+<span class="sm-item"><span class="emoji">🐸</span> Frogs</span>
+<span class="sm-item"><span class="emoji">🐊</span> Geckos</span>
+</div>
+</div>
+
+<p class="species-stat reveal">Water parameters for fish &nbsp;·&nbsp; Shedding logs for reptiles &nbsp;·&nbsp; Egg tracking for poultry &nbsp;·&nbsp; Humidity monitoring &nbsp;·&nbsp; <strong>and more</strong></p>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="cta-alone">
+<div class="container">
+<h3 class="reveal">Ready to try it?</h3>
+<p class="reveal" style="color:var(--muted);margin-bottom:1.25rem;font-size:.92rem">Join thousands of pet owners who are done starting from zero.</p>
+<a href="#download" class="btn-primary reveal">Get Early Access &rarr;</a>
+</div>
+</section>
+
+<!-- ═══════════ FINAL CTA ═══════════ -->
+<section class="cta-final" id="download">
+<div class="cta-card reveal">
+<span class="hud-corner tl" style="border-color:var(--green)"></span><span class="hud-corner tr" style="border-color:var(--green)"></span><span class="hud-corner bl" style="border-color:var(--green)"></span><span class="hud-corner br" style="border-color:var(--green)"></span>
+<div class="beta-badge-lg">✦ EARLY ACCESS</div>
+<h2>Be the first to try<br>VetGPT</h2>
+<p>We're launching soon on iOS &amp; Android. Join the waitlist and get early access — including all premium features free during beta.</p>
+<div class="waitlist-form" id="waitlistForm">
+<input type="email" id="waitlistEmail" class="waitlist-input" placeholder="you@email.com" aria-label="Email address">
+<button type="button" class="waitlist-btn" onclick="handleWaitlist()">Get Early Access →</button>
+</div>
+<div class="waitlist-success" id="waitlistSuccess" style="display:none">
+<span class="success-icon">✓</span> You're on the list! We'll be in touch soon.
+</div>
+<div class="store-row">
+<a href="#" class="store-btn" onclick="showToast('iOS app launching soon — join the waitlist above!');return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="store-text">Coming soon<strong>App Store</strong></div><span class="coming-soon-pill">SOON</span></a>
+<a href="#" class="store-btn" onclick="showToast('Android app launching soon — join the waitlist above!');return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg><div class="store-text">Coming soon<strong>Google Play</strong></div><span class="coming-soon-pill">SOON</span></a>
+</div>
+</div>
+</section>
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<footer>
+<div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/support">Support</a><a href="/cdn-cgi/l/email-protection#076f626b6b684771627360777329667777">Contact</a></div>
+<p class="footer-copy">&copy; 2026 VetGPT &middot; Made with ❤️ for pet parents everywhere</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     CIRCUIT INTELLIGENCE — Hero Animation Engine
+     ═══════════════════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+const canvas = document.getElementById('circuitCanvas');
+const ctx = canvas.getContext('2d');
+const dpr = Math.min(window.devicePixelRatio||1, 2);
+let W, H, GRID, cols, rows, time = 0;
+let mouse = {x:-9999,y:-9999,active:false};
+
+const C = {
+  green:  {r:34, g:197,b:94},
+  purple: {r:168,g:85, b:247},
+  cyan:   {r:6,  g:182,b:212},
+  pink:   {r:236,g:72, b:153}
+};
+const cWeighted = [C.green,C.green,C.green,C.cyan,C.cyan,C.purple,C.purple,C.pink];
+function rC(){return cWeighted[Math.floor(Math.random()*cWeighted.length)]}
+function rgba(c,a){return `rgba(${c.r},${c.g},${c.b},${a})`}
+
+const DIRS = [[1,0],[0,1],[-1,0],[0,-1]];
+
+let agents = [];
+let traces = [];
+let pulses = [];
+let nodes = [];
+let sparks = [];
+let MAX_AGENTS, MAX_PULSES, MAX_NODES;
+
+function resize(){
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  GRID = W < 768 ? 38 : 50;
+  cols = Math.floor(W/GRID);
+  rows = Math.floor(H/GRID);
+  MAX_AGENTS = W < 768 ? 2 : 3;
+  MAX_PULSES = W < 768 ? 2 : 4;
+  MAX_NODES = W < 768 ? 5 : 9;
+}
+
+function init(){
+  agents = []; traces = []; pulses = []; sparks = [];
+  nodes = [];
+  const used = new Set();
+  const emojis = ['🐕','🐈','🦎','🐍','🐢','🐠','🐟','🦜','🐰','🐹','🦔','🐓','🐴','🦀','🕷️','🐸'];
+  const labels = ['HR 80bpm','pH 7.2','18.5 lbs','78°F','65% RH','Score 92','NH₃ 0ppm','SpO₂ 98%','Glucose 95','BUN 22','Resp 24','Appetite ↑','50mg bid','Visit ✓','Vaccine ✓','Weight ↓'];
+  for(let i=0;i<MAX_NODES;i++){
+    let gx,gy,key;
+    let tries=0;
+    do{
+      gx = 2+Math.floor(Math.random()*(cols-4));
+      gy = 2+Math.floor(Math.random()*(rows-4));
+      key = gx+','+gy;
+      tries++;
+    }while(used.has(key)&&tries<50);
+    used.add(key);
+    nodes.push({
+      x:gx*GRID, y:gy*GRID, gx, gy,
+      emoji: emojis[i%emojis.length],
+      label: labels[i%labels.length],
+      color: cWeighted[i%cWeighted.length],
+      phase: Math.random()*Math.PI*2,
+      brightness: 0
+    });
+  }
+  for(let i=0;i<MAX_AGENTS;i++) agents.push(spawnAgent());
+}
+
+function spawnAgent(){
+  let gx, gy, dir;
+  if(Math.random()<.7){
+    const edge = Math.floor(Math.random()*4);
+    if(edge===0){gx=0;gy=1+Math.floor(Math.random()*(rows-2));dir=0;}
+    else if(edge===1){gx=cols;gy=1+Math.floor(Math.random()*(rows-2));dir=2;}
+    else if(edge===2){gx=1+Math.floor(Math.random()*(cols-2));gy=0;dir=1;}
+    else{gx=1+Math.floor(Math.random()*(cols-2));gy=rows;dir=3;}
+  }else{
+    gx=2+Math.floor(Math.random()*(cols-4));
+    gy=2+Math.floor(Math.random()*(rows-4));
+    dir=Math.floor(Math.random()*4);
+  }
+  return{
+    gx, gy, x:gx*GRID, y:gy*GRID, dir,
+    speed: 1.5+Math.random()*1.2,
+    color: rC(),
+    points: [{x:gx*GRID, y:gy*GRID}],
+    alive: true,
+    maxSteps: 10+Math.floor(Math.random()*22),
+    steps: 0
+  };
+}
+
+function updateAgent(a){
+  const [dx,dy] = DIRS[a.dir];
+  const tgx = a.gx+dx, tgy = a.gy+dy;
+  const tx = tgx*GRID, ty = tgy*GRID;
+  a.x += dx*a.speed;
+  a.y += dy*a.speed;
+  const reached = (dx>0? a.x>=tx : dx<0? a.x<=tx : true) &&
+                  (dy>0? a.y>=ty : dy<0? a.y<=ty : true);
+  if(!reached) return;
+  a.gx=tgx; a.gy=tgy; a.x=tx; a.y=ty;
+  a.points.push({x:a.x,y:a.y});
+  a.steps++;
+  if(a.gx<=0||a.gx>=cols||a.gy<=0||a.gy>=rows||a.steps>=a.maxSteps){
+    a.alive=false; return;
+  }
+  const r=Math.random();
+  if(r<.52){}
+  else if(r<.74){a.dir=(a.dir+1)%4;}
+  else if(r<.94){a.dir=(a.dir+3)%4;}
+  else{a.alive=false;return;}
+  const [ndx,ndy]=DIRS[a.dir];
+  if(a.gx+ndx<0||a.gx+ndx>cols||a.gy+ndy<0||a.gy+ndy>rows){
+    const opts=[0,1,2,3].filter(d=>{
+      const[ddx,ddy]=DIRS[d];
+      return a.gx+ddx>=0&&a.gx+ddx<=cols&&a.gy+ddy>=0&&a.gy+ddy<=rows;
+    });
+    if(opts.length)a.dir=opts[Math.floor(Math.random()*opts.length)];
+    else a.alive=false;
+  }
+}
+
+function drawAgent(a){
+  if(a.points.length<1)return;
+  const pts=[...a.points,{x:a.x,y:a.y}];
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x,pts[i].y);
+  ctx.strokeStyle=rgba(a.color,.2);
+  ctx.lineWidth=10;ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.stroke();
+  ctx.strokeStyle=rgba(a.color,.75);
+  ctx.lineWidth=1.8;
+  ctx.stroke();
+  for(let i=1;i<a.points.length;i++){
+    const prev=a.points[i-1],curr=a.points[i];
+    const next=i<a.points.length-1?a.points[i+1]:{x:a.x,y:a.y};
+    if((curr.x-prev.x!==next.x-curr.x)||(curr.y-prev.y!==next.y-curr.y)){
+      ctx.beginPath();ctx.arc(curr.x,curr.y,3.5,0,Math.PI*2);
+      ctx.fillStyle=rgba(a.color,.4);ctx.fill();
+      ctx.beginPath();ctx.arc(curr.x,curr.y,1.5,0,Math.PI*2);
+      ctx.fillStyle=rgba(a.color,.7);ctx.fill();
+    }
+  }
+  const g=ctx.createRadialGradient(a.x,a.y,0,a.x,a.y,14);
+  g.addColorStop(0,'rgba(255,255,255,.85)');
+  g.addColorStop(.25,rgba(a.color,.6));
+  g.addColorStop(.6,rgba(a.color,.15));
+  g.addColorStop(1,rgba(a.color,0));
+  ctx.beginPath();ctx.arc(a.x,a.y,14,0,Math.PI*2);
+  ctx.fillStyle=g;ctx.fill();
+}
+
+function makePersistent(a){
+  if(a.points.length<3)return;
+  traces.push({
+    points:[...a.points],
+    color:a.color,
+    age:0,
+    maxAge:300+Math.random()*250,
+    alpha:.28
+  });
+}
+
+function drawTrace(t){
+  t.age++;
+  const life = 1 - t.age/t.maxAge;
+  if(life<=0)return false;
+  const fadeIn=Math.min(1,t.age/20);
+  const a=t.alpha*life*fadeIn;
+  ctx.beginPath();
+  ctx.moveTo(t.points[0].x,t.points[0].y);
+  for(let i=1;i<t.points.length;i++) ctx.lineTo(t.points[i].x,t.points[i].y);
+  ctx.strokeStyle=rgba(t.color,a*.4);
+  ctx.lineWidth=7;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();
+  ctx.strokeStyle=rgba(t.color,a*.85);
+  ctx.lineWidth=1.3;ctx.stroke();
+  for(let i=1;i<t.points.length-1;i++){
+    const p=t.points[i-1],c=t.points[i],n=t.points[i+1];
+    if((c.x-p.x!==n.x-c.x)||(c.y-p.y!==n.y-c.y)){
+      ctx.beginPath();ctx.arc(c.x,c.y,2.5,0,Math.PI*2);
+      ctx.fillStyle=rgba(t.color,a*.4);ctx.fill();
+    }
+  }
+  ctx.beginPath();ctx.arc(t.points[0].x,t.points[0].y,2,0,Math.PI*2);
+  ctx.fillStyle=rgba(t.color,a*.5);ctx.fill();
+  const last=t.points[t.points.length-1];
+  ctx.beginPath();ctx.arc(last.x,last.y,2,0,Math.PI*2);
+  ctx.fillStyle=rgba(t.color,a*.5);ctx.fill();
+  return true;
+}
+
+function spawnPulse(){
+  if(traces.length===0)return null;
+  const valid=traces.filter(t=>(1-t.age/t.maxAge)>.3 && t.points.length>3);
+  if(!valid.length)return null;
+  const t=valid[Math.floor(Math.random()*valid.length)];
+  return{
+    trace:t, segIdx:0, t:0,
+    speed:2.5+Math.random()*1.5,
+    color:t.color,
+    wake:[],
+    alive:true
+  };
+}
+
+function updatePulse(p){
+  const pts=p.trace.points;
+  if(p.segIdx>=pts.length-1){p.alive=false;return;}
+  const a=pts[p.segIdx],b=pts[p.segIdx+1];
+  const len=Math.hypot(b.x-a.x,b.y-a.y);
+  if(len<1){p.segIdx++;p.t=0;return;}
+  p.t+=p.speed/len;
+  if(p.t>=1){
+    p.segIdx++; p.t=0;
+    if(p.segIdx>=pts.length-1){p.alive=false;}
+    if(p.segIdx<pts.length){
+      const pt=pts[p.segIdx];
+      for(const n of nodes){
+        if(Math.hypot(n.x-pt.x,n.y-pt.y)<GRID*.6){
+          spawnSpark(n.x,n.y,n.color);
+          break;
+        }
+      }
+    }
+    return;
+  }
+  const ca=pts[p.segIdx],cb=pts[p.segIdx+1];
+  p.x=ca.x+(cb.x-ca.x)*p.t;
+  p.y=ca.y+(cb.y-ca.y)*p.t;
+  p.wake.push({x:p.x,y:p.y});
+  if(p.wake.length>18) p.wake.shift();
+}
+
+function drawPulse(p){
+  if(p.x===undefined)return;
+  for(let i=0;i<p.wake.length;i++){
+    const ratio=i/p.wake.length;
+    ctx.beginPath();
+    ctx.arc(p.wake[i].x,p.wake[i].y,1+ratio*2.5,0,Math.PI*2);
+    ctx.fillStyle=rgba(p.color,ratio*.22);
+    ctx.fill();
+  }
+  const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,10);
+  g.addColorStop(0,'rgba(255,255,255,.95)');
+  g.addColorStop(.3,rgba(p.color,.6));
+  g.addColorStop(.7,rgba(p.color,.12));
+  g.addColorStop(1,rgba(p.color,0));
+  ctx.beginPath();ctx.arc(p.x,p.y,10,0,Math.PI*2);
+  ctx.fillStyle=g;ctx.fill();
+}
+
+function drawNodes(){
+  for(const n of nodes){
+    let bright=0;
+    for(const p of pulses){
+      if(!p.alive||p.x===undefined)continue;
+      const d=Math.hypot(n.x-p.x,n.y-p.y);
+      if(d<80) bright=Math.max(bright,(80-d)/80);
+    }
+    for(const a of agents){
+      if(!a.alive)continue;
+      const d=Math.hypot(n.x-a.x,n.y-a.y);
+      if(d<60) bright=Math.max(bright,(60-d)/60);
+    }
+    if(mouse.active){
+      const d=Math.hypot(n.x-mouse.x,n.y-mouse.y);
+      if(d<160) bright=Math.max(bright,(160-d)/160*.5);
+    }
+    n.brightness+=(bright-n.brightness)*.08;
+    const pulse=.5+Math.sin(time*1.3+n.phase)*.15;
+    const a=.12+n.brightness*.5+pulse*.03;
+    const r=18+n.brightness*12+Math.sin(time+n.phase)*2;
+    const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r);
+    g.addColorStop(0,rgba(n.color,a*.35));
+    g.addColorStop(.4,rgba(n.color,a*.1));
+    g.addColorStop(1,rgba(n.color,0));
+    ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);
+    ctx.fillStyle=g;ctx.fill();
+    ctx.beginPath();ctx.arc(n.x,n.y,3,0,Math.PI*2);
+    ctx.fillStyle=rgba(n.color,a*.8);ctx.fill();
+    ctx.beginPath();ctx.arc(n.x,n.y,1.2,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${a*.6})`;ctx.fill();
+    const emojiA=.15+n.brightness*.45;
+    ctx.globalAlpha=Math.min(.6,emojiA);
+    ctx.font=`${13+n.brightness*5}px serif`;
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.emoji,n.x,n.y);
+    ctx.globalAlpha=1;
+    const labelA=.06+n.brightness*.2;
+    ctx.globalAlpha=Math.min(.4,labelA);
+    ctx.font="400 8px 'JetBrains Mono',monospace";
+    ctx.textAlign='left';ctx.textBaseline='middle';
+    ctx.fillStyle=rgba(n.color,1);
+    ctx.fillText(n.label, n.x+16, n.y+1);
+    ctx.globalAlpha=1;
+  }
+}
+
+function spawnSpark(x,y,c){
+  for(let i=0;i<5;i++){
+    const ang=Math.random()*Math.PI*2;
+    const spd=1+Math.random()*2.5;
+    sparks.push({x,y,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,life:1,color:c});
+  }
+}
+function drawSparks(){
+  for(let i=sparks.length-1;i>=0;i--){
+    const s=sparks[i];
+    s.x+=s.vx; s.y+=s.vy; s.vx*=.96; s.vy*=.96; s.life-=.025;
+    if(s.life<=0){sparks.splice(i,1);continue;}
+    ctx.beginPath();ctx.arc(s.x,s.y,1.5*s.life,0,Math.PI*2);
+    ctx.fillStyle=rgba(s.color,s.life*.8);ctx.fill();
+  }
+}
+
+function drawGrid(){
+  const mouseR=180, agentR=90;
+  for(let gx=0;gx<=cols;gx++){
+    for(let gy=0;gy<=rows;gy++){
+      const x=gx*GRID, y=gy*GRID;
+      const wave=Math.sin(gx*.18+gy*.14+time*.5)*.5+.5;
+      let a=.035+wave*.008;
+      if(mouse.active){
+        const d=Math.hypot(x-mouse.x,y-mouse.y);
+        if(d<mouseR) a+=(1-d/mouseR)*.14;
+      }
+      for(const ag of agents){
+        if(!ag.alive)continue;
+        const d=Math.hypot(x-ag.x,y-ag.y);
+        if(d<agentR) a+=(1-d/agentR)*.08;
+      }
+      for(const p of pulses){
+        if(!p.alive||p.x===undefined)continue;
+        const d=Math.hypot(x-p.x,y-p.y);
+        if(d<60) a+=(1-d/60)*.06;
+      }
+      a=Math.min(.3,a);
+      ctx.beginPath();
+      ctx.arc(x,y,1,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${a})`;
+      ctx.fill();
+    }
+  }
+}
+
+let scanPulses=[];
+function updateScanPulses(){
+  if(Math.random()<.001 && scanPulses.length<2){
+    scanPulses.push({x:W*.5,y:H*.48,r:0,maxR:Math.max(W,H)*.8,alpha:.12});
+  }
+  for(let i=scanPulses.length-1;i>=0;i--){
+    const s=scanPulses[i];
+    s.r+=2.5;
+    s.alpha*=.994;
+    if(s.r>s.maxR||s.alpha<.001){scanPulses.splice(i,1);continue;}
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(34,197,94,${s.alpha})`;
+    ctx.lineWidth=1.5;ctx.stroke();
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(34,197,94,${s.alpha*.3})`;
+    ctx.lineWidth=6;ctx.stroke();
+  }
+}
+
+function animate(){
+  time+=.016;
+  ctx.clearRect(0,0,W,H);
+  drawGrid();
+  updateScanPulses();
+  for(let i=traces.length-1;i>=0;i--){
+    if(!drawTrace(traces[i])) traces.splice(i,1);
+  }
+  for(let i=agents.length-1;i>=0;i--){
+    const a=agents[i];
+    updateAgent(a);
+    if(a.alive){
+      drawAgent(a);
+    }else{
+      makePersistent(a);
+      agents.splice(i,1);
+    }
+  }
+  while(agents.length<MAX_AGENTS) agents.push(spawnAgent());
+  if(Math.random()<.01 && pulses.length<MAX_PULSES){
+    const p=spawnPulse();
+    if(p) pulses.push(p);
+  }
+  for(let i=pulses.length-1;i>=0;i--){
+    updatePulse(pulses[i]);
+    if(pulses[i].alive) drawPulse(pulses[i]);
+    else pulses.splice(i,1);
+  }
+  drawNodes();
+  drawSparks();
+  requestAnimationFrame(animate);
+}
+
+if(window.matchMedia('(hover:hover)').matches){
+  const hero=document.querySelector('.hero');
+  hero.addEventListener('mousemove',e=>{
+    const r=canvas.getBoundingClientRect();
+    mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; mouse.active=true;
+  });
+  hero.addEventListener('mouseleave',()=>{mouse.active=false;});
+}
+
+window.addEventListener('resize',()=>{resize();init();});
+resize(); init(); animate();
+})();
+
+// Reveal on scroll
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Sticky CTA
+const stickyCta = document.getElementById('stickyCta');
+const heroSection = document.querySelector('.hero');
+const stickyObs = new IntersectionObserver(([e])=>{
+  stickyCta.classList.toggle('vis',!e.isIntersecting);
+},{threshold:0});
+stickyObs.observe(heroSection);
+
+// Smooth nav scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+// Nav active state on scroll
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+const sections = document.querySelectorAll('section[id]');
+const navObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(link=>{
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+},{threshold:0.3, rootMargin:'-80px 0px -50% 0px'});
+sections.forEach(s=>navObserver.observe(s));
+// Position species bar below nav dynamically
+const navEl = document.querySelector('nav');
+const speciesNav = document.querySelector('.species-nav');
+function positionSpeciesNav(){
+  if(navEl && speciesNav){
+    speciesNav.style.top = navEl.offsetHeight + 'px';
+  }
+}
+positionSpeciesNav();
+window.addEventListener('resize', positionSpeciesNav);
+</script>
+<script>
+/* Toast notification */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.classList.remove('show'),3500);
+}
+/* Waitlist — Supabase integration */
+const SUPABASE_URL = 'https://qaqfslivculjeqmmgjdo.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_nrIs7kTGxFC0IpV5juc8GQ_TeEli8ai';
+
+async function handleWaitlist(){
+  const input=document.getElementById('waitlistEmail');
+  const btn=document.querySelector('.waitlist-btn');
+  const email=input.value.trim().toLowerCase();
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showToast('Please enter a valid email address');
+    input.focus();
+    return;
+  }
+  btn.textContent='Joining...';
+  btn.disabled=true;
+  try{
+    const res=await fetch(SUPABASE_URL+'/rest/v1/waitlist',{
+      method:'POST',
+      headers:{
+        'apikey':SUPABASE_ANON,
+        'Authorization':'Bearer '+SUPABASE_ANON,
+        'Content-Type':'application/json',
+        'Prefer':'return=minimal'
+      },
+      body:JSON.stringify({email:email,source:'landing_page'})
+    });
+    if(res.ok){
+      document.getElementById('waitlistForm').style.display='none';
+      document.getElementById('waitlistSuccess').style.display='block';
+      showToast('Welcome to the VetGPT beta! 🐾');
+    }else if(res.status===409){
+      document.getElementById('waitlistForm').style.display='none';
+      document.getElementById('waitlistSuccess').style.display='block';
+      showToast('You\'re already on the list! We\'ll be in touch 🐾');
+    }else{
+      throw new Error('Status '+res.status);
+    }
+  }catch(err){
+    console.error('Waitlist error:',err);
+    showToast('Something went wrong — try again or email beta@vetgpt.app');
+    btn.textContent='Get Early Access →';
+    btn.disabled=false;
+  }
+}
+/* Allow Enter key to submit */
+document.getElementById('waitlistEmail').addEventListener('keydown',function(e){
+  if(e.key==='Enter')handleWaitlist();
+});
+
+/* Feature Carousel */
+(function(){
+  const slides=document.querySelectorAll('.carousel-slide');
+  const dots=document.querySelectorAll('.carousel-dot');
+  const caption=document.getElementById('carouselCaption');
+  const prevBtn=document.getElementById('carouselPrev');
+  const nextBtn=document.getElementById('carouselNext');
+  const track=document.getElementById('carouselTrack');
+  
+  const captions=[
+    {label:'Prescription Scanning',desc:'Snap a photo → medication added automatically'},
+    {label:'Vet Visit Recording',desc:'Hit record → AI extracts diagnoses & action items'},
+    {label:'Symptom Checker',desc:'Select symptom + photo → get answers in seconds'},
+    {label:'Health Dashboard',desc:'AI chat, health scores, and everything at a glance'},
+    {label:'Senior Pet Care',desc:'Track meds, monitor health scores, catch changes early'},
+    {label:'Exotic Pet Support',desc:'Water params, feeding schedules, enclosures — 60+ species'}
+  ];
+  
+  let current=0;
+  let interval;
+  let paused=false;
+  const AUTO_INTERVAL=3500;
+  const INTERACTION_PAUSE=8000;
+  
+  function goTo(idx){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current=(idx+slides.length)%slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    caption.innerHTML='<span class="caption-label">'+captions[current].label+'</span><span class="caption-desc">'+captions[current].desc+'</span>';
+  }
+  
+  function next(){goTo(current+1);}
+  function prev(){goTo(current-1);}
+  
+  function startAuto(delay){
+    if(interval)clearInterval(interval);
+    const ms=delay||AUTO_INTERVAL;
+    interval=setInterval(()=>{if(!paused)next();},ms);
+  }
+  
+  function userInteracted(){
+    if(interval)clearInterval(interval);
+    setTimeout(()=>startAuto(AUTO_INTERVAL),INTERACTION_PAUSE);
+  }
+  
+  /* Navigation */
+  prevBtn.addEventListener('click',()=>{prev();userInteracted();});
+  nextBtn.addEventListener('click',()=>{next();userInteracted();});
+  dots.forEach(dot=>{
+    dot.addEventListener('click',()=>{goTo(parseInt(dot.dataset.index));userInteracted();});
+  });
+  
+  /* Pause on hover */
+  track.addEventListener('mouseenter',()=>paused=true);
+  track.addEventListener('mouseleave',()=>paused=false);
+  
+  /* Touch/swipe support */
+  let touchStartX=0;
+  let touchEndX=0;
+  track.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
+  track.addEventListener('touchend',e=>{
+    touchEndX=e.changedTouches[0].screenX;
+    const diff=touchStartX-touchEndX;
+    if(Math.abs(diff)>50){
+      diff>0?next():prev();
+      userInteracted();
+    }
+  },{passive:true});
+  
+  /* Keyboard navigation when focused */
+  track.tabIndex=0;
+  track.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){prev();userInteracted();}
+    if(e.key==='ArrowRight'){next();userInteracted();}
+  });
+  
+  /* Start auto-cycling on page load */
+  startAuto();
+})();
+
+/* Mobile Scroll-Snap Carousel */
+(function(){
+  const scroll=document.getElementById('mobileScroll');
+  const dots=document.querySelectorAll('.mobile-dot');
+  const items=document.querySelectorAll('.mobile-scroll-item');
+  if(!scroll||!items.length)return;
+  
+  let currentIndex=0;
+  let autoInterval;
+  let userScrolling=false;
+  const AUTO_DELAY=3500;
+  
+  function updateDots(idx){
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    currentIndex=idx;
+  }
+  
+  function scrollToSlide(idx){
+    const item=items[idx];
+    if(item){
+      scroll.scrollTo({left:item.offsetLeft,behavior:'smooth'});
+      updateDots(idx);
+    }
+  }
+  
+  function detectCurrentSlide(){
+    const scrollLeft=scroll.scrollLeft;
+    const itemWidth=items[0].offsetWidth;
+    const idx=Math.round(scrollLeft/itemWidth);
+    return Math.max(0,Math.min(idx,items.length-1));
+  }
+  
+  function startAuto(){
+    if(autoInterval)clearInterval(autoInterval);
+    autoInterval=setInterval(()=>{
+      if(userScrolling)return;
+      const next=(currentIndex+1)%items.length;
+      scrollToSlide(next);
+    },AUTO_DELAY);
+  }
+  
+  function pauseAuto(ms){
+    if(autoInterval)clearInterval(autoInterval);
+    setTimeout(startAuto,ms||6000);
+  }
+  
+  /* Scroll detection */
+  let scrollTimeout;
+  scroll.addEventListener('scroll',()=>{
+    userScrolling=true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(()=>{
+      const idx=detectCurrentSlide();
+      updateDots(idx);
+      userScrolling=false;
+    },100);
+  },{passive:true});
+  
+  /* Dot clicks */
+  dots.forEach((dot,i)=>{
+    dot.addEventListener('click',()=>{
+      scrollToSlide(i);
+      pauseAuto(8000);
+    });
+  });
+  
+  /* Touch start pauses auto */
+  scroll.addEventListener('touchstart',()=>{
+    userScrolling=true;
+    pauseAuto(8000);
+  },{passive:true});
+  
+  scroll.addEventListener('touchend',()=>{
+    setTimeout(()=>{
+      const idx=detectCurrentSlide();
+      updateDots(idx);
+      userScrolling=false;
+    },150);
+  },{passive:true});
+  
+  /* Start auto-scroll */
+  startAuto();
+})();
+</script>
+</body>
+</html>

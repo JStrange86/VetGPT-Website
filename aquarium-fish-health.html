@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquarium &amp; Fish Health Tracker — Water Parameters, Tank Management &amp; AI | VetGPT</title>
+    <meta name="description" content="Track water parameters, fish health, and tank maintenance with AI insights. Monitor pH, ammonia, nitrite, nitrate, and temperature for freshwater, saltwater, and planted tanks.">
+    <meta name="keywords" content="aquarium health tracker, fish health app, water parameter tracker, aquarium app, fish tank management, aquarium water test log, fish disease tracker, reef tank app">
+    <meta property="og:title" content="Aquarium &amp; Fish Health Tracker — VetGPT">
+    <meta property="og:description" content="Beyond water chemistry. Track your fish's health, water parameters, and tank maintenance with AI-powered insights.">
+    <meta property="og:url" content="https://vetgpt.app/aquarium-fish-health">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta name="google-site-verification" content="cS_PEnntd5jCrhO8IQeaqdVgAfihW4sY8IhcbLePvEU" />
+    <link rel="canonical" href="https://vetgpt.app/aquarium-fish-health">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #060610;
+            --bg-secondary: #0c0c1a;
+            --bg-card: #141428;
+            --text-primary: #eeeef2;
+            --text-secondary: #9898b0;
+            --text-muted: #6a6a82;
+            --accent-cyan: #06b6d4;
+            --accent-cyan-light: #22d3ee;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --border-color: #1e1e36;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; background: rgba(6,6,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(30,30,54,0.5); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text-primary); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        .nav-logo-img { width: 32px; height: 32px; object-fit: contain; border-radius: 8px; }
+        .nav-cta { display: inline-block; padding: 0.5rem 1.25rem; background: var(--accent-cyan); color: #000; font-weight: 600; font-size: 0.85rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
+        .nav-cta:hover { opacity: 0.9; }
+
+        .hero { padding: 8rem 2rem 5rem; text-align: center; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(6,182,212,0.07) 0%, rgba(59,130,246,0.03) 40%, transparent 70%); pointer-events: none; }
+
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); color: var(--accent-cyan-light); font-size: 0.8rem; font-weight: 600; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeIn 0.6s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.25rem,5vw,3.5rem); font-weight: 800; line-height: 1.15; max-width: 800px; margin: 0 auto 1.25rem; animation: fadeUp 0.6s ease 0.1s both; }
+        .hero h1 .gradient { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.7; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero-cta { display: inline-block; padding: 0.85rem 2.25rem; background: var(--accent-cyan); color: #000; font-weight: 700; font-size: 1rem; border-radius: 12px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 30px rgba(6,182,212,0.2); animation: fadeUp 0.6s ease 0.3s both; }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(6,182,212,0.35); }
+        .hero-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; animation: fadeUp 0.6s ease 0.4s both; }
+
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-cyan); margin-bottom: 0.75rem; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem,3.5vw,2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+        .section-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; max-width: 650px; margin-bottom: 2.5rem; }
+
+        /* Water Parameters - hero feature */
+        .params { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+
+        .param-showcase {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .param-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-green));
+        }
+
+        .param-showcase h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .param-showcase > p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .param-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+        }
+
+        .param-tile {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .param-tile .param-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .param-tile .param-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .param-tile .param-unit {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .param-tile.good .param-value { color: var(--accent-green); }
+        .param-tile.warn .param-value { color: #f59e0b; }
+        .param-tile.danger .param-value { color: #ef4444; }
+
+        .param-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 1.25rem;
+        }
+
+        /* Features */
+        .features { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+
+        .feature-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+        .feature-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); opacity: 0; transition: opacity 0.3s; }
+        .feature-card:hover { transform: translateY(-3px); border-color: rgba(6,182,212,0.3); }
+        .feature-card:hover::after { opacity: 1; }
+        .feature-card .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem; background: rgba(6,182,212,0.1); }
+        .feature-card h3 { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Tank types */
+        .tanks { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+        .tank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        .tank-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.5rem; text-align: center; transition: border-color 0.3s; }
+        .tank-card:hover { border-color: rgba(6,182,212,0.3); }
+        .tank-card .emoji { font-size: 2.25rem; margin-bottom: 0.5rem; }
+        .tank-card h3 { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .tank-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Vs other apps */
+        .vs { padding: 5rem 2rem; max-width: 800px; margin: 0 auto; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2rem; }
+        .vs-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; }
+        .vs-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .vs-card .tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; border-radius: 6px; margin-bottom: 1rem; }
+        .vs-card .tag-them { background: rgba(107,107,128,0.2); color: var(--text-muted); }
+        .vs-card .tag-us { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+        .vs-card ul { list-style: none; padding: 0; }
+        .vs-card li { font-size: 0.88rem; color: var(--text-secondary); padding: 0.35rem 0; padding-left: 1.5rem; position: relative; }
+        .vs-card li::before { position: absolute; left: 0; }
+        .vs-card.them li::before { content: '✗'; color: #ef4444; }
+        .vs-card.us li::before { content: '✓'; color: var(--accent-green); font-weight: 700; }
+
+        /* Also section */
+        .also { padding: 4rem 2rem; max-width: 800px; margin: 0 auto; text-align: center; }
+        .also-text { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+        .also-link { color: var(--accent-cyan); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+        .also-link:hover { text-decoration: underline; }
+
+        /* CTA */
+        .cta-section { padding: 5rem 2rem; text-align: center; }
+        .cta-box { max-width: 650px; margin: 0 auto; background: linear-gradient(135deg, rgba(6,182,212,0.06), rgba(59,130,246,0.04)); border: 1px solid rgba(6,182,212,0.15); border-radius: 24px; padding: 3.5rem 2.5rem; }
+        .cta-box h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+        .cta-box p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
+        .cta-box .hero-cta { animation: none; }
+
+        .footer { border-top: 1px solid var(--border-color); padding: 2rem; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .param-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid, .vs-grid { grid-template-columns: 1fr; }
+            .tank-grid { grid-template-columns: 1fr 1fr; }
+            .hero { padding: 7rem 1.25rem 3rem; }
+            .params, .features, .tanks, .vs, .cta-section, .also { padding: 3rem 1.25rem; }
+        }
+
+        @media (max-width: 480px) {
+            .param-grid { grid-template-columns: repeat(2, 1fr); }
+            .tank-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="https://vetgpt.app" class="nav-logo"><img src="https://vetgpt.app/logo-black.png" alt="VetGPT" class="nav-logo-img" width="32" height="32"> VetGPT</a>
+            <a href="https://vetgpt.app/#download" class="nav-cta">Get Early Access</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">🐠 Built for aquarium keepers</div>
+        <h1>Your fish deserve more than <span class="gradient">water chemistry</span></h1>
+        <p class="hero-sub">VetGPT tracks water parameters AND fish health — symptoms, medications, vet visits, and AI insights — all in one app. For freshwater, saltwater, and planted tanks.</p>
+        <a href="https://vetgpt.app/#download" class="hero-cta">Get Early Access — Free</a>
+        <p class="hero-note">All premium features free during beta · iOS &amp; Android</p>
+    </section>
+
+    <!-- Water Parameters Showcase -->
+    <section class="params">
+        <div class="section-label">Water Parameter Tracking</div>
+        <h2 class="section-title">Every test, logged and tracked</h2>
+        <p class="section-desc">Log water parameters tied to specific tanks and enclosures. Get alerts when tests are overdue. Track trends over time.</p>
+
+        <div class="param-showcase">
+            <h3>30 Gallon Freshwater — Last Test</h3>
+            <p>Logged 3 days ago · Next test recommended in 4 days</p>
+            <div class="param-grid">
+                <div class="param-tile good">
+                    <div class="param-label">pH</div>
+                    <div class="param-value">7.2</div>
+                    <div class="param-unit">optimal</div>
+                </div>
+                <div class="param-tile good">
+                    <div class="param-label">Ammonia</div>
+                    <div class="param-value">0</div>
+                    <div class="param-unit">ppm</div>
+                </div>
+                <div class="param-tile good">
+                    <div class="param-label">Nitrite</div>
+                    <div class="param-value">0</div>
+                    <div class="param-unit">ppm</div>
+                </div>
+                <div class="param-tile warn">
+                    <div class="param-label">Nitrate</div>
+                    <div class="param-value">35</div>
+                    <div class="param-unit">ppm</div>
+                </div>
+                <div class="param-tile good">
+                    <div class="param-label">Temp</div>
+                    <div class="param-value">76</div>
+                    <div class="param-unit">°F</div>
+                </div>
+            </div>
+            <p class="param-note">Also tracks GH, KH, and salinity for planted, shrimp, and saltwater tanks. Water test overdue alerts keep you on schedule.</p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="section-label">Beyond Water Chemistry</div>
+        <h2 class="section-title">What aquarium apps don't do</h2>
+        <p class="section-desc">Other apps stop at water parameters. VetGPT adds health tracking, AI intelligence, and multi-pet support.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="card-icon">🏥</div>
+                <h3>Fish Health Tracking</h3>
+                <p>Log symptoms, medications, and vet visits for individual fish — not just water chemistry. Track ich, fin rot, swim bladder issues, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">🏠</div>
+                <h3>Tank Management</h3>
+                <p>Create enclosures for each tank, assign fish to them, and link water parameter logs to specific tanks. Multi-tank keepers stay organized.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">💬</div>
+                <h3>AI Health Assistant</h3>
+                <p>"My goldfish is floating sideways — is this serious?" Ask the AI with your fish's full health context and get species-aware guidance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">📸</div>
+                <h3>Photo Health Journey</h3>
+                <p>Weekly photos tracked over time. Monitor coloration changes, growth, and spot early signs of disease through visual comparison.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">📄</div>
+                <h3>Document Scanning</h3>
+                <p>If you visit an aquatic vet, scan prescriptions and treatment records. AI extracts medication details automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">🔄</div>
+                <h3>Water Change Logging</h3>
+                <p>Log water changes with percentage tracking (10%–50%), visual water level indicator, and automatic logging for all tank mates in shared enclosures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tank Types -->
+    <section class="tanks">
+        <div class="section-label">All Tank Types</div>
+        <h2 class="section-title">Whatever you keep, we track it</h2>
+
+        <div class="tank-grid">
+            <div class="tank-card">
+                <div class="emoji">🐠</div>
+                <h3>Freshwater</h3>
+                <p>Goldfish, tetras, cichlids, livebearers, planted tanks</p>
+            </div>
+            <div class="tank-card">
+                <div class="emoji">🐡</div>
+                <h3>Saltwater</h3>
+                <p>Clownfish, tangs, wrasses, FOWLR setups</p>
+            </div>
+            <div class="tank-card">
+                <div class="emoji">🪸</div>
+                <h3>Reef Tanks</h3>
+                <p>Corals, invertebrates, specialized parameters</p>
+            </div>
+            <div class="tank-card">
+                <div class="emoji">🐟</div>
+                <h3>Bettas</h3>
+                <p>Individual tank tracking, temp, feeding</p>
+            </div>
+            <div class="tank-card">
+                <div class="emoji">🎏</div>
+                <h3>Koi Ponds</h3>
+                <p>Outdoor parameters, seasonal tracking</p>
+            </div>
+            <div class="tank-card">
+                <div class="emoji">🦐</div>
+                <h3>Shrimp Tanks</h3>
+                <p>TDS, GH, KH, sensitive parameters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VetGPT vs Aquarium Apps -->
+    <section class="vs">
+        <div class="section-label">Why Switch</div>
+        <h2 class="section-title">VetGPT vs. aquarium-only apps</h2>
+
+        <div class="vs-grid">
+            <div class="vs-card them">
+                <div class="tag tag-them">Aquarium Apps</div>
+                <h3>What they do</h3>
+                <ul>
+                    <li>Track water parameters</li>
+                    <li>Log equipment and livestock</li>
+                    <li>Graph parameter trends</li>
+                    <li>Single-species (fish only)</li>
+                    <li>No AI capabilities</li>
+                    <li>No health tracking for individual fish</li>
+                </ul>
+            </div>
+            <div class="vs-card us">
+                <div class="tag tag-us">VetGPT</div>
+                <h3>What we add</h3>
+                <ul>
+                    <li>Water parameters per enclosure</li>
+                    <li>Water change logging with % tracking</li>
+                    <li>Individual fish health tracking</li>
+                    <li>AI chat that knows your fish</li>
+                    <li>Document scanning for vet records</li>
+                    <li>Photo health journey over time</li>
+                    <li>Also tracks dogs, cats, reptiles, and 60+ species</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Also section -->
+    <section class="also">
+        <p class="also-text">Got reptiles, dogs, or cats too? VetGPT tracks all your pets in one app — with species-specific features for each one.</p>
+        <a href="https://vetgpt.app/exotic-pet-care" class="also-link">See all 60+ supported species →</a>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Your tank's health, in one place</h2>
+            <p>Water parameters, fish health, AI insights, and multi-pet support. No other aquarium app does all of this.</p>
+            <a href="https://vetgpt.app/#download" class="hero-cta">Get Early Access — Free</a>
+            <p class="hero-note">All premium features free during beta · iOS &amp; Android</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://vetgpt.app">Home</a>
+            <a href="https://vetgpt.app/exotic-pet-care">Exotic Pets</a>
+            <a href="https://vetgpt.app/privacy.html">Privacy</a>
+            <a href="https://vetgpt.app/terms.html">Terms</a>
+            <a href="https://vetgpt.app/support.html">Support</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 VetGPT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

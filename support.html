@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support &amp; FAQ - VetGPT</title>
+    <meta name="description" content="Get help with VetGPT - FAQ, troubleshooting, and contact support for the AI-powered pet health app.">
+    <meta property="og:title" content="Support - VetGPT">
+    <meta property="og:description" content="Get help with VetGPT. Browse FAQs or contact our support team.">
+    <meta property="og:url" content="https://vetgpt.app/support.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1030 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent-purple); }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .contact-card .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ Section */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .faq-category {
+            margin-bottom: 2rem;
+        }
+
+        .faq-category-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .faq-question .arrow {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.25rem 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .faq-answer-inner a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .faq-answer-inner a:hover {
+            text-decoration: underline;
+        }
+
+        /* Response Time Banner */
+        .response-banner {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .response-banner p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .response-banner strong {
+            color: var(--accent-green);
+        }
+
+        /* Bug Report / Feature Request */
+        .action-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .action-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .action-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .action-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .action-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-card .btn {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .action-card .btn:hover {
+            opacity: 0.85;
+            text-decoration: none;
+        }
+
+        .btn-purple {
+            background: var(--accent-purple);
+            color: #fff;
+        }
+
+        .btn-green {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            .container { padding: 2rem 1.25rem 3rem; }
+            .header-inner { flex-direction: column; gap: 1rem; }
+            .contact-grid, .action-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-inner">
+            <a href="https://vetgpt.app" class="logo-link">
+                <div class="logo-icon">🐾</div>
+                VetGPT
+            </a>
+            <nav class="nav-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy</a>
+                <a href="https://vetgpt.app/terms.html">Terms</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Support &amp; Help Center</h1>
+        <p class="subtitle">Find answers to common questions or reach out to our team. We're here to help you and your pets.</p>
+
+        <!-- Contact Cards -->
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="card-icon">✉️</div>
+                <h3>Email Support</h3>
+                <p>General questions, account issues, and technical help.</p>
+                <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>
+            </div>
+            <div class="contact-card">
+                <div class="card-icon">🔒</div>
+                <h3>Privacy Inquiries</h3>
+                <p>Data requests, privacy concerns, and account deletion.</p>
+                <a href="mailto:privacy@vetgpt.app">privacy@vetgpt.app</a>
+            </div>
+        </div>
+
+        <div class="response-banner">
+            <p>We typically respond to support requests within <strong>24–48 hours</strong>. For urgent issues, please include "URGENT" in your subject line.</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <!-- Getting Started -->
+        <div class="faq-category">
+            <div class="faq-category-title">Getting Started</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is VetGPT?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        VetGPT is an AI-powered pet health management app that helps you track medications, vet visits, symptoms, vaccines, and more for all your pets — from dogs and cats to reptiles, fish, birds, and 50+ other species. It uses AI to scan vet documents, analyze photos, transcribe vet visits, and provide personalized health insights based on your pet's complete health history.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What species does VetGPT support?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        VetGPT supports 50+ species across 11 categories: dogs, cats, small mammals (hamsters, guinea pigs, ferrets, hedgehogs), rabbits, large mammals (horses, goats, pigs), pet birds (parrots, cockatiels, finches), poultry (chickens, ducks), reptiles (bearded dragons, ball pythons, geckos), amphibians (frogs, axolotls), fish (freshwater, saltwater, koi), and invertebrates (tarantulas, hermit crabs). Each species gets tailored tracking features — for example, water parameters for fish, shedding logs for reptiles, and egg production tracking for poultry.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I create an account?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Download VetGPT from the App Store (iOS) or Google Play (Android), then sign up with your email address and a password, or use Google sign-in for quick setup. Once your account is created, you can immediately start adding your pets and tracking their health.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I reset my password?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        On the sign-in screen, tap "Forgot Password" and enter the email address associated with your account. You'll receive a password reset link via email. If you don't see the email, check your spam folder. If you continue to have trouble, contact us at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="faq-category">
+            <div class="faq-category-title">Features &amp; AI</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the AI health assistant work?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        VetGPT's AI assistant has access to your pet's full health profile — their species, breed, age, weight, medications, vet visits, symptoms, and conditions. When you ask a question, the AI uses this context to give personalized, relevant answers specific to your pet. You can also upload photos for visual analysis or share documents for the AI to review. Remember, the AI is designed to help you be more informed — it's not a replacement for professional veterinary care.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the Health Score?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        The Health Score is a 0–100 rating calculated by AI based on several factors: medication compliance, vet visit recency, symptom history, weight trends, and preventive care status. It's designed to give you an at-a-glance understanding of your pet's overall health management. The score also provides recommended actions to improve it, like scheduling overdue checkups or logging weight entries. It updates as you add more health data.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does document scanning work?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        VetGPT can scan and extract data from prescription bottles, vaccine cards, insurance cards, lab results, discharge summaries, and other vet documents. Simply take a photo or upload an image, and the AI will automatically extract key information like medication names, dosages, vaccine dates, and diagnoses — saving you from manual data entry.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I record my vet visits?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes! VetGPT's voice recording feature lets you record your vet appointment. After recording, the audio is transcribed and the AI extracts key information like diagnoses, new medications, follow-up instructions, and recommended appointments. This way you never miss important details from your vet visit. This feature is available on the Premium plan.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscription -->
+        <div class="faq-category">
+            <div class="faq-category-title">Subscription &amp; Pricing</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's the difference between Free and Premium?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <strong>Free tier</strong> includes up to 2 pet profiles, basic health logging (symptoms, medications, vet visits, vaccines), a limited number of AI interactions per month, limited document scanning, and standard reminders.<br><br>
+                        <strong>Premium</strong> (monthly or annual plans available) unlocks unlimited pets, unlimited AI chat, unlimited document and photo scanning, voice recording and transcription, AI-personalized daily wellness tips, health scores with AI insights, comprehensive vet reports, and priority support. Current pricing is shown in the app.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I cancel my subscription?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Subscriptions are managed through the Apple App Store or Google Play Store. To cancel:<br><br>
+                        <strong>iOS:</strong> Settings → Apple ID → Subscriptions → VetGPT → Cancel Subscription<br>
+                        <strong>Android:</strong> Google Play Store → Menu → Subscriptions → VetGPT → Cancel<br><br>
+                        After cancellation, you'll retain Premium access until the end of your current billing period. Your data and pet profiles are always preserved, even on the free tier.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I get a refund?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Refunds are handled by the Apple App Store or Google Play Store, as they process all payments. You can request a refund through the respective store's refund process. We're happy to help resolve any issues — reach out to <a href="mailto:support@vetgpt.app">support@vetgpt.app</a> and we'll do our best to make things right.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy & Security -->
+        <div class="faq-category">
+            <div class="faq-category-title">Privacy &amp; Security</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my data secure?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes. We take data security seriously. Your data is stored securely with encryption at rest and in transit. We use row-level security to ensure your data is isolated and accessible only to you. We do not sell your personal data or pet health information to third parties. For full details, please review our <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I export my data?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes. VetGPT supports exporting your pet health data through the app's sharing and report features. You can generate comprehensive health reports to share with your veterinarian or for your own records. We believe your data belongs to you.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I delete my account?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        You can delete your account from the Profile section within the app. Account deletion permanently removes all your data, including pet profiles, health records, documents, and AI chat history. This action cannot be undone. If you need help, contact us at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What AI models does VetGPT use?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        VetGPT uses industry-leading AI models to power its intelligent features, including document analysis, health insights, and conversational assistance. Your pet data is sent to AI services only when you actively use AI features, and is processed solely to provide you with results — it is not used to train AI models.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="faq-category">
+            <div class="faq-category-title">Troubleshooting</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>The app isn't sending me notifications</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        First, make sure notifications are enabled for VetGPT in your device settings:<br><br>
+                        <strong>iOS:</strong> Settings → Notifications → VetGPT → Allow Notifications<br>
+                        <strong>Android:</strong> Settings → Apps → VetGPT → Notifications → Enable<br><br>
+                        Also ensure Do Not Disturb or Focus modes aren't blocking VetGPT notifications. If you're still not receiving reminders, try signing out and back in, or reinstalling the app. Contact us if the issue persists.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>The AI isn't responding or seems slow</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        AI features require an active internet connection. If responses are slow, check your network connection and try again. During periods of high demand, AI responses may take a few extra seconds. If the issue persists, try closing and reopening the app. If you're on the free tier, you may have reached your monthly AI interaction limit.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bug Report / Feature Request -->
+        <div class="action-section">
+            <h2 class="section-title">Still Need Help?</h2>
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="card-icon">🐛</div>
+                    <h3>Report a Bug</h3>
+                    <p>Found something that doesn't work right? Let us know so we can fix it.</p>
+                    <a href="mailto:support@vetgpt.app?subject=Bug%20Report%3A%20&body=Describe%20the%20bug%3A%0A%0ASteps%20to%20reproduce%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ADevice%3A%20%0AOS%20version%3A%20%0AApp%20version%3A%20" class="btn btn-purple">Report Bug</a>
+                </div>
+                <div class="action-card">
+                    <div class="card-icon">💡</div>
+                    <h3>Request a Feature</h3>
+                    <p>Have an idea that would make VetGPT better? We'd love to hear it.</p>
+                    <a href="mailto:support@vetgpt.app?subject=Feature%20Request%3A%20&body=Feature%20description%3A%0A%0AWhy%20it%20would%20be%20helpful%3A%0A%0A" class="btn btn-green">Suggest Feature</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://vetgpt.app">Home</a>
+                <a href="https://vetgpt.app/privacy.html">Privacy Policy</a>
+                <a href="https://vetgpt.app/terms.html">Terms of Service</a>
+                <a href="https://vetgpt.app/support.html">Support</a>
+            </div>
+            <p>&copy; 2026 VetGPT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+                // Optionally close others in same category:
+                // item.closest('.faq-category').querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (wasOpen) {
+                    item.classList.remove('open');
+                } else {
+                    item.classList.add('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
