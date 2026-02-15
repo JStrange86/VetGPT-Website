@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - VetGPT</title>
+    <meta name="description" content="How to delete your VetGPT account and all associated data.">
+    <meta property="og:title" content="Delete Account - VetGPT">
+    <meta property="og:description" content="Instructions for deleting your VetGPT account and data.">
+    <meta property="og:url" content="https://vetgpt.app/delete-account.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --accent-red: #ef4444;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1030 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-left: 3px solid var(--accent-red);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box h3 {
+            color: var(--accent-red);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .steps {
+            margin: 1.5rem 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.green {
+            border-left: 3px solid var(--accent-green);
+        }
+
+        ul {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .step {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-inner">
+            <a href="/" class="logo-link">
+                <div class="logo-icon">🐾</div>
+                VetGPT
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="/terms.html">Terms</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Delete Your Account</h1>
+        <p class="last-updated">Last updated: February 15, 2026</p>
+
+        <p class="intro">
+            We're sorry to see you go. This page explains how to permanently delete your VetGPT account and all associated data.
+        </p>
+
+        <div class="warning-box">
+            <h3>⚠️ This action is permanent</h3>
+            <p>Deleting your account will permanently remove all your data, including pet profiles, health records, vet visits, medications, and any uploaded documents. This cannot be undone.</p>
+        </div>
+
+        <h2>How to Delete Your Account</h2>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Open VetGPT</h3>
+                    <p>Launch the VetGPT app on your iOS or Android device and sign in to your account.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Go to Profile</h3>
+                    <p>Tap the <strong>Profile</strong> tab in the bottom navigation bar.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Scroll to Data & Privacy</h3>
+                    <p>Scroll down to find the <strong>Data & Privacy</strong> section.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Tap "Delete Account"</h3>
+                    <p>Tap the <strong>Delete Account</strong> button and confirm your decision when prompted.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>What Gets Deleted</h2>
+
+        <p>When you delete your account, the following data is permanently removed:</p>
+
+        <ul>
+            <li>Your user profile and account credentials</li>
+            <li>All pet profiles and their information</li>
+            <li>Health logs, symptoms, and observations</li>
+            <li>Vet visit records and notes</li>
+            <li>Vaccination records</li>
+            <li>Medication tracking data</li>
+            <li>Uploaded documents and photos</li>
+            <li>AI conversation history</li>
+            <li>Notification preferences and reminders</li>
+        </ul>
+
+        <div class="highlight-box green">
+            <p><strong>Deletion Timeline:</strong> Your account and all associated data will be permanently deleted within 30 days of your request. During this period, your data is no longer accessible and cannot be recovered.</p>
+        </div>
+
+        <h2>Need Help?</h2>
+
+        <p>If you're having trouble deleting your account through the app, or if you have questions about your data, please contact us at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>.</p>
+
+        <p>If you'd like to delete specific data without deleting your entire account, see our <a href="/delete-data.html">data deletion options</a>.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="mailto:support@vetgpt.app">Contact</a>
+        </div>
+        <p>&copy; 2026 VetGPT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Data - VetGPT</title>
+    <meta name="description" content="How to delete specific data from your VetGPT account without deleting your entire account.">
+    <meta property="og:title" content="Delete Your Data - VetGPT">
+    <meta property="og:description" content="Instructions for deleting specific data from your VetGPT account.">
+    <meta property="og:url" content="https://vetgpt.app/delete-data.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6b6b80;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-color: #2a2a3e;
+            --link-color: #a78bfa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1030 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .data-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-card h3 .icon {
+            font-size: 1.1rem;
+        }
+
+        .data-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .data-card .location {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.green {
+            border-left: 3px solid var(--accent-green);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-inner">
+            <a href="/" class="logo-link">
+                <div class="logo-icon">🐾</div>
+                VetGPT
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="/terms.html">Terms</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Delete Your Data</h1>
+        <p class="last-updated">Last updated: February 15, 2026</p>
+
+        <p class="intro">
+            VetGPT gives you full control over your data. You can delete specific information without deleting your entire account. Here's how to manage and delete different types of data.
+        </p>
+
+        <div class="highlight-box green">
+            <p><strong>Keep Your Account:</strong> Deleting data from these sections removes only that specific information. Your account and other data remain intact.</p>
+        </div>
+
+        <h2>Types of Data You Can Delete</h2>
+
+        <div class="data-card">
+            <h3><span class="icon">🐕</span> Pet Profiles</h3>
+            <p>Remove a pet and all their associated health records, vet visits, and medications.</p>
+            <span class="location">Pets Tab → Select Pet → Edit → Delete Pet</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">📋</span> Health Logs</h3>
+            <p>Delete individual symptom entries, observations, or health notes.</p>
+            <span class="location">Health Tab → Health Logs → Swipe left to delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">🏥</span> Vet Visits</h3>
+            <p>Remove vet visit records including diagnoses, treatments, and notes.</p>
+            <span class="location">Health Tab → Visits → Select visit → Delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">💊</span> Medications</h3>
+            <p>Delete medication entries and their tracking history.</p>
+            <span class="location">Health Tab → Medications → Swipe left to delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">💉</span> Vaccinations</h3>
+            <p>Remove vaccination records from your pet's profile.</p>
+            <span class="location">Health Tab → Vaccines → Swipe left to delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">📄</span> Documents & Photos</h3>
+            <p>Delete uploaded documents, scanned records, and photos.</p>
+            <span class="location">Profile → Medical Records → Select → Delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">🎙️</span> Voice Recordings</h3>
+            <p>Remove vet visit recordings and their AI transcriptions.</p>
+            <span class="location">Profile → Audio Recordings → Select → Delete</span>
+        </div>
+
+        <div class="data-card">
+            <h3><span class="icon">💬</span> Chat History</h3>
+            <p>Clear your AI conversation history.</p>
+            <span class="location">AI Chat Tab → Settings icon → Clear History</span>
+        </div>
+
+        <h2>Delete All Data</h2>
+
+        <p>If you want to delete all your data and your account entirely, see our <a href="/delete-account.html">account deletion page</a>.</p>
+
+        <h2>Need Help?</h2>
+
+        <p>If you need assistance deleting specific data or have questions about your information, contact us at <a href="mailto:support@vetgpt.app">support@vetgpt.app</a>.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="mailto:support@vetgpt.app">Contact</a>
+        </div>
+        <p>&copy; 2026 VetGPT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

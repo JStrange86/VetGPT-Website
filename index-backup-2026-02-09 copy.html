@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetGPT — AI Pet Health Tracker for Dogs, Cats, Reptiles & 60+ Species</title>
+    <meta name="description" content="VetGPT is the AI-powered pet health app that scans vet documents, tracks medications, records appointments, and gives personalized insights for 64+ species. Free beta for iOS & Android.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="VetGPT — AI Pet Health Tracking">
+    <meta property="og:description" content="Scan prescriptions, track medications, record vet visits, get AI insights. For dogs, cats, reptiles, fish & 60+ species.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app">
+    <meta name="google-site-verification" content="cS_PEnntd5jCrhO8IQeaqdVgAfihW4sY8IhcbLePvEU" />
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VetGPT — AI Pet Health Tracking">
+    <meta name="twitter:description" content="The AI pet health app that knows your pet's full history. 64+ species supported.">
+    <meta name="twitter:image" content="https://vetgpt.app/og-image.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VetGPT",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "iOS, Android",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "AI-powered pet health tracking app supporting 64+ species with document scanning, voice recording, and personalized health insights.",
+        "url": "https://vetgpt.app"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vetgpt.app/">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES
+           ============================================ */
+        :root {
+            --bg: #0a0a0a;
+            --bg-elevated: #111111;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --text: #ffffff;
+            --text-secondary: #9ca3af;
+            --text-muted: #8b95a5;
+            --green: #10b981;
+            --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6;
+            --purple-glow: rgba(139,92,246,0.25);
+            --pink: #ec4899;
+            --pink-glow: rgba(236,72,153,0.2);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-w: 1200px;
+            --section-pad: clamp(60px, 10vw, 120px);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Focus outlines for accessibility */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            background: var(--green);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 16px; }
+
+        /* Noscript fallback — show all content when JS is disabled */
+        noscript .reveal,
+        noscript .reveal.reveal-delay-1,
+        noscript .reveal.reveal-delay-2,
+        noscript .reveal.reveal-delay-3,
+        noscript .reveal.reveal-delay-4,
+        noscript .reveal.reveal-delay-5 {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* ============================================
+           UTILITY
+           ============================================ */
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .section-sub {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           SCROLL ANIMATIONS
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
+        }
+        .nav.scrolled {
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+        .nav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-logo-img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.nav-cta,
+        .nav-links a.nav-cta:hover { color: #000000; }
+        .nav-cta {
+            padding: 12px 24px;
+            background: #10b981;
+            color: #000000 !important;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.95rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: box-shadow 0.3s, transform 0.2s;
+            -webkit-font-smoothing: antialiased;
+            text-decoration: none;
+        }
+        .nav-cta:hover {
+            box-shadow: 0 0 30px var(--green-glow);
+            transform: translateY(-1px);
+            color: #000000 !important;
+        }
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10,10,10,0.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--text); }
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 2rem;
+            color: var(--text);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+        /* Aurora gradient background */
+        .hero-aurora {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-aurora::before,
+        .hero-aurora::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            animation: aurora 20s ease-in-out infinite alternate;
+        }
+        .hero-aurora::before {
+            width: 600px; height: 600px;
+            background: var(--purple);
+            top: -10%; left: -5%;
+        }
+        .hero-aurora::after {
+            width: 500px; height: 500px;
+            background: var(--green);
+            bottom: -15%; right: -5%;
+            animation-delay: -10s;
+            animation-direction: alternate-reverse;
+        }
+        .hero-aurora-extra {
+            position: absolute;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.08;
+            background: var(--pink);
+            top: 30%; left: 40%;
+            animation: aurora 25s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes aurora {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+            100% { transform: translate(10px, -10px) scale(1.02); }
+        }
+        /* Noise texture overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content { max-width: 560px; }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 .accent-green { color: var(--green); }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        .hero-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .hero-form input {
+            flex: 1;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .hero-form input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px var(--green-glow);
+        }
+        .hero-form input::placeholder { color: var(--text-muted); }
+        .hero-form button {
+            padding: 14px 28px;
+            background: var(--green);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .hero-form button:hover {
+            box-shadow: 0 0 30px var(--green-glow);
+            transform: translateY(-1px);
+        }
+        .hero-success {
+            display: none;
+            padding: 14px 20px;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 10px;
+            color: var(--green);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .hero-urgency {
+            margin-top: 8px;
+            font-size: 0.82rem;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .urgency-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+            animation: urgencyPulse 2s ease-in-out infinite;
+        }
+        @keyframes urgencyPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--green-glow); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 6px transparent; }
+        }
+
+        /* Phone mockup */
+        .hero-phone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .phone-frame {
+            position: relative;
+            width: 280px;
+            aspect-ratio: 9 / 19.5;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow:
+                0 0 0 2px #333,
+                0 25px 60px rgba(0,0,0,0.5),
+                0 0 80px var(--purple-glow);
+            overflow: hidden;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+        /* Animated gradient border - hero phone only */
+        .hero-phone .phone-glow {
+            position: relative;
+            padding: 3px;
+            border-radius: 42px;
+            background: conic-gradient(from var(--border-angle, 0deg), var(--purple), var(--green), var(--pink), var(--purple));
+            animation: borderSpin 4s linear infinite;
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.5),
+                0 0 60px var(--purple-glow),
+                0 0 120px rgba(16,185,129,0.15);
+        }
+        .hero-phone .phone-glow .phone-frame {
+            box-shadow: none;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+        @keyframes borderSpin {
+            to { --border-angle: 360deg; }
+        }
+        @property --border-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 120px; height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 18px 18px;
+            z-index: 10;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        /* Screenshot section phones: each sized to its image */
+        .screenshots .phone-frame {
+            width: 280px;
+            aspect-ratio: 0.52;
+        }
+        /* Health score phone: frame matches image ratio, cover prevents distortion */
+        .screenshots .screenshot-item:nth-child(2) .phone-frame {
+            width: 300px;
+            aspect-ratio: 0.598;
+        }
+        .screenshots .screenshot-item:nth-child(2) .phone-screen img {
+            object-fit: cover;
+            object-position: top center;
+        }
+        /* Hero phone: fill stretches image to exactly match frame */
+        .hero-phone .phone-frame {
+            width: 310px;
+            aspect-ratio: 0.604;
+        }
+        .hero-phone .phone-screen img {
+            object-fit: fill;
+        }
+        /* Placeholder for screenshots */
+        .phone-placeholder {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .phone-placeholder .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero { min-height: auto; padding: 100px 0 60px; }
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { max-width: 100%; }
+            .hero-form { flex-direction: column; }
+            .hero-form button { width: 100%; }
+            .hero-phone { margin-top: 20px; }
+            .hero-phone .phone-frame { width: 240px; }
+            .screenshots .phone-frame { width: 220px; }
+            .screenshots .screenshot-item:nth-child(2) .phone-frame { width: 240px; }
+            .hero-urgency { justify-content: center; }
+        }
+
+        /* ============================================
+           SOCIAL PROOF BAR
+           ============================================ */
+        .proof-bar {
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.015);
+        }
+        .proof-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .proof-item {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .proof-item .proof-icon { font-size: 1rem; }
+        .proof-item strong { color: var(--text); font-weight: 600; }
+
+        @media (max-width: 600px) {
+            .proof-inner { gap: 20px; }
+            .proof-item { font-size: 0.72rem; }
+        }
+
+        /* ============================================
+           SOUND FAMILIAR
+           ============================================ */
+        .familiar { padding: var(--section-pad) 0; }
+        .familiar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .familiar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s;
+        }
+        .familiar-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+        .familiar-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .familiar-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+        .familiar-quote {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .familiar-solution {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .familiar-solution strong { color: var(--green); font-weight: 600; }
+
+        @media (max-width: 900px) { .familiar-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .familiar-grid { grid-template-columns: 1fr; } }
+
+        /* ============================================
+           SCREENSHOTS
+           ============================================ */
+        .screenshots { padding: var(--section-pad) 0; }
+        .screenshots-inner { text-align: center; }
+        .screenshots-grid {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 56px;
+            flex-wrap: wrap;
+        }
+        .screenshot-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .screenshot-phone {
+            width: 220px;
+            height: 450px;
+            background: #1a1a1a;
+            border-radius: 32px;
+            padding: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .screenshot-phone:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 40px var(--purple-glow); }
+        .screenshot-phone .phone-screen {
+            border-radius: 24px;
+        }
+        /* Tilt outer phones inward, emphasize center */
+        .screenshot-item:nth-child(1) .screenshot-phone {
+            transform: perspective(800px) rotateY(4deg);
+        }
+        .screenshot-item:nth-child(1) .screenshot-phone:hover {
+            transform: perspective(800px) rotateY(4deg) translateY(-8px) scale(1.02);
+        }
+        .screenshot-item:nth-child(2) .screenshot-phone {
+            width: 240px;
+            height: 490px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 60px var(--green-glow);
+        }
+        .screenshot-item:nth-child(2) .screenshot-phone:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+        .screenshot-item:nth-child(3) .screenshot-phone {
+            transform: perspective(800px) rotateY(-4deg);
+        }
+        .screenshot-item:nth-child(3) .screenshot-phone:hover {
+            transform: perspective(800px) rotateY(-4deg) translateY(-8px) scale(1.02);
+        }
+        .screenshot-caption {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            max-width: 220px;
+            text-align: center;
+        }
+        .screenshot-caption strong { color: var(--text); }
+
+        @media (max-width: 768px) {
+            .screenshots-grid { flex-direction: column; align-items: center; }
+            .screenshot-phone { width: 200px; height: 410px; }
+            .screenshot-item:nth-child(1) .screenshot-phone,
+            .screenshot-item:nth-child(3) .screenshot-phone { transform: none; }
+            .screenshot-item:nth-child(1) .screenshot-phone:hover,
+            .screenshot-item:nth-child(3) .screenshot-phone:hover { transform: translateY(-8px) scale(1.02); }
+            .screenshot-item:nth-child(2) .screenshot-phone { width: 200px; height: 410px; }
+        }
+
+        /* ============================================
+           HOW IT WORKS
+           ============================================ */
+        .how-it-works { padding: var(--section-pad) 0; }
+        .how-inner { text-align: center; }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 56px;
+        }
+        .step {
+            text-align: center;
+            padding: 32px 24px;
+        }
+        .step-number {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin: 0 auto 20px;
+            border: 2px solid var(--green);
+            color: var(--green);
+            background: rgba(16,185,129,0.08);
+        }
+        .step-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .step h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        /* Connector lines between steps */
+        .steps-connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .steps { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+        .how-punchline {
+            margin-top: 40px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            padding: 24px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .how-punchline em {
+            color: var(--green);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           FEATURES
+           ============================================ */
+        .features { padding: var(--section-pad) 0; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s;
+        }
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.4s ease 0.15s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+        }
+        .feature-card.visible .feature-icon,
+        .visible .feature-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .reveal-delay-1 .feature-icon { transition-delay: 0.3s; }
+        .reveal-delay-2 .feature-icon { transition-delay: 0.45s; }
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+
+        /* ============================================
+           MID-SCROLL CTA
+           ============================================ */
+        .mid-cta {
+            padding: 48px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .mid-cta-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 32px 40px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08));
+            border: 1px solid rgba(16,185,129,0.15);
+            border-radius: 16px;
+        }
+        .mid-cta-text {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+        .mid-cta-btn {
+            padding: 14px 28px;
+            background: var(--green);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .mid-cta-btn:hover {
+            box-shadow: 0 0 30px var(--green-glow);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 600px) {
+            .mid-cta-inner { flex-direction: column; padding: 28px 24px; }
+        }
+
+        /* ============================================
+           VET JOURNEY
+           ============================================ */
+        .journey { padding: var(--section-pad) 0; }
+        .journey-inner { text-align: center; }
+        .timeline {
+            margin-top: 56px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--green), var(--purple), var(--pink));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 56px;
+            padding-bottom: 40px;
+            text-align: left;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute;
+            left: 12px;
+            top: 4px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--green);
+        }
+        .timeline-item:nth-child(2) .timeline-dot { border-color: #3b82f6; }
+        .timeline-item:nth-child(3) .timeline-dot { border-color: var(--purple); }
+        .timeline-item:nth-child(4) .timeline-dot { border-color: var(--pink); }
+        .timeline-item:nth-child(5) .timeline-dot { border-color: var(--green); }
+        .timeline-week {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--green);
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        .timeline-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .timeline-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(16,185,129,0.1);
+            color: var(--green);
+            margin-top: 8px;
+        }
+
+        /* ============================================
+           SPECIES
+           ============================================ */
+        .species { padding: var(--section-pad) 0; overflow: hidden; }
+        .species-inner { text-align: center; }
+        .marquee-wrapper {
+            margin-top: 40px;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            gap: 24px;
+            animation: marquee 40s linear infinite;
+            width: max-content;
+        }
+        .marquee-item {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .marquee-item .emoji { font-size: 1.3rem; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .species-details {
+            margin-top: 28px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .species-details strong { color: var(--text-secondary); }
+
+        /* ============================================
+           FOUNDER
+           ============================================ */
+        .founder {
+            padding: var(--section-pad) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .founder-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px;
+            height: 420px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .founder-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .founder-quote {
+            position: relative;
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+        .founder-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--purple);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .founder-attribution {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .founder-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        .founder-name {
+            text-align: left;
+        }
+        .founder-name strong {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .founder-name span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .founder-bottom {
+            margin-top: 32px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           TESTIMONIAL
+           ============================================ */
+        .testimonial-section {
+            padding: 80px 0 60px;
+            position: relative;
+        }
+        .testimonial-card {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .testimonial-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 32px;
+        }
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            display: block;
+            border: 3px solid var(--green);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+        .testimonial-quote {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 28px;
+            position: relative;
+        }
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: var(--green);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+        }
+        .testimonial-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .testimonial-pets {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .testimonial-species-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--green);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* ============================================
+           FINAL CTA
+           ============================================ */
+        .final-cta {
+            padding: var(--section-pad) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(139,92,246,0.08) 0%, transparent 70%);
+        }
+        .final-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .final-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 32px;
+            margin-bottom: 14px;
+        }
+        .final-form input {
+            flex: 1;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .final-form input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px var(--green-glow);
+        }
+        .final-form input::placeholder { color: var(--text-muted); }
+        .final-form button {
+            padding: 16px 32px;
+            background: var(--green);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .final-form button:hover {
+            box-shadow: 0 0 30px var(--green-glow);
+            transform: translateY(-1px);
+        }
+        .final-trust {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .final-badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        .store-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px 10px 14px;
+            background: #000;
+            border: 1.5px solid #a6a6a6;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .store-badge:hover {
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .store-badge-icon {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .store-badge-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        .store-badge-label {
+            font-size: 0.6rem;
+            color: #ccc;
+            letter-spacing: 0.02em;
+            font-family: var(--font-body);
+        }
+        .store-badge-store {
+            font-size: 1.15rem;
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        .store-badge-soon {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            background: var(--green);
+            color: #000;
+            font-size: 0.55rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 0 10px 0 8px;
+        }
+        .final-success {
+            display: none;
+            padding: 16px 24px;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 10px;
+            color: var(--green);
+            font-weight: 500;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .final-form { flex-direction: column; }
+            .final-form button { width: 100%; }
+            .final-badges { flex-direction: column; align-items: center; }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-logo {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 4px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+
+        /* ============================================
+           STICKY BOTTOM BAR
+           ============================================ */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 12px 24px;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        .sticky-bar.visible { transform: translateY(0); }
+        .sticky-bar.dismissed { display: none; }
+        .sticky-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sticky-text {
+            font-size: 0.88rem;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .sticky-text strong { color: var(--green); }
+        .sticky-form {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            max-width: 480px;
+        }
+        .sticky-form input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            outline: none;
+        }
+        .sticky-form input:focus {
+            border-color: var(--green);
+        }
+        .sticky-form input::placeholder { color: var(--text-muted); }
+        .sticky-form button {
+            padding: 10px 20px;
+            background: var(--green);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: box-shadow 0.3s;
+        }
+        .sticky-form button:hover {
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+        .sticky-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 4px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .sticky-close:hover { color: var(--text); }
+
+        @media (max-width: 768px) {
+            .sticky-text { display: none; }
+            .sticky-form { max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .sticky-form input { display: none; }
+            .sticky-form button { width: 100%; padding: 12px; font-size: 0.9rem; }
+        }
+
+        /* ============================================
+           REDUCED MOTION
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            .phone-frame { animation: none; }
+            .phone-glow { animation: none; }
+            .marquee-track { animation: none; }
+        }
+
+        /* ============================================
+           FORM STATES
+           ============================================ */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            top: 50%; left: 50%;
+            margin: -8px 0 0 -8px;
+            border: 2px solid transparent;
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: btnSpin 0.6s linear infinite;
+        }
+        @keyframes btnSpin {
+            to { transform: rotate(360deg); }
+        }
+        .input-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.2) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- ========== NAVIGATION ========== -->
+    <header class="nav" id="nav" role="banner">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" aria-label="VetGPT Home">
+                <img src="logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#journey">The Journey</a></li>
+                    <li><a href="#founder">Story</a></li>
+                    <li><a href="#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#journey">The Journey</a>
+        <a href="#founder">Story</a>
+        <a href="#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+
+    <main id="main-content">
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="hero">
+            <div class="hero-aurora">
+                <div class="hero-aurora-extra"></div>
+            </div>
+            <div class="container">
+                <div class="hero-inner">
+                    <div class="hero-content">
+                        <h1 class="reveal">It's 2am. Your pet is sick.<br><span class="accent-green">The internet is making it worse.</span></h1>
+                        <p class="hero-sub reveal reveal-delay-1">VetGPT is the AI that already knows your pet. Their meds. Their history. Their symptoms. Ask anything and get answers that actually understand your pet's situation.</p>
+                        
+                        <div class="hero-success" id="heroSuccess" role="status" aria-live="polite">✓ You're on the list! We'll be in touch soon.</div>
+                        
+                        <form class="hero-form reveal reveal-delay-2" id="heroForm" onsubmit="handleSubmit(event, 'hero')">
+                            <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                            <button type="submit">Get Early Access — Free</button>
+                        </form>
+                        <p class="hero-urgency reveal reveal-delay-3">
+                            <span class="urgency-dot"></span> Beta spots are limited — all premium features free during beta
+                        </p>
+                    </div>
+                    <div class="hero-phone reveal reveal-delay-2">
+                        <div class="phone-glow">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <!-- REPLACE: Insert Kylie pet card screenshot (screenshot_2595.png) -->
+                                <img src="hero-phone.png" alt="VetGPT app showing Kylie the Dachshund with a health score of 100 and personalized daily wellness tip" width="256" height="546">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SOCIAL PROOF BAR ========== -->
+        <div class="proof-bar">
+            <div class="container">
+                <div class="proof-inner">
+                    <div class="proof-item"><span class="proof-icon">🐾</span> <strong>64+</strong> Species Supported</div>
+                    <div class="proof-item"><span class="proof-icon">✨</span> <strong>18</strong> AI-Powered Features</div>
+                    <div class="proof-item"><span class="proof-icon">👥</span> <strong>30+</strong> Pets Tracked</div>
+                    <div class="proof-item"><span class="proof-icon">📱</span> <strong>iOS</strong> &amp; <strong>Android</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SCREENSHOTS ========== -->
+        <section class="screenshots" id="screenshots">
+            <div class="container">
+                <div class="screenshots-inner">
+                    <p class="section-label reveal">See It In Action</p>
+                    <h2 class="section-title reveal">Built for the moments that matter most</h2>
+                    <div class="screenshots-grid">
+                        <div class="screenshot-item reveal">
+                            <div class="screenshot-phone">
+                                <div class="phone-screen">
+                                    <img src="ss-ai-chat.png" alt="VetGPT AI chat analyzing a lump on Kylie the Dachshund and recommending a vet visit" width="220" height="450" loading="lazy">
+                                </div>
+                            </div>
+                            <p class="screenshot-caption"><strong>AI extracts action items.</strong> Medications, appointments, and reminders — saved in one tap.</p>
+                        </div>
+                        <div class="screenshot-item reveal reveal-delay-1">
+                            <div class="screenshot-phone">
+                                <div class="phone-screen">
+                                    <img src="ss-health-score2.png" alt="VetGPT health score breakdown showing 87 out of 100 with preventive care, vet engagement, and vitals tracking" width="220" height="450" loading="lazy">
+                                </div>
+                            </div>
+                            <p class="screenshot-caption"><strong>Know where you stand.</strong> AI health scores break down exactly what's going well — and what needs attention.</p>
+                        </div>
+                        <div class="screenshot-item reveal reveal-delay-2">
+                            <div class="screenshot-phone">
+                                <div class="phone-screen">
+                                    <img src="ss-goldfish.png" alt="VetGPT pet journey showing Elon the Goldfish with weekly photo tracking and health streak" width="220" height="450" loading="lazy">
+                                </div>
+                            </div>
+                            <p class="screenshot-caption"><strong>From goldfish to Great Danes.</strong> Track every species with photo journals, health streaks, and AI insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SOUND FAMILIAR ========== -->
+        <section class="familiar" id="problem">
+            <div class="container">
+                <div class="reveal">
+                    <p class="section-label">Sound Familiar?</p>
+                    <h2 class="section-title">This is how you're managing your pet's health right now</h2>
+                    <p class="section-sub">Vet visits pile up. Lab results stack up. Medications change. And all of it lives in different places.</p>
+                </div>
+                <div class="familiar-grid">
+                    <div class="familiar-card reveal">
+                        <span class="familiar-icon">📱</span>
+                        <p class="familiar-title">Apple Notes</p>
+                        <p class="familiar-quote">"Started drinking more water 3 weeks ago…or was it 4?"</p>
+                        <p class="familiar-solution">You're tracking symptoms in scattered notes you can barely find later. <strong>VetGPT logs everything in one place.</strong></p>
+                    </div>
+                    <div class="familiar-card reveal reveal-delay-1">
+                        <span class="familiar-icon">📸</span>
+                        <p class="familiar-title">Camera Roll</p>
+                        <p class="familiar-quote">"I took a photo of that lump last month. Where is it?"</p>
+                        <p class="familiar-solution">Progress photos buried in 3,000 selfies. <strong>VetGPT's Health Journey tracks changes week by week.</strong></p>
+                    </div>
+                    <div class="familiar-card reveal reveal-delay-2">
+                        <span class="familiar-icon">🤖</span>
+                        <p class="familiar-title">AI Chatbots</p>
+                        <p class="familiar-quote">"My dog is 14, has arthritis, takes gabapentin…" — again.</p>
+                        <p class="familiar-solution">Copy-pasting the same context every single time. <strong>VetGPT's AI already knows your pet.</strong></p>
+                    </div>
+                    <div class="familiar-card reveal">
+                        <span class="familiar-icon">📋</span>
+                        <p class="familiar-title">The Vet's Office</p>
+                        <p class="familiar-quote">"When did the vomiting start? What meds is she on?"</p>
+                        <p class="familiar-solution">You blank. The vet waits. <strong>VetGPT gives you a complete health report in one tap.</strong></p>
+                    </div>
+                    <div class="familiar-card reveal reveal-delay-1">
+                        <span class="familiar-icon">📄</span>
+                        <p class="familiar-title">Kitchen Drawer</p>
+                        <p class="familiar-quote">"I know that lab report is here somewhere…"</p>
+                        <p class="familiar-solution">Paper records, prescriptions, vaccine cards. <strong>Scan them once — AI extracts everything.</strong></p>
+                    </div>
+                    <div class="familiar-card reveal reveal-delay-2">
+                        <span class="familiar-icon">🧠</span>
+                        <p class="familiar-title">Your Memory</p>
+                        <p class="familiar-quote">"Did I give the morning dose? Was it 50mg or 100mg?"</p>
+                        <p class="familiar-solution">Medication tracking in your head is a disaster waiting to happen. <strong>Auto-reminders. One-tap logging.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== HOW IT WORKS ========== -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="how-inner">
+                    <p class="section-label reveal">How It Works</p>
+                    <h2 class="section-title reveal">Three steps. Then AI handles the rest.</h2>
+                    <div class="steps">
+                        <div class="step reveal">
+                            <div class="step-number">1</div>
+                            <span class="step-icon">🐾</span>
+                            <h3>Add your pets</h3>
+                            <p>Create profiles for dogs, cats, reptiles, fish, birds, and 60+ more species. Add breed, age, weight, conditions.</p>
+                        </div>
+                        <div class="step reveal reveal-delay-1">
+                            <div class="step-number">2</div>
+                            <span class="step-icon">📷</span>
+                            <h3>Scan, record, or log</h3>
+                            <p>Photograph prescriptions, record vet visits, log symptoms. AI extracts the data automatically — no typing.</p>
+                        </div>
+                        <div class="step reveal reveal-delay-2">
+                            <div class="step-number">3</div>
+                            <span class="step-icon">✨</span>
+                            <h3>Ask anything</h3>
+                            <p>Open AI chat. It already knows every medication, every vet visit, every symptom. Just ask.</p>
+                        </div>
+                    </div>
+                    <p class="how-punchline reveal">That's it. Open AI chat and <em>it already knows everything.</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SPECIES ========== -->
+        <section class="species" id="species">
+            <div class="container">
+                <div class="species-inner">
+                    <p class="section-label reveal">Works For All Your Pets</p>
+                    <h2 class="section-title reveal">Every pet deserves smart care</h2>
+                    <p class="section-sub reveal" style="margin: 0 auto;">VetGPT supports 64+ species across 11 categories — with species-specific tracking for each one.</p>
+                </div>
+            </div>
+            <div class="marquee-wrapper" style="margin-top: 40px;">
+                <div class="marquee-track">
+                    <span class="marquee-item"><span class="emoji">🐕</span> Dogs</span>
+                    <span class="marquee-item"><span class="emoji">🐈</span> Cats</span>
+                    <span class="marquee-item"><span class="emoji">🦎</span> Bearded Dragons</span>
+                    <span class="marquee-item"><span class="emoji">🐍</span> Ball Pythons</span>
+                    <span class="marquee-item"><span class="emoji">🐢</span> Tortoises</span>
+                    <span class="marquee-item"><span class="emoji">🐠</span> Goldfish</span>
+                    <span class="marquee-item"><span class="emoji">🐟</span> Bettas</span>
+                    <span class="marquee-item"><span class="emoji">🦜</span> Parrots</span>
+                    <span class="marquee-item"><span class="emoji">🐰</span> Rabbits</span>
+                    <span class="marquee-item"><span class="emoji">🐹</span> Hamsters</span>
+                    <span class="marquee-item"><span class="emoji">🦔</span> Hedgehogs</span>
+                    <span class="marquee-item"><span class="emoji">🐓</span> Chickens</span>
+                    <span class="marquee-item"><span class="emoji">🦆</span> Ducks</span>
+                    <span class="marquee-item"><span class="emoji">🐴</span> Horses</span>
+                    <span class="marquee-item"><span class="emoji">🐐</span> Goats</span>
+                    <span class="marquee-item"><span class="emoji">🦀</span> Hermit Crabs</span>
+                    <span class="marquee-item"><span class="emoji">🕷️</span> Tarantulas</span>
+                    <span class="marquee-item"><span class="emoji">🐸</span> Frogs</span>
+                    <span class="marquee-item"><span class="emoji">🐊</span> Geckos</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="marquee-item"><span class="emoji">🐕</span> Dogs</span>
+                    <span class="marquee-item"><span class="emoji">🐈</span> Cats</span>
+                    <span class="marquee-item"><span class="emoji">🦎</span> Bearded Dragons</span>
+                    <span class="marquee-item"><span class="emoji">🐍</span> Ball Pythons</span>
+                    <span class="marquee-item"><span class="emoji">🐢</span> Tortoises</span>
+                    <span class="marquee-item"><span class="emoji">🐠</span> Goldfish</span>
+                    <span class="marquee-item"><span class="emoji">🐟</span> Bettas</span>
+                    <span class="marquee-item"><span class="emoji">🦜</span> Parrots</span>
+                    <span class="marquee-item"><span class="emoji">🐰</span> Rabbits</span>
+                    <span class="marquee-item"><span class="emoji">🐹</span> Hamsters</span>
+                    <span class="marquee-item"><span class="emoji">🦔</span> Hedgehogs</span>
+                    <span class="marquee-item"><span class="emoji">🐓</span> Chickens</span>
+                    <span class="marquee-item"><span class="emoji">🦆</span> Ducks</span>
+                    <span class="marquee-item"><span class="emoji">🐴</span> Horses</span>
+                    <span class="marquee-item"><span class="emoji">🐐</span> Goats</span>
+                    <span class="marquee-item"><span class="emoji">🦀</span> Hermit Crabs</span>
+                    <span class="marquee-item"><span class="emoji">🕷️</span> Tarantulas</span>
+                    <span class="marquee-item"><span class="emoji">🐸</span> Frogs</span>
+                    <span class="marquee-item"><span class="emoji">🐊</span> Geckos</span>
+                </div>
+            </div>
+            <div class="container">
+                <p class="species-details" style="text-align:center; margin-top: 28px;">
+                    Water parameters for fish · Shedding logs for reptiles · Egg tracking for poultry · Humidity monitoring · <strong>and more</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- ========== FEATURES ========== -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="reveal">
+                    <p class="section-label">What VetGPT Does</p>
+                    <h2 class="section-title">Built for the hard parts of pet ownership</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card reveal">
+                        <span class="feature-icon">📄</span>
+                        <h3>Scan Anything</h3>
+                        <p>Prescriptions, vaccine cards, lab results, vet invoices — photograph it and AI extracts everything.</p>
+                    </div>
+                    <div class="feature-card reveal reveal-delay-1">
+                        <span class="feature-icon">🎙️</span>
+                        <h3>Record Vet Visits</h3>
+                        <p>Hit record during the appointment. AI transcribes and pulls out diagnoses, medications, and follow-ups.</p>
+                    </div>
+                    <div class="feature-card reveal reveal-delay-2">
+                        <span class="feature-icon">💬</span>
+                        <h3>AI That Knows Your Pet</h3>
+                        <p>Ask anything about your pet's health. AI has their full context — meds, conditions, vet history, symptoms, weight.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <span class="feature-icon">💊</span>
+                        <h3>Medication Tracking</h3>
+                        <p>Auto-reminders, dose logging, inventory tracking, low-stock alerts. Never miss a dose or run out.</p>
+                    </div>
+                    <div class="feature-card reveal reveal-delay-1">
+                        <span class="feature-icon">📸</span>
+                        <h3>Health Journey</h3>
+                        <p>Weekly photos to track visible changes over time. AI analyzes coat, weight, mobility — spots what you might miss.</p>
+                    </div>
+                    <div class="feature-card reveal reveal-delay-2">
+                        <span class="feature-icon">💯</span>
+                        <h3>AI Health Score</h3>
+                        <p>A 0–100 score based on medication compliance, vet visits, symptoms, and weight — with specific action items.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MID-SCROLL CTA ========== -->
+        <div class="mid-cta">
+            <div class="container">
+                <div class="mid-cta-inner reveal">
+                    <p class="mid-cta-text">Ready to try it?</p>
+                    <a href="#download" class="mid-cta-btn">Get Early Access — Free</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TESTIMONIAL ========== -->
+        <section class="testimonial-section">
+            <div class="container">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-label">From Our Beta Testers</p>
+                    <img src="jessica-avatar.png" alt="Guinea pig" class="testimonial-avatar" width="80" height="80" loading="lazy">
+                    <p class="testimonial-quote">
+                        When two of my guinea pigs fell ill at the same time, I had so many vet visits. All their info was already in one place and I never got them mixed up. The recording feature saved me. When the vet starts talking, my mind goes blank. Being able to go back and listen saved me.
+                    </p>
+                    <p class="testimonial-name">Jessica</p>
+                    <p class="testimonial-pets">Guinea pig mom to Summer, Kimber & Janie</p>
+                    <span class="testimonial-species-tag">🐹 Guinea Pigs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FOUNDER ========== -->
+        <section class="founder" id="founder">
+            <img src="logo-black.png" alt="" class="founder-watermark" aria-hidden="true" width="420" height="420" loading="lazy">
+            <div class="container">
+                <div class="founder-inner">
+                    <div class="founder-quote reveal">
+                        I lost three dogs in seven months. My wife was pregnant, then caring for our newborn. I was overwhelmed — recording vet visits on my phone, pasting lab results into an AI chatbot at 2am, trying to make sense of it all. But it didn't know my dogs. I had to start from zero every time. I built VetGPT so you never have to.
+                    </div>
+                    <div class="founder-attribution reveal">
+                        <div class="founder-avatar">J</div>
+                        <div class="founder-name">
+                            <strong>Josh</strong>
+                            <span>Founder, VetGPT</span>
+                        </div>
+                    </div>
+                    <p class="founder-bottom reveal">You're not alone anymore.<br>Whether it's 2am or 2pm — VetGPT knows your pet and is ready to help.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== VET JOURNEY ========== -->
+        <section class="journey" id="journey">
+            <div class="container">
+                <div class="journey-inner">
+                    <p class="section-label reveal">The Vet Journey</p>
+                    <h2 class="section-title reveal">From first symptom to treatment plan</h2>
+                    <p class="section-sub reveal" style="margin: 0 auto 0;">This is how VetGPT tracks your pet's health over time — not just snapshots, but the full story.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="timeline-week">Week 1</p>
+                        <p class="timeline-title">You notice something's off</p>
+                        <p class="timeline-desc">Your dog starts drinking more water than usual. You log the symptom and start tracking daily intake.</p>
+                        <span class="timeline-badge">📝 Symptom logged + photos</span>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="timeline-week">Week 3</p>
+                        <p class="timeline-title">First vet visit</p>
+                        <p class="timeline-desc">You record the appointment. AI transcribes the vet's notes and extracts blood work orders and follow-up instructions.</p>
+                        <span class="timeline-badge">🎙️ Visit recorded + AI extracted</span>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="timeline-week">Week 5</p>
+                        <p class="timeline-title">Lab results come back</p>
+                        <p class="timeline-desc">You scan the lab report. AI pulls out abnormal values and explains what they mean — in the context of your pet's symptoms.</p>
+                        <span class="timeline-badge">📄 Document scanned + analyzed</span>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="timeline-week">Week 6</p>
+                        <p class="timeline-title">Diagnosis and new medication</p>
+                        <p class="timeline-desc">Cushing's disease. New medication prescribed. You snap a photo of the bottle — VetGPT extracts name, dosage, frequency, and sets up reminders.</p>
+                        <span class="timeline-badge">💊 Medication auto-tracked</span>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="timeline-week">Week 8+</p>
+                        <p class="timeline-title">Monitoring progress</p>
+                        <p class="timeline-desc">Weekly photos show visible improvement. Water intake normalizes. You open AI chat and ask "how is she responding to treatment?" — and it knows everything.</p>
+                        <span class="timeline-badge">📈 AI tracks progress over time</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FINAL CTA ========== -->
+        <section class="final-cta" id="download">
+            <div class="final-cta-bg"></div>
+            <div class="container">
+                <div class="final-inner">
+                    <p class="section-label reveal">✦ Early Access</p>
+                    <h2 class="section-title reveal">Be the first to try VetGPT</h2>
+                    <p class="section-sub reveal" style="margin: 0 auto;">We're launching soon on iOS &amp; Android. Join the beta and get all premium features free during beta.</p>
+                    
+                    <div class="final-success" id="finalSuccess" role="status" aria-live="polite">✓ You're on the list! We'll be in touch soon.</div>
+                    
+                    <form class="final-form reveal" id="finalForm" onsubmit="handleSubmit(event, 'final')">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                        <button type="submit">Get Early Access — Free</button>
+                    </form>
+                    <p class="final-trust reveal">No spam, ever. Unsubscribe anytime.</p>
+                    
+                    <div class="final-badges reveal">
+                        <a href="#" class="store-badge" aria-label="Download on the App Store — Coming Soon">
+                            <span class="store-badge-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            </span>
+                            <span class="store-badge-text">
+                                <span class="store-badge-label">Download on the</span>
+                                <span class="store-badge-store">App Store</span>
+                            </span>
+                            <span class="store-badge-soon">Soon</span>
+                        </a>
+                        <a href="#" class="store-badge" aria-label="Get it on Google Play — Coming Soon">
+                            <span class="store-badge-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 1.28c-.2.22-.33.53-.33.93v19.57c0 .4.13.72.34.94l.05.05L14.3 11.73v-.25L3.23 1.23l-.05.05zM17.99 15.42l-3.7-3.7v-.25l3.7-3.69.08.05 4.38 2.49c1.25.71 1.25 1.87 0 2.58l-4.38 2.49-.08.03zM17.91 15.53L14.18 11.8 3.37 22.62c.41.43 1.09.49 1.85.06l12.69-7.15zM17.91 8.06L5.22 .91c-.76-.43-1.44-.37-1.85.06L14.18 11.8l3.73-3.74z"/></svg>
+                            </span>
+                            <span class="store-badge-text">
+                                <span class="store-badge-label">GET IT ON</span>
+                                <span class="store-badge-store">Google Play</span>
+                            </span>
+                            <span class="store-badge-soon">Soon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                    <li><a href="mailto:hello@vetgpt.app">Contact</a></li>
+                </ul>
+                <p class="footer-copy"><img src="logo-black.png" alt="" class="footer-logo" aria-hidden="true" width="22" height="22"> © 2026 VetGPT · Made with ❤️ for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== STICKY BOTTOM BAR ========== -->
+    <div class="sticky-bar" id="stickyBar">
+        <div class="sticky-inner">
+            <p class="sticky-text"><strong>Free beta</strong> — all premium features included</p>
+            <form class="sticky-form" id="stickyForm" onsubmit="handleSubmit(event, 'sticky')">
+                <input type="email" placeholder="Your email" required aria-label="Email address">
+                <button type="submit">Get Early Access — Free</button>
+            </form>
+            <button class="sticky-close" id="stickyClose" aria-label="Dismiss">&times;</button>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+    <script>
+        // === Scroll reveal ===
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // === Nav scroll state + aurora parallax ===
+        const nav = document.getElementById('nav');
+        const stickyBar = document.getElementById('stickyBar');
+        const heroAurora = document.querySelector('.hero-aurora');
+        let stickyDismissed = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            if (!stickyDismissed) {
+                if (scrollY > 600) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            }
+            // Aurora parallax - subtle shift based on scroll
+            if (heroAurora && scrollY < 900) {
+                heroAurora.style.transform = `translateY(${scrollY * 0.08}px)`;
+            }
+        });
+
+        // === Sticky bar dismiss ===
+        document.getElementById('stickyClose').addEventListener('click', () => {
+            stickyBar.classList.remove('visible');
+            stickyBar.classList.add('dismissed');
+            stickyDismissed = true;
+        });
+
+        // === Mobile menu with focus trapping ===
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBtn = document.getElementById('menuBtn');
+        const menuCloseBtn = document.getElementById('menuClose');
+        let previousFocus = null;
+
+        function openMobile() {
+            previousFocus = document.activeElement;
+            mobileMenu.classList.add('open');
+            // Focus the close button
+            menuCloseBtn.focus();
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            // Add focus trap listener
+            mobileMenu.addEventListener('keydown', trapFocus);
+        }
+
+        function closeMobile() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+            mobileMenu.removeEventListener('keydown', trapFocus);
+            // Restore focus
+            if (previousFocus) previousFocus.focus();
+        }
+
+        function trapFocus(e) {
+            if (e.key === 'Escape') {
+                closeMobile();
+                return;
+            }
+            if (e.key !== 'Tab') return;
+            const focusable = mobileMenu.querySelectorAll('a, button');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+
+        menuBtn.addEventListener('click', openMobile);
+        menuCloseBtn.addEventListener('click', closeMobile);
+        // Close on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobile);
+        });
+
+        // === Email validation ===
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // === Form submission with loading state + validation ===
+        function handleSubmit(e, source) {
+            e.preventDefault();
+            const form = e.target;
+            const input = form.querySelector('input[type="email"]');
+            const button = form.querySelector('button[type="submit"]');
+            const email = input.value.trim();
+
+            // Validate
+            if (!isValidEmail(email)) {
+                input.classList.add('input-error');
+                input.focus();
+                setTimeout(() => input.classList.remove('input-error'), 2000);
+                return;
+            }
+
+            // Prevent double submit
+            if (button.classList.contains('btn-loading')) return;
+
+            // Loading state
+            const originalText = button.textContent;
+            button.classList.add('btn-loading');
+            button.textContent = '';
+
+            // Simulate submission delay (replace with real backend call)
+            setTimeout(() => {
+                // TODO: Replace with actual form submission
+                // Example: fetch('/api/signup', { method: 'POST', body: JSON.stringify({ email, source }) })
+                console.log(`Beta signup from ${source}:`, email);
+
+                button.classList.remove('btn-loading');
+                button.textContent = originalText;
+
+                if (source === 'hero') {
+                    document.getElementById('heroForm').style.display = 'none';
+                    document.getElementById('heroSuccess').style.display = 'block';
+                } else if (source === 'final') {
+                    document.getElementById('finalForm').style.display = 'none';
+                    document.getElementById('finalSuccess').style.display = 'block';
+                } else if (source === 'sticky') {
+                    stickyBar.classList.remove('visible');
+                    stickyBar.classList.add('dismissed');
+                    stickyDismissed = true;
+                    document.getElementById('finalForm').style.display = 'none';
+                    document.getElementById('finalSuccess').style.display = 'block';
+                    document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 800);
+        }
+
+        // Clear error state on input
+        document.querySelectorAll('input[type="email"]').forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('input-error');
+            });
+        });
+    </script>
+</body>
+</html>
