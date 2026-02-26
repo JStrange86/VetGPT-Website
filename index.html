@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VetGPT — AI Pet Health Tracker for Dogs, Cats, Reptiles & 60+ Species</title>
-    <meta name="description" content="VetGPT is the AI-powered pet health app that scans vet documents, tracks medications, records appointments, and gives personalized insights for 64+ species. Free beta for iOS & Android.">
+    <meta name="description" content="VetGPT is the AI-powered pet health app that scans vet documents, tracks medications, records appointments, and gives personalized insights for 64+ species. Free for iOS & Android.">
     
+    <!-- Impact Affiliate Verification -->
+    <meta name='impact-site-verification' value='64709e92-8e03-4331-9188-e9e916281a61'>
+
     <!-- Open Graph -->
     <meta property="og:title" content="VetGPT — AI Pet Health Tracking">
     <meta property="og:description" content="Scan prescriptions, track medications, record vet visits, get AI insights. For dogs, cats, reptiles, fish & 60+ species.">
@@ -1569,7 +1572,7 @@
                             <button type="submit">Get Early Access — Free</button>
                         </form>
                         <p class="hero-urgency reveal reveal-delay-3">
-                            <span class="urgency-dot"></span> Beta spots are limited — all premium features free during beta
+                            <span class="urgency-dot"></span> Download now — all premium features free during early release
                         </p>
                     </div>
                     <div class="hero-phone reveal reveal-delay-2">
@@ -1829,7 +1832,7 @@
         <section class="testimonial-section">
             <div class="container">
                 <div class="testimonial-card reveal">
-                    <p class="testimonial-label">From Our Beta Testers</p>
+                    <p class="testimonial-label">From Our Early Users</p>
                     <img src="jessica-avatar.png" alt="Guinea pig" class="testimonial-avatar" width="80" height="80" loading="lazy">
                     <p class="testimonial-quote">
                         When two of my guinea pigs fell ill at the same time, I had so many vet visits. All their info was already in one place and I never got them mixed up. The recording feature saved me. When the vet starts talking, my mind goes blank. Being able to go back and listen saved me.
@@ -1946,7 +1949,7 @@
                 <div class="final-inner">
                     <p class="section-label reveal">✦ Early Access</p>
                     <h2 class="section-title reveal">Be the first to try VetGPT</h2>
-                    <p class="section-sub reveal" style="margin: 0 auto;">We're launching soon on iOS &amp; Android. Join the beta and get all premium features free during beta.</p>
+                    <p class="section-sub reveal" style="margin: 0 auto;">We're launching soon on iOS &amp; Android. Download now and get all premium features free during early release.</p>
                     
                     <div class="final-success" id="finalSuccess" role="status" aria-live="polite">✓ You're on the list! We'll be in touch soon.</div>
                     
@@ -2004,7 +2007,7 @@
     <!-- ========== STICKY BOTTOM BAR ========== -->
     <div class="sticky-bar" id="stickyBar">
         <div class="sticky-inner">
-            <p class="sticky-text"><strong>Free beta</strong> — all premium features included</p>
+            <p class="sticky-text"><strong>Free to download</strong> — all premium features included</p>
             <form class="sticky-form" id="stickyForm" onsubmit="handleSubmit(event, 'sticky')">
                 <input type="email" placeholder="Your email" required aria-label="Email address">
                 <button type="submit">Get Early Access — Free</button>
@@ -2119,13 +2122,17 @@
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
+        // === Supabase waitlist integration ===
+        const SUPABASE_URL = 'https://qaqfslivculjeqmmgjdo.supabase.co';
+        const SUPABASE_ANON = 'sb_publishable_nrIs7kTGxFC0IpV5juc8GQ_TeEli8ai';
+
         // === Form submission with loading state + validation ===
-        function handleSubmit(e, source) {
+        async function handleSubmit(e, source) {
             e.preventDefault();
             const form = e.target;
             const input = form.querySelector('input[type="email"]');
             const button = form.querySelector('button[type="submit"]');
-            const email = input.value.trim();
+            const email = input.value.trim().toLowerCase();
 
             // Validate
             if (!isValidEmail(email)) {
@@ -2143,30 +2150,47 @@
             button.classList.add('btn-loading');
             button.textContent = '';
 
-            // Simulate submission delay (replace with real backend call)
-            setTimeout(() => {
-                // TODO: Replace with actual form submission
-                // Example: fetch('/api/signup', { method: 'POST', body: JSON.stringify({ email, source }) })
-                console.log(`Beta signup from ${source}:`, email);
+            try {
+                const res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON,
+                        'Authorization': 'Bearer ' + SUPABASE_ANON,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ email: email, source: source })
+                });
 
                 button.classList.remove('btn-loading');
                 button.textContent = originalText;
 
-                if (source === 'hero') {
-                    document.getElementById('heroForm').style.display = 'none';
-                    document.getElementById('heroSuccess').style.display = 'block';
-                } else if (source === 'final') {
-                    document.getElementById('finalForm').style.display = 'none';
-                    document.getElementById('finalSuccess').style.display = 'block';
-                } else if (source === 'sticky') {
-                    stickyBar.classList.remove('visible');
-                    stickyBar.classList.add('dismissed');
-                    stickyDismissed = true;
-                    document.getElementById('finalForm').style.display = 'none';
-                    document.getElementById('finalSuccess').style.display = 'block';
-                    document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+                if (res.ok || res.status === 409) {
+                    // Success or already on list — show success UI either way
+                    if (source === 'hero') {
+                        document.getElementById('heroForm').style.display = 'none';
+                        document.getElementById('heroSuccess').style.display = 'block';
+                    } else if (source === 'final') {
+                        document.getElementById('finalForm').style.display = 'none';
+                        document.getElementById('finalSuccess').style.display = 'block';
+                    } else if (source === 'sticky') {
+                        stickyBar.classList.remove('visible');
+                        stickyBar.classList.add('dismissed');
+                        stickyDismissed = true;
+                        document.getElementById('finalForm').style.display = 'none';
+                        document.getElementById('finalSuccess').style.display = 'block';
+                        document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    throw new Error('Status ' + res.status);
                 }
-            }, 800);
+            } catch (err) {
+                console.error('Waitlist error:', err);
+                button.classList.remove('btn-loading');
+                button.textContent = originalText;
+                input.classList.add('input-error');
+                setTimeout(() => input.classList.remove('input-error'), 3000);
+            }
         }
 
         // Clear error state on input
