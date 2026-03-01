@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetGPT Blog — Pet Health Guides, Care Tips & AI Insights</title>
+    <meta name="description" content="Pet health insights, care guides, and tips for every species — from dogs and cats to bearded dragons, goldfish, and exotic pets. Powered by VetGPT.">
+    <meta property="og:title" content="VetGPT Blog — Pet Health Guides & Care Tips">
+    <meta property="og:description" content="Pet health insights, care guides, and tips for every species.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu a:hover { color: var(--text); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+        /* HERO */
+        .blog-hero { padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
+        .blog-hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.08; background: var(--purple); top: -10%; left: -5%; }
+        .blog-hero::after { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(120px); opacity: 0.06; background: var(--green); bottom: -15%; right: -5%; }
+        .blog-hero-inner { position: relative; z-index: 1; }
+        .blog-label { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+        .blog-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+        .blog-hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+        /* GRID */
+        .blog-grid-section { padding: 60px 0 100px; }
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .blog-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: background 0.3s, border-color 0.3s, transform 0.3s; }
+        .blog-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); transform: translateY(-4px); }
+        .blog-card-body { padding: 28px 24px; flex: 1; display: flex; flex-direction: column; }
+        .blog-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; }
+        .blog-card h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.35; margin-bottom: 12px; }
+        .blog-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; flex: 1; margin-bottom: 20px; }
+        .blog-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 20px; display: flex; gap: 12px; }
+        .blog-read-more { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--green); display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+        .blog-card:hover .blog-read-more { gap: 10px; }
+        @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+        /* FOOTER */
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <div class="blog-hero-inner">
+                    <p class="blog-label">The VetGPT Blog</p>
+                    <h1>Pet health insights for<br>every species, every situation</h1>
+                    <p>Care guides, health checklists, and tips from a team that's been through it — for dogs, cats, reptiles, fish, and everyone in between.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-grid-section">
+            <div class="container">
+                <div class="blog-grid">
+
+                    <article class="blog-card">
+                        <div class="blog-card-body">
+                            <span class="blog-tag">🦎 Reptiles</span>
+                            <h2>The Complete Bearded Dragon Health Checklist: What Every Owner Should Track</h2>
+                            <div class="blog-meta"><span>March 1, 2026</span><span>6 min read</span></div>
+                            <p>Daily, weekly, and monthly checks every bearded dragon owner should know — plus the signs that mean it's time to call the vet.</p>
+                            <a href="/blog/bearded-dragon-health-checklist.html" class="blog-read-more">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card-body">
+                            <span class="blog-tag">🐕 Dogs</span>
+                            <h2>How to Track Your Dog's Medications (And Never Miss a Dose Again)</h2>
+                            <div class="blog-meta"><span>March 1, 2026</span><span>6 min read</span></div>
+                            <p>Missed doses, lost prescriptions, and refill surprises — here's how to build a medication system that actually works for your dog.</p>
+                            <a href="/blog/how-to-track-dog-medications.html" class="blog-read-more">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card-body">
+                            <span class="blog-tag">🏥 Vet Visits</span>
+                            <h2>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h2>
+                            <div class="blog-meta"><span>March 1, 2026</span><span>6 min read</span></div>
+                            <p>The vet asks a simple question and your mind goes completely blank. Here's how to walk in prepared — and actually remember what they say.</p>
+                            <a href="/blog/preparing-for-vet-visit.html" class="blog-read-more">Read More →</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> © 2026 VetGPT · Made with ❤️ for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Bearded Dragon Health Checklist | VetGPT</title>
+    <meta name="description" content="Daily, weekly, and monthly health checks every bearded dragon owner should know — plus signs of illness, when to see a vet, and how to track it all with AI.">
+    <meta property="og:title" content="The Complete Bearded Dragon Health Checklist">
+    <meta property="og:description" content="Daily, weekly, and monthly checks every bearded dragon owner should know.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/bearded-dragon-health-checklist.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/bearded-dragon-health-checklist.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Complete Bearded Dragon Health Checklist: What Every Owner Should Track",
+        "description": "Daily, weekly, and monthly health checks every bearded dragon owner should know.",
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-03-01",
+        "author": { "@type": "Organization", "name": "VetGPT" },
+        "publisher": { "@type": "Organization", "name": "VetGPT", "url": "https://vetgpt.app" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How often should I handle my bearded dragon to check its health?", "acceptedAnswer": { "@type": "Answer", "text": "Daily gentle handling helps you spot changes in weight, skin texture, and behavior. Brief daily visual checks combined with 10-15 minutes of handling a few times a week is a good baseline." } },
+            { "@type": "Question", "name": "What are the most important things to track for a bearded dragon?", "acceptedAnswer": { "@type": "Answer", "text": "Weight, appetite, basking behavior, shedding cycles, stool consistency, enclosure temperatures and humidity, and any behavioral changes. These give the clearest picture of overall health." } },
+            { "@type": "Question", "name": "How do I know if my bearded dragon needs to see a vet?", "acceptedAnswer": { "@type": "Answer", "text": "Seek vet care for: weight loss over two weeks, mouth gaping or discharge, swollen limbs or abdomen, runny or bloody stool, complete appetite loss for more than a week outside brumation, and labored breathing." } },
+            { "@type": "Question", "name": "Can I track my bearded dragon's health in an app?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VetGPT supports bearded dragons with species-specific tracking for shedding cycles, husbandry logs (temperatures, humidity), feeding, weight, and vet visits. The AI chat knows your dragon's full history so you can ask questions specific to their situation." } }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+        /* ARTICLE LAYOUT */
+        .article-wrap { padding: 120px 0 80px; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+        /* BREADCRUMB */
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 32px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--text-secondary); }
+
+        /* ARTICLE HEADER */
+        .article-header { margin-bottom: 48px; }
+        .article-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ARTICLE BODY */
+        .article-body { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 32px 0 12px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 24px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+        .article-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+        .article-body a:hover { opacity: 0.85; }
+
+        /* CHECKLIST CARDS */
+        .checklist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .checklist-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+        .checklist-card li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist-card li:last-child { border-bottom: none; }
+        .checklist-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* WARNING BOX */
+        .warning-box { background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .warning-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .warning-box strong { color: #ec4899; }
+
+        /* CTA BOX */
+        .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 36px; text-align: center; margin: 48px 0; }
+        .cta-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .cta-btn:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+
+        /* RELATED POSTS */
+        .related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+        .related h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: background 0.3s, border-color 0.3s; }
+        .related-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .related-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+        .related-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--text); }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* FOOTER */
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+
+    <main>
+        <div class="article-wrap">
+            <div class="article-container">
+
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>›</span>
+                    <a href="/blog/">Blog</a> <span>›</span>
+                    <span>Bearded Dragon Health Checklist</span>
+                </nav>
+
+                <header class="article-header">
+                    <span class="article-tag">🦎 Reptiles</span>
+                    <h1>The Complete Bearded Dragon Health Checklist: What Every Owner Should Track</h1>
+                    <div class="article-meta">
+                        <span>March 1, 2026</span>
+                        <span>6 min read</span>
+                        <span>By VetGPT</span>
+                    </div>
+                </header>
+
+                <div class="article-body">
+
+                    <p>Bearded dragons are hardy, personable reptiles — but they're also exceptionally good at hiding illness until it becomes serious. By the time a beardie looks visibly sick, the problem has often been brewing for weeks. The best thing you can do as an owner is build a routine of regular observation so you catch changes early, when they're still easy to address.</p>
+
+                    <p>This checklist covers everything you should be watching — daily, weekly, and monthly — along with the specific warning signs that mean it's time to call a reptile vet.</p>
+
+                    <h2>Daily Checks</h2>
+                    <p>These take less than five minutes and give you an immediate read on how your dragon is doing.</p>
+
+                    <div class="checklist-card">
+                        <h3>🌅 Every Day</h3>
+                        <ul>
+                            <li>Basking behavior — is your dragon positioned under the basking spot and absorbing heat normally?</li>
+                            <li>Eyes — clear, bright, and fully open. Sunken or closed eyes outside of sleep are a concern.</li>
+                            <li>Activity level — alert and responsive when you approach, or unusually lethargic?</li>
+                            <li>Appetite — did they eat? Track what was offered and whether it was accepted.</li>
+                            <li>Stool — check for normal output. Runny, bloody, or absent stool for more than a few days warrants attention.</li>
+                            <li>Enclosure temps — verify basking spot (95–110°F), cool side (80–85°F), and overnight low (65–75°F).</li>
+                            <li>UVB light — confirm the light is functioning. UVB bulbs degrade before they burn out visibly.</li>
+                        </ul>
+                    </div>
+
+                    <h2>Weekly Checks</h2>
+                    <p>Once a week, take a closer look at your dragon's body condition and environment.</p>
+
+                    <div class="checklist-card">
+                        <h3>📅 Every Week</h3>
+                        <ul>
+                            <li>Weight — a kitchen scale accurate to 1g is sufficient. Log it. Gradual weight loss is the most reliable early indicator of illness.</li>
+                            <li>Skin condition — look for stuck shed (dysecdysis), especially around toes, tail tip, and eye caps.</li>
+                            <li>Beard color — a persistently dark beard outside of breeding season or stress can indicate illness or pain.</li>
+                            <li>Body shape — ribs showing, hip bones prominent, or fat pads behind the eyes appearing sunken are signs of weight loss.</li>
+                            <li>Limbs and spine — any swelling, asymmetry, or tremors? Metabolic bone disease often shows in the limbs first.</li>
+                            <li>Mouth and nose — no discharge, no open-mouth breathing at rest, gums pink and healthy.</li>
+                            <li>Humidity — keep enclosure 30–40%. Too high invites respiratory infection.</li>
+                        </ul>
+                    </div>
+
+                    <h2>Monthly Checks</h2>
+                    <p>Monthly is when you step back and look at trends rather than single data points.</p>
+
+                    <div class="checklist-card">
+                        <h3>📆 Every Month</h3>
+                        <ul>
+                            <li>Weight trend — is your dragon gaining, maintaining, or losing? A slow decline over weeks is more meaningful than any single weigh-in.</li>
+                            <li>Shedding log — how often are they shedding, and is it complete? Incomplete sheds suggest humidity or nutrition issues.</li>
+                            <li>Feeding variety — rotating feeders (dubia, crickets, hornworms) and greens prevents nutritional gaps.</li>
+                            <li>Supplement schedule — calcium (without D3) at most meals, calcium with D3 twice weekly, multivitamin twice monthly.</li>
+                            <li>UVB bulb age — replace every 6 months regardless of whether it still lights up.</li>
+                            <li>Enclosure deep clean — full disinfect of the enclosure, hides, and décor.</li>
+                            <li>Review your logs — any patterns emerging? Consistent weight drops? Recurring refused meals?</li>
+                        </ul>
+                    </div>
+
+                    <h2>Signs of Illness to Watch For</h2>
+                    <p>Bearded dragons conceal illness instinctively — it's a survival behavior from the wild. These signs should prompt a vet call, not a wait-and-see approach.</p>
+
+                    <div class="warning-box">
+                        <p><strong>Call a reptile vet if you see:</strong> Weight loss over two or more weeks · Open-mouth breathing or wheezing at rest · Swollen limbs, jaw, or abdomen · Discharge from eyes, nose, or mouth · Complete appetite loss for more than a week (outside brumation) · Runny or bloody stool · Muscle tremors or seizure-like activity · Paralysis or dragging of limbs · Eyes that are swollen, sunken, or won't open</p>
+                    </div>
+
+                    <h2>Tracking Shedding Cycles</h2>
+                    <p>Young bearded dragons shed frequently — sometimes every few weeks — as they grow. Adults shed a few times per year. Knowing your dragon's normal shedding pattern helps you notice when something changes.</p>
+
+                    <p>Signs a shed is coming: dull, grey-tinged skin, reduced appetite, slightly puffy appearance. During a shed, increase baths slightly (a 10-minute lukewarm soak helps). Never pull stuck shed — soften it first. Log each shed: date, completeness, any problem areas.</p>
+
+                    <h2>Brumation: The Seasonal Slowdown</h2>
+                    <p>Adult bearded dragons often enter brumation in late fall and winter — a reptile equivalent of hibernation. They'll eat less, sleep more, and seem generally unresponsive. This is normal. But brumation looks a lot like illness, so knowing the difference matters.</p>
+
+                    <p><strong>Brumation signs:</strong> Starts in fall/winter, dragon still looks healthy, occasional eating, wakes up periodically. <strong>Illness signs:</strong> Can happen any time of year, visible weight loss, abnormal stool, discharge, won't wake when warm.</p>
+
+                    <p>If you're not sure, a vet visit before brumation to confirm your dragon is healthy going in is always a good call.</p>
+
+                    <h2>How VetGPT Helps You Track All of This</h2>
+                    <p>Keeping all of this in your head — or in scattered notes — is how things get missed. VetGPT was built specifically for this kind of ongoing, species-specific health tracking.</p>
+
+                    <p>For bearded dragons, VetGPT logs <strong>shedding cycles</strong>, <strong>husbandry data</strong> (basking temps, humidity, UVB schedule), <strong>feeding logs</strong>, and <strong>weight over time</strong> — with charts so you can see trends at a glance. When you have a vet appointment, you can scan the discharge paperwork and VetGPT extracts diagnoses, medications, and follow-up instructions automatically.</p>
+
+                    <p>The AI chat knows your dragon's full history. You can ask "has her weight been stable?" or "when did she last shed?" and get an answer based on your actual logs — not generic reptile information.</p>
+
+                    <div class="cta-box">
+                        <h3>Track your bearded dragon's health with AI</h3>
+                        <p>Shedding logs, husbandry tracking, weight trends, and AI chat that knows your dragon's full history. Free during early release.</p>
+                        <a href="/#download" class="cta-btn">Get Early Access — Free</a>
+                    </div>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>How often should I handle my bearded dragon to check its health?</h3>
+                    <p>Daily gentle handling helps you spot changes in weight, skin texture, and energy. Brief daily visual checks combined with 10–15 minutes of handling a few times a week is a good baseline. Handle less during shedding — their skin is sensitive.</p>
+
+                    <h3>What are the most important things to track?</h3>
+                    <p>Weight, appetite, basking behavior, shedding cycles, stool consistency, and enclosure temperatures. These give the clearest picture of overall health and are the first things a reptile vet will ask about.</p>
+
+                    <h3>How do I know if my bearded dragon needs to see a vet?</h3>
+                    <p>Seek vet care for weight loss over two weeks, open-mouth breathing, swollen limbs or abdomen, any discharge, complete appetite loss for more than a week outside brumation, or any neurological symptoms like tremors. When in doubt, call — reptile vets would rather hear from you early.</p>
+
+                    <h3>Can I track my bearded dragon's health in an app?</h3>
+                    <p>Yes. VetGPT supports bearded dragons with species-specific tracking for shedding cycles, husbandry logs, feeding, weight, and vet visits. The AI chat knows your dragon's full history so you can ask questions specific to their situation.</p>
+
+                </div>
+
+                <div class="related">
+                    <h3>More from the VetGPT Blog</h3>
+                    <div class="related-grid">
+                        <a href="/blog/how-to-track-dog-medications.html" class="related-card">
+                            <p class="related-tag">🐕 Dogs</p>
+                            <h4>How to Track Your Dog's Medications (And Never Miss a Dose Again)</h4>
+                        </a>
+                        <a href="/blog/preparing-for-vet-visit.html" class="related-card">
+                            <p class="related-tag">🏥 Vet Visits</p>
+                            <h4>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h4>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> © 2026 VetGPT · Made with ❤️ for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>

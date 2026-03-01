@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Track Your Dog's Medications (And Never Miss a Dose) | VetGPT</title>
+    <meta name="description" content="Missed doses, lost prescriptions, and refill surprises — here's how to build a dog medication tracking system that actually works, with or without an app.">
+    <meta property="og:title" content="How to Track Your Dog's Medications (And Never Miss a Dose Again)">
+    <meta property="og:description" content="Missed doses, lost prescriptions, and refill surprises — here's how to build a system that actually works.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/how-to-track-dog-medications.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/how-to-track-dog-medications.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Track Your Dog's Medications (And Never Miss a Dose Again)",
+        "description": "How to build a dog medication tracking system that prevents missed doses, lost prescriptions, and refill surprises.",
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-03-01",
+        "author": { "@type": "Organization", "name": "VetGPT" },
+        "publisher": { "@type": "Organization", "name": "VetGPT", "url": "https://vetgpt.app" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "What should I track for my dog's medications?", "acceptedAnswer": { "@type": "Answer", "text": "For each medication: drug name, dosage, frequency, what it's prescribed for, start date, refill date, prescribing vet, and whether it needs to be given with food. Also track whether each dose was given — not just scheduled." } },
+            { "@type": "Question", "name": "What happens if I miss a dose of my dog's medication?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the medication. For most antibiotics and many other drugs, give the missed dose as soon as you remember — unless it's almost time for the next one. Never double dose. For seizure medications or heart medications, contact your vet immediately. When in doubt, call your vet rather than guess." } },
+            { "@type": "Question", "name": "Is there an app to track dog medications?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VetGPT has a full medication tracker for dogs that includes prescription scanning (photograph the bottle and AI extracts the details), dose reminders, auto-decrement of pill counts, low-stock alerts, and refill tracking. It works for all species, not just dogs." } },
+            { "@type": "Question", "name": "How do I keep track of multiple dogs on different medications?", "acceptedAnswer": { "@type": "Answer", "text": "Each dog needs a separate medication list. Color-coded pill organizers help physically, but an app is more reliable for reminders and history. VetGPT supports unlimited pets per household with separate medication tracking for each." } }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+        .article-wrap { padding: 120px 0 80px; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 32px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--text-secondary); }
+        .article-header { margin-bottom: 48px; }
+        .article-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+        .article-body { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 32px 0 12px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 24px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+        .article-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+        .checklist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .checklist-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+        .checklist-card li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist-card li:last-child { border-bottom: none; }
+        .checklist-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 0.9rem; }
+        .compare-table th { font-family: var(--font-display); font-weight: 600; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        .compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .col-vetgpt { color: var(--green); font-weight: 500; }
+        .warning-box { background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .warning-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .warning-box strong { color: var(--purple); }
+        .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 36px; text-align: center; margin: 48px 0; }
+        .cta-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .cta-btn:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+        .related h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: background 0.3s, border-color 0.3s; }
+        .related-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .related-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+        .related-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--text); }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+
+    <main>
+        <div class="article-wrap">
+            <div class="article-container">
+
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>›</span>
+                    <a href="/blog/">Blog</a> <span>›</span>
+                    <span>Track Dog Medications</span>
+                </nav>
+
+                <header class="article-header">
+                    <span class="article-tag">🐕 Dogs</span>
+                    <h1>How to Track Your Dog's Medications (And Never Miss a Dose Again)</h1>
+                    <div class="article-meta">
+                        <span>March 1, 2026</span>
+                        <span>6 min read</span>
+                        <span>By VetGPT</span>
+                    </div>
+                </header>
+
+                <div class="article-body">
+
+                    <p>Managing one medication for one dog is straightforward. Managing three medications for two dogs — with different schedules, different refill windows, and different rules about food — is how things start going wrong. Missed doses, accidental double-doses, and running out on a Sunday evening are all completely avoidable. They just require a system.</p>
+
+                    <p>This guide covers what to track, the most common mistakes pet owners make, a comparison of approaches, and how to set up something that actually holds up over time.</p>
+
+                    <h2>Why Medication Tracking Matters More Than You Think</h2>
+
+                    <p>For short-term medications — a 10-day antibiotic course — skipping a dose is inconvenient but usually not catastrophic. For chronic medications, it's a different story.</p>
+
+                    <p>Dogs on <strong>seizure medications</strong> like phenobarbital or potassium bromide need consistent blood levels. Missing doses can trigger breakthrough seizures. Dogs on <strong>thyroid medication</strong> need it at the same time every day. Dogs on <strong>heart medications</strong> like pimobendan have narrow therapeutic windows. And dogs on <strong>pain management</strong> or anti-inflammatory drugs may show behavioral signs of discomfort if doses are skipped — signs that are easy to misread.</p>
+
+                    <p>Beyond the medical consequences, missed doses also distort the picture when your vet asks "has there been any change since we started this medication?" If you're not sure you've been consistent, you can't answer that honestly.</p>
+
+                    <h2>The Most Common Mistakes</h2>
+
+                    <ul>
+                        <li><strong>"I think I gave it"</strong> — the most dangerous mistake. When you can't remember, you're choosing between risking a missed dose and risking a double dose. A log removes the guesswork entirely.</li>
+                        <li><strong>No refill tracking</strong> — discovering you have 3 pills left on a Friday afternoon is avoidable. Most medications need a refill request 5–7 days in advance.</li>
+                        <li><strong>Losing the prescription label</strong> — when you run out of the original bottle, the label details (exact drug name, dosage, frequency) live in your memory. Until they don't.</li>
+                        <li><strong>Multi-dog mix-ups</strong> — giving dog A's medication to dog B, or giving the same dose twice because your partner also dosed them. This happens more than vets hear about.</li>
+                        <li><strong>Stopping early</strong> — antibiotics especially. The dog seems better, the pills run out faster than expected. Partial antibiotic courses build resistance and can cause rebound infections.</li>
+                    </ul>
+
+                    <h2>What to Track for Each Medication</h2>
+
+                    <div class="checklist-card">
+                        <h3>📋 For Each Medication</h3>
+                        <ul>
+                            <li>Drug name (generic and brand) and dosage (mg)</li>
+                            <li>Frequency and timing (with food? specific hours?)</li>
+                            <li>What it's prescribed for</li>
+                            <li>Start date and end date (if a course) or ongoing status</li>
+                            <li>Total pills dispensed and current count</li>
+                            <li>Refill date / when to reorder</li>
+                            <li>Prescribing vet and contact</li>
+                            <li>Any side effects to watch for</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-card">
+                        <h3>📅 Each Day</h3>
+                        <ul>
+                            <li>Log each dose when given — not when scheduled</li>
+                            <li>Note if a dose was refused (hidden in food, spit out)</li>
+                            <li>Note any observed side effects or behavioral changes</li>
+                            <li>Check pill count weekly to confirm it matches expected usage</li>
+                        </ul>
+                    </div>
+
+                    <h2>Tracking Options: What Works and What Doesn't</h2>
+
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>What's Good</th>
+                                <th>What Falls Apart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mental note</td>
+                                <td>Zero effort</td>
+                                <td>Completely unreliable for ongoing meds</td>
+                            </tr>
+                            <tr>
+                                <td>Paper log</td>
+                                <td>Simple, no tech required</td>
+                                <td>Gets lost, hard to share with vet or partner</td>
+                            </tr>
+                            <tr>
+                                <td>Pill organizer</td>
+                                <td>Visual confirmation of daily doses</td>
+                                <td>Doesn't log history, can't handle multiple dogs well</td>
+                            </tr>
+                            <tr>
+                                <td>Phone reminders</td>
+                                <td>Good for timing alerts</td>
+                                <td>Doesn't confirm given vs. scheduled; no history</td>
+                            </tr>
+                            <tr>
+                                <td class="col-vetgpt">VetGPT</td>
+                                <td class="col-vetgpt">Scan the prescription bottle → AI extracts all details. Auto-decrement, refill alerts, full history, works for multiple pets</td>
+                                <td class="col-vetgpt">Requires a phone</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Managing Multiple Dogs on Different Medications</h2>
+
+                    <p>This is where informal systems completely break down. Two dogs, five medications, three different schedules, two different vets. The failure modes multiply fast.</p>
+
+                    <p>A few things that help:</p>
+
+                    <ul>
+                        <li><strong>Keep medications physically separate</strong> — different drawers, labeled bags, or dedicated containers per dog.</li>
+                        <li><strong>Assign one person per dose</strong> — or create a clear handoff protocol ("I gave the morning meds, you do evening") rather than assuming.</li>
+                        <li><strong>Log immediately after giving</strong> — not "when you get a minute." That minute never comes and now you're not sure.</li>
+                        <li><strong>Set refill reminders 10 days out</strong> — longer if the medication requires a new prescription each time.</li>
+                    </ul>
+
+                    <h2>The Refill Problem (And How to Avoid It)</h2>
+
+                    <p>Running out of a critical medication is one of the most stressful situations a pet owner can face — especially on a weekend when your vet's office is closed. Most of it is preventable.</p>
+
+                    <p>Know your refill window for each medication. Some medications (controlled substances, for example) require a new written prescription from the vet — you can't just call in a refill. Plan for those accordingly. Set a calendar reminder for 10 days before the expected run-out date.</p>
+
+                    <div class="warning-box">
+                        <p><strong>Note on controlled medications:</strong> Phenobarbital, tramadol, and other Schedule IV substances require a physical prescription in most states. Budget extra lead time for these. Your vet needs to write a new script, not just approve a refill.</p>
+                    </div>
+
+                    <h2>How VetGPT Handles Medication Tracking</h2>
+
+                    <p>The problem with most tracking methods is the setup friction. Having to manually enter drug names, dosages, and schedules is the thing that makes people give up and go back to trusting their memory.</p>
+
+                    <p>VetGPT removes that friction. Photograph the prescription bottle — AI reads the label and extracts the drug name, dosage, frequency, and quantity automatically. From there, it sets up reminders, tracks each dose you log, auto-decrements the pill count, and sends low-stock alerts before you're down to the last few pills.</p>
+
+                    <p>For multi-pet households, each dog has their own profile with their own medication list. When you open the app, you see what's due today across all your pets — no switching between notes or trying to remember who got what.</p>
+
+                    <p>And when your vet asks at the next appointment how the medication has been going, you can pull up a complete log instead of saying "I think it's been fine."</p>
+
+                    <div class="cta-box">
+                        <h3>Stop guessing. Start tracking.</h3>
+                        <p>Scan a prescription bottle, get automatic reminders, and log every dose with one tap. Free for all medications during early release.</p>
+                        <a href="/#download" class="cta-btn">Get Early Access — Free</a>
+                    </div>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>What should I track for my dog's medications?</h3>
+                    <p>For each medication: drug name, dosage, frequency, what it's prescribed for, start date, refill date, prescribing vet, and whether it needs to be given with food. Also track whether each dose was actually given — not just scheduled.</p>
+
+                    <h3>What happens if I miss a dose?</h3>
+                    <p>It depends on the medication. For most antibiotics, give the missed dose as soon as you remember — unless it's almost time for the next one. Never double dose. For seizure medications or heart medications, contact your vet immediately. When in doubt, call rather than guess.</p>
+
+                    <h3>Is there an app to track dog medications?</h3>
+                    <p>Yes. VetGPT includes a full medication tracker — photograph the prescription bottle, AI extracts the details, and it handles reminders, dose logging, and refill alerts automatically. Works for all species, not just dogs.</p>
+
+                    <h3>How do I keep track of multiple dogs on different medications?</h3>
+                    <p>Keep medications physically separate per dog. Log doses immediately after giving. Set refill reminders 10 days out. VetGPT supports unlimited pets with separate medication tracking for each one.</p>
+
+                </div>
+
+                <div class="related">
+                    <h3>More from the VetGPT Blog</h3>
+                    <div class="related-grid">
+                        <a href="/blog/bearded-dragon-health-checklist.html" class="related-card">
+                            <p class="related-tag">🦎 Reptiles</p>
+                            <h4>The Complete Bearded Dragon Health Checklist</h4>
+                        </a>
+                        <a href="/blog/preparing-for-vet-visit.html" class="related-card">
+                            <p class="related-tag">🏥 Vet Visits</p>
+                            <h4>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h4>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> © 2026 VetGPT · Made with ❤️ for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>
