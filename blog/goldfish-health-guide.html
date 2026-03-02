@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldfish Health Guide: Signs of Illness, Water Quality & Care Tips | VetGPT</title>
+    <meta name="description" content="Goldfish are tougher than people think — and more fragile than they look. Learn the signs of a sick goldfish, what good water quality looks like, and how to track their health over time.">
+    <meta property="og:title" content="Goldfish Health Guide: Signs of Illness, Water Quality & Care Tips">
+    <meta property="og:description" content="Learn the signs of a sick goldfish, what good water quality looks like, and how to track their health over time.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/goldfish-health-guide.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/goldfish-health-guide.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Goldfish Health Guide: Signs of Illness, Water Quality & Care Tips",
+        "description": "Learn the signs of a sick goldfish, what good water quality looks like, and how to track their health over time.",
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-03-01",
+        "author": { "@type": "Organization", "name": "VetGPT" },
+        "publisher": { "@type": "Organization", "name": "VetGPT", "url": "https://vetgpt.app" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How do I know if my goldfish is sick?", "acceptedAnswer": { "@type": "Answer", "text": "Watch for: clamped fins, loss of appetite, floating or sinking abnormally, white spots or patches on the body, red streaks on fins, lethargy, gasping at the surface, and rubbing against tank surfaces. Any sudden change in behavior is worth investigating." } },
+            { "@type": "Question", "name": "What water parameters do goldfish need?", "acceptedAnswer": { "@type": "Answer", "text": "Goldfish thrive in: temperature 65–72°F (they're coldwater fish), pH 7.0–8.4, ammonia 0 ppm, nitrite 0 ppm, nitrate under 20 ppm. Test your water weekly, especially in tanks under 40 gallons." } },
+            { "@type": "Question", "name": "How long do goldfish actually live?", "acceptedAnswer": { "@type": "Answer", "text": "With proper care, common goldfish routinely live 10–15 years. Fancy varieties (orandas, ryukins, telescopes) typically live 10–12 years. The 'goldfish only live a few years' myth comes from keeping them in bowls — not from the fish themselves." } },
+            { "@type": "Question", "name": "Can I track my goldfish's health in an app?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. VetGPT supports goldfish and aquarium fish with water parameter logging, feeding and behavior tracking, and AI chat that knows your fish's history. You can ask questions like 'my goldfish has been sitting at the bottom for two days — what could cause that?' and get an answer based on your actual tank data." } }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+        /* ARTICLE LAYOUT */
+        .article-wrap { padding: 120px 0 80px; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+        /* BREADCRUMB */
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 32px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--text-secondary); }
+
+        /* ARTICLE HEADER */
+        .article-header { margin-bottom: 48px; }
+        .article-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ARTICLE BODY */
+        .article-body { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 32px 0 12px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 24px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+        .article-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+        .article-body a:hover { opacity: 0.85; }
+
+        /* CHECKLIST CARDS */
+        .checklist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .checklist-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+        .checklist-card li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist-card li:last-child { border-bottom: none; }
+        .checklist-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* PARAM TABLE */
+        .param-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 0.92rem; }
+        .param-table th { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 10px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+        .param-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-secondary); }
+        .param-table tr:last-child td { border-bottom: none; }
+        .param-table td:first-child { color: var(--text); font-weight: 500; }
+        .param-ok { color: var(--green) !important; font-family: var(--font-mono); font-size: 0.85rem; }
+        .param-bad { color: #ec4899 !important; font-family: var(--font-mono); font-size: 0.85rem; }
+
+        /* WARNING BOX */
+        .warning-box { background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .warning-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .warning-box strong { color: #ec4899; }
+
+        /* INFO BOX */
+        .info-box { background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .info-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .info-box strong { color: var(--purple); }
+
+        /* CTA BOX */
+        .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 36px; text-align: center; margin: 48px 0; }
+        .cta-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .cta-btn:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+
+        /* RELATED POSTS */
+        .related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+        .related h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: background 0.3s, border-color 0.3s; }
+        .related-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .related-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+        .related-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--text); }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* FOOTER */
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+
+    <main>
+        <div class="article-wrap">
+            <div class="article-container">
+
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>›</span>
+                    <a href="/blog/">Blog</a> <span>›</span>
+                    <span>Goldfish Health Guide</span>
+                </nav>
+
+                <header class="article-header">
+                    <span class="article-tag">🐟 Fish</span>
+                    <h1>Goldfish Health Guide: Signs of Illness, Water Quality & How to Help Them Live Longer</h1>
+                    <div class="article-meta">
+                        <span>March 1, 2026</span>
+                        <span>7 min read</span>
+                        <span>By VetGPT</span>
+                    </div>
+                </header>
+
+                <div class="article-body">
+
+                    <p>Goldfish have a reputation they don't deserve. People think of them as disposable starter pets — win one at a fair, replace it in a month. The reality is that a healthy, well-cared-for goldfish can live 10 to 15 years, sometimes longer. The fish that die young almost always die from poor water conditions and preventable illness — not from being goldfish.</p>
+
+                    <p>If you have goldfish and you want them around for the long haul, this guide covers what to watch for, what your water needs to look like, and how to catch problems before they become fatal.</p>
+
+                    <div class="info-box">
+                        <p><strong>Fun fact:</strong> The longest-lived goldfish on record reached 43 years old. Your fish has the biology to be a long-term companion — they just need the right environment to prove it.</p>
+                    </div>
+
+                    <h2>Signs Your Goldfish May Be Sick</h2>
+                    <p>Goldfish can't tell you something's wrong. But they show it clearly if you know what to look for. Get in the habit of watching your fish for a few minutes each day — not just glancing at the tank, but actually observing. Changes in behavior are usually the first sign.</p>
+
+                    <div class="checklist-card">
+                        <h3>🚨 Warning Signs to Watch For</h3>
+                        <ul>
+                            <li><strong>Clamped fins</strong> — fins held tight against the body instead of open and flowing. One of the earliest signs of stress or illness.</li>
+                            <li><strong>Gasping at the surface</strong> — swimming near the top and gulping air. Usually means low oxygen or ammonia poisoning.</li>
+                            <li><strong>Sitting at the bottom</strong> — lethargy, not swimming normally, resting on the substrate. Can indicate many issues.</li>
+                            <li><strong>Floating or listing to one side</strong> — swim bladder problems, which are common in fancy goldfish.</li>
+                            <li><strong>White spots (ich)</strong> — small white dots scattered across the body and fins, like grains of salt. Ich is highly contagious and requires treatment.</li>
+                            <li><strong>Fuzzy or cottony patches</strong> — white, grey, or brown fuzzy growth on the body. Often fungal infection, sometimes bacterial.</li>
+                            <li><strong>Red streaks on fins</strong> — hemorrhaging, usually from bacterial infection or poor water quality.</li>
+                            <li><strong>Pinecone-scale appearance</strong> — scales sticking out from the body, making the fish look like a pinecone. This is dropsy, a serious condition indicating organ failure.</li>
+                            <li><strong>Loss of appetite</strong> — refusing food for more than 2 days (outside of cold water temperature drops) warrants investigation.</li>
+                            <li><strong>Rubbing against surfaces</strong> — called "flashing," indicates skin irritation from parasites or poor water conditions.</li>
+                            <li><strong>Color changes</strong> — fading, darkening, or new spots. Some are normal (goldfish change color with age), some are not.</li>
+                        </ul>
+                    </div>
+
+                    <h2>Water Quality: The Foundation of Goldfish Health</h2>
+                    <p>More goldfish die from bad water than from any disease. Goldfish produce a lot of waste — more than most fish their size. In a small or uncycled tank, ammonia and nitrite build up fast and become toxic before you see any obvious sign. By the time a goldfish is visibly sick from water quality issues, the damage is often severe.</p>
+
+                    <p>Test your water. Not guess, not smell it — test it. A basic liquid test kit costs under $20 and will pay for itself the first time it catches a problem before it kills your fish.</p>
+
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Safe Range</th>
+                                <th>Danger Zone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Temperature</td>
+                                <td class="param-ok">65–72°F (18–22°C)</td>
+                                <td class="param-bad">Above 75°F or below 50°F</td>
+                            </tr>
+                            <tr>
+                                <td>pH</td>
+                                <td class="param-ok">7.0–8.4</td>
+                                <td class="param-bad">Below 6.5 or above 8.5</td>
+                            </tr>
+                            <tr>
+                                <td>Ammonia</td>
+                                <td class="param-ok">0 ppm</td>
+                                <td class="param-bad">Any detectable amount</td>
+                            </tr>
+                            <tr>
+                                <td>Nitrite</td>
+                                <td class="param-ok">0 ppm</td>
+                                <td class="param-bad">Any detectable amount</td>
+                            </tr>
+                            <tr>
+                                <td>Nitrate</td>
+                                <td class="param-ok">Under 20 ppm</td>
+                                <td class="param-bad">Above 40 ppm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>The Nitrogen Cycle — What Every Goldfish Owner Needs to Understand</h3>
+                    <p>Fish waste produces ammonia. Ammonia is immediately toxic. Beneficial bacteria in your filter convert ammonia to nitrite (also toxic), then to nitrate (less toxic, removed by water changes). A tank is "cycled" when this bacterial colony is established and working.</p>
+
+                    <p>A new tank has no bacteria yet. Putting fish in an uncycled tank and doing nothing is how most new goldfish die within weeks. If you have a new tank, research fishless cycling before adding fish — or do frequent water changes during the cycling process to keep toxins manageable.</p>
+
+                    <h3>Tank Size Matters More Than People Think</h3>
+                    <p>The "goldfish in a bowl" image is one of the most harmful myths in pet keeping. A single common goldfish needs a minimum of 20 gallons, with 10 additional gallons per additional fish. Fancy goldfish need at least 10–20 gallons each. Small tanks concentrate waste, deplete oxygen faster, and stress fish constantly — which destroys their immune system.</p>
+
+                    <h2>Daily and Weekly Care Routine</h2>
+
+                    <div class="checklist-card">
+                        <h3>🌅 Daily (2 minutes)</h3>
+                        <ul>
+                            <li>Watch your fish swim for a few minutes — normal behavior, fin position, any new spots or patches?</li>
+                            <li>Feed once or twice — only what they eat in 2 minutes. Remove uneaten food immediately.</li>
+                            <li>Check filter is running and producing good flow.</li>
+                            <li>Glance at the thermometer — temperature should be stable.</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-card">
+                        <h3>📅 Weekly</h3>
+                        <ul>
+                            <li>Water change — 25–30% of tank volume with dechlorinated water at matching temperature. This is the single most important thing you do.</li>
+                            <li>Test ammonia and nitrite — should both read zero in an established tank.</li>
+                            <li>Test nitrate — keep under 20 ppm. If it's higher, increase water change volume.</li>
+                            <li>Gravel vacuum — remove waste from the substrate during your water change.</li>
+                            <li>Wipe algae from glass as needed.</li>
+                            <li>Inspect each fish closely — any new spots, fin damage, or behavioral changes?</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-card">
+                        <h3>📆 Monthly</h3>
+                        <ul>
+                            <li>Rinse filter media in old tank water (never tap water — it kills beneficial bacteria).</li>
+                            <li>Check air stones and tubing for buildup or wear.</li>
+                            <li>Review your water parameter logs — any trends? Nitrate creeping up? pH swings?</li>
+                            <li>Assess fish condition — weight, body shape, scale condition, fin integrity.</li>
+                        </ul>
+                    </div>
+
+                    <h2>Common Goldfish Diseases and What to Do</h2>
+
+                    <h3>Ich (White Spot Disease)</h3>
+                    <p>The most common goldfish disease. Small white dots appear on the body and fins. Caused by a parasite that's almost always present in aquariums at low levels — it blooms when fish are stressed or their immune system is compromised. Treatment: raise temperature gradually to 78°F (if your fish can tolerate it), add aquarium salt, and use an ich-specific medication. Treat the whole tank, not just the sick fish.</p>
+
+                    <h3>Swim Bladder Disorder</h3>
+                    <p>Common in fancy goldfish (orandas, ryukins, bubble-eyes) due to their compressed body shape. Fish float upside down, list to one side, or sink to the bottom. Causes include constipation, bacterial infection, or anatomical issues. First step: fast the fish for 2–3 days, then try a shelled, cooked pea. If symptoms persist, consult an aquatic vet.</p>
+
+                    <h3>Fin Rot</h3>
+                    <p>Fins look ragged, frayed, or have white or dark edges. Caused by bacterial infection, almost always triggered by poor water quality. Fix the water first — that's treatment step one. If fin rot is advanced, a bacterial medication may be needed.</p>
+
+                    <h3>Dropsy</h3>
+                    <p>Scales stick out, belly swells, fish looks like a pinecone. Dropsy is a symptom of internal organ failure, not a single disease. It's serious and often fatal by the time it's visible. Isolate the fish immediately to reduce stress, and consult an aquatic vet. Early-stage dropsy with antibiotic treatment can sometimes be reversed.</p>
+
+                    <div class="warning-box">
+                        <p><strong>Call an aquatic vet if you see:</strong> Dropsy (pinecone scales) · Open sores or ulcers on the body · Hemorrhaging (bloody patches) that doesn't improve with water changes · Rapid breathing combined with lethargy · Any illness that doesn't respond to standard treatment within a week · Multiple fish sick at the same time</p>
+                    </div>
+
+                    <h2>Feeding: Less Is More</h2>
+                    <p>Goldfish are opportunistic feeders — they'll eat as long as there's food. This works against them. Overfeeding is one of the most common causes of water quality problems and digestive issues. Feed once or twice a day, only what they finish in 2 minutes. Remove anything left over.</p>
+
+                    <p>A varied diet keeps goldfish healthy. Rotate between quality pellets or flakes, frozen foods (bloodworms, daphnia, brine shrimp), and vegetables (shelled peas, blanched zucchini, spinach). Daphnia and peas are particularly good for digestion and preventing swim bladder issues in fancy varieties.</p>
+
+                    <h2>How VetGPT Helps You Care for Your Fish</h2>
+                    <p>Goldfish health lives in patterns — water parameter trends, behavior changes over time, feeding logs. It's hard to see a pattern when you're just relying on memory.</p>
+
+                    <p>VetGPT supports goldfish and aquarium fish with <strong>water parameter logging</strong>, <strong>behavior and feeding tracking</strong>, and AI chat that knows your fish's full history. When something seems off, you can describe the symptoms and get specific, context-aware guidance — not generic search results. You can ask "my goldfish has been sitting at the bottom for two days — what could cause that?" and get an answer based on your actual tank data, not a generic article.</p>
+
+                    <p>For multi-fish households, each fish gets their own profile. Track them individually, log vet visits, and build a health history that actually helps you make better decisions.</p>
+
+                    <div class="cta-box">
+                        <h3>Track your goldfish's health with AI</h3>
+                        <p>Water parameter logs, behavior tracking, and AI chat that knows your fish's full history. Free during early release.</p>
+                        <a href="/#download" class="cta-btn">Get Early Access — Free</a>
+                    </div>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>How do I know if my goldfish is sick?</h3>
+                    <p>Watch for: clamped fins, loss of appetite, floating or sinking abnormally, white spots or patches on the body, red streaks on fins, lethargy, gasping at the surface, and rubbing against tank surfaces. Any sudden change in normal behavior is worth investigating — and the first thing to check is always your water parameters.</p>
+
+                    <h3>What water parameters do goldfish need?</h3>
+                    <p>Goldfish are coldwater fish and thrive at 65–72°F. They need pH 7.0–8.4, ammonia at 0 ppm, nitrite at 0 ppm, and nitrate under 20 ppm. Test weekly, especially in tanks under 40 gallons where parameters can shift quickly.</p>
+
+                    <h3>How long do goldfish actually live?</h3>
+                    <p>With proper care, common goldfish routinely live 10–15 years. Fancy varieties typically live 10–12 years. The "goldfish only live a few years" belief comes almost entirely from keeping them in bowls without filtration — not from anything inherent to the fish.</p>
+
+                    <h3>Can I track my goldfish's health in an app?</h3>
+                    <p>Yes. VetGPT supports goldfish and aquarium fish with water parameter logging, feeding and behavior tracking, and AI chat that knows your fish's history. You can log each water test, track patterns over time, and get context-aware answers when something seems off — all in one place.</p>
+
+                </div>
+
+                <div class="related">
+                    <h3>More from the VetGPT Blog</h3>
+                    <div class="related-grid">
+                        <a href="/blog/bearded-dragon-health-checklist.html" class="related-card">
+                            <p class="related-tag">🦎 Reptiles</p>
+                            <h4>The Complete Bearded Dragon Health Checklist: What Every Owner Should Track</h4>
+                        </a>
+                        <a href="/blog/preparing-for-vet-visit.html" class="related-card">
+                            <p class="related-tag">🏥 Vet Visits</p>
+                            <h4>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h4>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> © 2026 VetGPT · Made with ❤️ for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>
