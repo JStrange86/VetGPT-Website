@@ -77,6 +77,20 @@
         @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
 
+        /* CATEGORY FILTERS */
+        .filter-bar { margin-bottom: 40px; }
+        .filter-scroll { display: flex; flex-wrap: wrap; gap: 8px; }
+        @media (max-width: 600px) {
+            .filter-scroll { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; -ms-overflow-style: none; }
+            .filter-scroll::-webkit-scrollbar { display: none; }
+        }
+        .filter-btn { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+        .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+        .filter-btn.active { background: var(--green); border-color: var(--green); color: #000; font-weight: 600; }
+        .blog-card.hidden { display: none; }
+        .no-results { display: none; text-align: center; padding: 60px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; grid-column: 1/-1; }
+        .no-results.visible { display: block; }
+
         /* FOOTER */
         .footer { padding: 40px 0; border-top: 1px solid var(--border); }
         .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
@@ -126,9 +140,25 @@
 
         <section class="blog-grid-section">
             <div class="container">
-                <div class="blog-grid">
+                <div class="filter-bar">
+                    <div class="filter-scroll" id="filterBar">
+                        <button class="filter-btn active" data-filter="all">All Posts</button>
+                        <button class="filter-btn" data-filter="dogs">🐕 Dogs</button>
+                        <button class="filter-btn" data-filter="cats">🐱 Cats</button>
+                        <button class="filter-btn" data-filter="reptiles">🦎 Reptiles</button>
+                        <button class="filter-btn" data-filter="birds">🦜 Birds</button>
+                        <button class="filter-btn" data-filter="fish">🐟 Fish</button>
+                        <button class="filter-btn" data-filter="small-mammals">🐹 Small Mammals</button>
+                        <button class="filter-btn" data-filter="exotic">🐾 Exotic Pets</button>
+                        <button class="filter-btn" data-filter="emergency">🚨 Emergency</button>
+                        <button class="filter-btn" data-filter="vet-visits">🏥 Vet Visits</button>
+                        <button class="filter-btn" data-filter="pet-health">🩺 Pet Health</button>
+                        <button class="filter-btn" data-filter="thought-leadership">💡 Insights</button>
+                    </div>
+                </div>
+                <div class="blog-grid" id="blogGrid">
 
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="pet-health">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐾 Pet Health</span>
                             <h2>The 2AM Pet Health Panic — And What to Do About It</h2>
@@ -137,7 +167,7 @@
                             <a href="/blog/2am-pet-health-panic.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="dogs">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐕 Senior Dogs</span>
                             <h2>What Is Canine Cognitive Dysfunction — And How to Track It</h2>
@@ -146,7 +176,7 @@
                             <a href="/blog/canine-cognitive-dysfunction.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="exotic reptiles">
                         <div class="blog-card-body">
                             <span class="blog-tag">🦎 Exotic Pets</span>
                             <h2>Why Your Exotic Pet Deserves a Health Tracker</h2>
@@ -155,7 +185,7 @@
                             <a href="/blog/exotic-pet-health-tracker.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="pet-health">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐾 Pet Health</span>
                             <h2>Pet Medication Tracking: Why a Notes App Isn't Enough</h2>
@@ -164,7 +194,7 @@
                             <a href="/blog/pet-medication-tracking.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="dogs">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐕 Senior Dogs</span>
                             <h2>Signs Your Senior Dog Is in Pain — And How to Log Them</h2>
@@ -173,7 +203,7 @@
                             <a href="/blog/senior-dog-pain-signs.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="reptiles exotic">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐍 Reptiles</span>
                             <h2>Ball Python Health Checklist: Feeding, Shedding & Warning Signs</h2>
@@ -182,7 +212,7 @@
                             <a href="/blog/ball-python-health-checklist.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="thought-leadership">
                         <div class="blog-card-body">
                             <span class="blog-tag">💡 Thought Leadership</span>
                             <h2>How AI Is Changing Pet Health Care</h2>
@@ -191,7 +221,7 @@
                             <a href="/blog/ai-pet-health-care.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="pet-health">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐾 Pet Health Management</span>
                             <h2>The Hidden Cost of Fragmented Pet Health Records</h2>
@@ -200,7 +230,7 @@
                             <a href="/blog/pet-health-records.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="birds exotic">
                         <div class="blog-card-body">
                             <span class="blog-tag">🦜 Birds</span>
                             <h2>Parrot Health 101: What Every Bird Owner Should Be Tracking</h2>
@@ -209,7 +239,7 @@
                             <a href="/blog/parrot-health-guide.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="emergency">
                         <div class="blog-card-body">
                             <span class="blog-tag">🚨 Emergency Pet Care</span>
                             <h2>When to Go to the Emergency Vet — A Pet Owner's Guide</h2>
@@ -218,7 +248,7 @@
                             <a href="/blog/emergency-vet-guide.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="cats">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐱 Cats</span>
                             <h2>Cat Health Tracking: Why Cats Hide Symptoms and What to Do About It</h2>
@@ -227,7 +257,7 @@
                             <a href="/blog/cat-health-tracking.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="pet-health">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐾 Pet Health Management</span>
                             <h2>How to Build a Complete Health History for Your Pet</h2>
@@ -236,7 +266,7 @@
                             <a href="/blog/pet-health-history.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="fish exotic">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐟 Fish</span>
                             <h2>Goldfish Health Guide: Signs of Illness, Water Quality & How to Help Them Live Longer</h2>
@@ -245,8 +275,7 @@
                             <a href="/blog/goldfish-health-guide.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="reptiles exotic">
                         <div class="blog-card-body">
                             <span class="blog-tag">🦎 Reptiles</span>
                             <h2>The Complete Bearded Dragon Health Checklist: What Every Owner Should Track</h2>
@@ -255,8 +284,7 @@
                             <a href="/blog/bearded-dragon-health-checklist.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="dogs">
                         <div class="blog-card-body">
                             <span class="blog-tag">🐕 Dogs</span>
                             <h2>How to Track Your Dog's Medications (And Never Miss a Dose Again)</h2>
@@ -265,8 +293,7 @@
                             <a href="/blog/how-to-track-dog-medications.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
-
-                    <article class="blog-card">
+                    <article class="blog-card" data-category="vet-visits">
                         <div class="blog-card-body">
                             <span class="blog-tag">🏥 Vet Visits</span>
                             <h2>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h2>
@@ -275,6 +302,7 @@
                             <a href="/blog/preparing-for-vet-visit.html" class="blog-read-more">Read More →</a>
                         </div>
                     </article>
+                    <p class="no-results" id="noResults">No posts in this category yet — check back soon.</p>
 
                 </div>
             </div>
@@ -299,11 +327,38 @@
     </footer>
 
     <script>
+        // Nav scroll
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
         document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
         document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
         document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+        // Category filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.blog-card');
+        const noResults = document.getElementById('noResults');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Show/hide cards
+                let visible = 0;
+                cards.forEach(card => {
+                    const cats = card.dataset.category || '';
+                    const show = filter === 'all' || cats.split(' ').includes(filter);
+                    card.classList.toggle('hidden', !show);
+                    if (show) visible++;
+                });
+
+                noResults.classList.toggle('visible', visible === 0);
+            });
+        });
     </script>
 </body>
 </html>
