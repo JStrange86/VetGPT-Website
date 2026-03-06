@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ball Python Health Checklist: Feeding, Shedding & Warning Signs | VetGPT</title>
+    <meta name="description" content="Ball pythons hide illness until it's serious. Know what to track monthly, what normal looks like, and the red flags that need a vet today.">
+    <meta property="og:title" content="Ball Python Health Checklist: Feeding, Shedding, and What to Watch For">
+    <meta property="og:description" content="Ball pythons hide illness until it's serious. Know what to track monthly, what normal looks like, and the red flags that need a vet today.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/ball-python-health-checklist.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/ball-python-health-checklist.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Ball Python Health Checklist: Feeding, Shedding, and What to Watch For",
+        "description": "Ball pythons hide illness until it's serious. Know what to track monthly, what normal looks like, and the red flags that need a vet today.",
+        "datePublished": "2026-03-06",
+        "dateModified": "2026-03-06",
+        "author": { "@type": "Organization", "name": "VetGPT" },
+        "publisher": { "@type": "Organization", "name": "VetGPT", "url": "https://vetgpt.app" }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+        /* ARTICLE LAYOUT */
+        .article-wrap { padding: 120px 0 80px; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+        /* BREADCRUMB */
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 32px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--text-secondary); }
+
+        /* ARTICLE HEADER */
+        .article-header { margin-bottom: 48px; }
+        .article-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ARTICLE BODY */
+        .article-body { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 32px 0 12px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 24px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+        .article-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+        .article-body a:hover { opacity: 0.85; }
+
+        /* CHECKLIST CARDS */
+        .checklist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .checklist-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+        .checklist-card li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist-card li:last-child { border-bottom: none; }
+        .checklist-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* WARNING BOX */
+        .warning-box { background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .warning-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .warning-box strong { color: #ec4899; }
+
+        /* CTA BOX */
+        .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 36px; text-align: center; margin: 48px 0; }
+        .cta-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .cta-btn:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+
+        /* RELATED POSTS */
+        .related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+        .related h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: background 0.3s, border-color 0.3s; }
+        .related-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .related-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+        .related-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--text); }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* FOOTER */
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+    <main>
+        <div class="article-wrap">
+            <div class="article-container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>›</span>
+                    <a href="/blog/">Blog</a> <span>›</span>
+                    <span>Ball Python Health Checklist</span>
+                </nav>
+                <header class="article-header">
+                    <span class="article-tag">🐍 Reptiles</span>
+                    <h1>Ball Python Health Checklist: Feeding, Shedding, and What to Watch For</h1>
+                    <div class="article-meta">
+                        <span>March 6, 2026</span>
+                        <span>6 min read</span>
+                        <span>By VetGPT</span>
+                    </div>
+                </header>
+                <div class="article-body">
+                    <p>Ball pythons are remarkable animals. Calm, curious, manageable in size, and strikingly beautiful — they've become one of the most popular pet reptiles in the world for good reason. They're also excellent at concealing illness. A ball python can be seriously ill and still look completely normal to an untrained eye. By the time a keeper notices something is wrong, the condition has often been developing for weeks or months.</p>
+
+                    <h2>Environment First: The Non-Negotiables</h2>
+                    <p>Almost every ball python health problem begins with husbandry. Before symptoms, check the enclosure.</p>
+                    <div class="checklist-card">
+                        <h3>🌡️ Daily Husbandry Checks</h3>
+                        <ul>
+                            <li>Hot spot (belly heat): 88–92°F. Ambient warm side: 80–85°F. Cool side: 76–80°F.</li>
+                            <li>Humidity: 60–80% baseline; 80–90%+ during shed cycles</li>
+                            <li>Both hides present (warm side and cool side)</li>
+                            <li>Fresh water in a bowl large enough to soak in</li>
+                            <li>Any unusual soaking? (Often indicates stuck shed or mites)</li>
+                        </ul>
+                    </div>
+
+                    <h2>The Feeding Log: Your Most Important Data Point</h2>
+                    <p>Ball pythons have a complicated relationship with food. Adults commonly refuse for weeks or months, particularly in winter, during breeding season, or after enclosure changes. This is normal. What is not normal: prolonged refusal accompanied by weight loss, visible lethargy, or other symptoms. The distinction requires data.</p>
+                    <p>Track every feeding attempt: date, prey item offered (type, size, live vs. frozen-thawed), whether it was accepted or refused. If refused, any observations (didn't strike? struck and released? showed no interest?). Weigh monthly — a food-refusing ball python who is maintaining weight is not a concern. One losing weight consistently needs vet evaluation.</p>
+
+                    <h2>Shed Cycle Tracking</h2>
+                    <p>A ball python's shed cycle is one of the most reliable health indicators you have. Normal: eyes go blue/milky → eyes clear → shed occurs within 7–14 days. The shed should come off in one complete piece from nose to tail tip.</p>
+                    <p>Track: when the blue phase started, when eyes cleared, when shed occurred, and whether the shed was complete or incomplete. A pattern of incomplete sheds signals low humidity, dehydration, underlying illness, mites, or malnutrition.</p>
+                    <p>After every shed: hold it up to light and confirm two clear circles where the eye caps were. If not — the eye caps are retained on the snake and need attention.</p>
+
+                    <h2>Monthly Health Checklist</h2>
+                    <div class="checklist-card">
+                        <h3>📋 Monthly Check</h3>
+                        <ul>
+                            <li>Weight — log it, compare to last month</li>
+                            <li>Body condition — can you feel vertebrae prominently? Any swelling?</li>
+                            <li>Eyes — clear and full? Sunken eyes indicate dehydration</li>
+                            <li>Respiratory — any wheezing, clicking, or mucus around the nostrils?</li>
+                            <li>Mouth — any open-mouth breathing or bubbling saliva? (mouth rot signs)</li>
+                            <li>Cloacal area — clean, no discharge or swelling</li>
+                            <li>Check for mites — tiny moving dots along the spine seam or in the water dish</li>
+                        </ul>
+                    </div>
+
+                    <div class="warn-box">
+                        <p><strong>See a reptile vet for:</strong> Wheezing or open-mouth breathing &middot; Mucus from mouth or nostrils &middot; Retained eye caps &middot; Mites &middot; Progressive weight loss &middot; Lumps or swelling anywhere on the body &middot; Neurological signs (star-gazing, inability to right itself)</p>
+                    </div>
+
+                    <h2>Finding an Exotic Vet Before You Need One</h2>
+                    <p>Not all veterinarians treat reptiles. Find an ARAV (Association of Reptile and Amphibian Veterinarians) member near you now — before you have an emergency. Call them. Introduce your animal. Establish care. That relationship will matter when something goes wrong.</p>
+                    <div class="cta-box">
+                        <h3>Track your ball python's health with AI</h3>
+                        <p>Feeding logs, shedding cycles, weight tracking, and husbandry records for ball pythons. Free during early release.</p>
+                        <a href="/#download" class="cta-btn">Get Early Access &mdash; Free</a>
+                    </div>
+                </div>
+                <div class="related">
+                    <h3>More from the VetGPT Blog</h3>
+                    <div class="related-grid">
+                        <a href="/blog/bearded-dragon-health-checklist.html" class="related-card">
+                            <p class="related-tag">🦎 Reptiles</p>
+                            <h4>The Complete Bearded Dragon Health Checklist</h4>
+                        </a>
+                        <a href="/blog/exotic-pet-health-tracker.html" class="related-card">
+                            <p class="related-tag">🦎 Exotic Pets</p>
+                            <h4>Why Your Exotic Pet Deserves a Health Tracker</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> &copy; 2026 VetGPT &middot; Made with &hearts; for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>

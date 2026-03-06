@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Medication Tracking: Why a Notes App Isn't Enough | VetGPT</title>
+    <meta name="description" content="Managing pet medications with screenshots and sticky notes is how doses get missed. Here's what proper medication tracking actually looks like — for any pet.">
+    <meta property="og:title" content="Pet Medication Tracking: Why a Notes App Isn't Enough">
+    <meta property="og:description" content="Managing pet medications with screenshots and sticky notes is how doses get missed. Here's what proper medication tracking actually looks like — for any pet.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/blog/pet-medication-tracking.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vetgpt.app/blog/pet-medication-tracking.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Pet Medication Tracking: Why a Notes App Isn't Enough",
+        "description": "Managing pet medications with screenshots and sticky notes is how doses get missed. Here's what proper medication tracking actually looks like — for any pet.",
+        "datePublished": "2026-03-06",
+        "dateModified": "2026-03-06",
+        "author": { "@type": "Organization", "name": "VetGPT" },
+        "publisher": { "@type": "Organization", "name": "VetGPT", "url": "https://vetgpt.app" }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg: #0a0a0a; --bg-elevated: #111111; --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15); --text: #ffffff;
+            --text-secondary: #9ca3af; --text-muted: #8b95a5;
+            --green: #10b981; --green-glow: rgba(16,185,129,0.3);
+            --purple: #8b5cf6; --pink: #ec4899;
+            --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace; --max-w: 1200px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: background 0.3s, padding 0.3s; }
+        .nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 12px 24px; background: #10b981; color: #000 !important; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .nav-cta:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-secondary); }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: var(--text); background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+        /* ARTICLE LAYOUT */
+        .article-wrap { padding: 120px 0 80px; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+        /* BREADCRUMB */
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 32px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--text-secondary); }
+
+        /* ARTICLE HEADER */
+        .article-header { margin-bottom: 48px; }
+        .article-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ARTICLE BODY */
+        .article-body { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 32px 0 12px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 24px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+        .article-body a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+        .article-body a:hover { opacity: 0.85; }
+
+        /* CHECKLIST CARDS */
+        .checklist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .checklist-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+        .checklist-card li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist-card li:last-child { border-bottom: none; }
+        .checklist-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* WARNING BOX */
+        .warning-box { background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .warning-box p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .warning-box strong { color: #ec4899; }
+
+        /* CTA BOX */
+        .cta-box { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 36px; text-align: center; margin: 48px 0; }
+        .cta-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; border-radius: 10px; transition: box-shadow 0.3s, transform 0.2s; }
+        .cta-btn:hover { box-shadow: 0 0 30px var(--green-glow); transform: translateY(-1px); }
+
+        /* RELATED POSTS */
+        .related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+        .related h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: background 0.3s, border-color 0.3s; }
+        .related-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .related-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+        .related-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--text); }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* FOOTER */
+        .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .footer-logo { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; opacity: 0.6; }
+        @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
+    
+    </style>
+</head>
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#founder">Story</a></li>
+                    <li><a href="/#download" class="nav-cta">Get Early Access</a></li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose">&times;</button>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#founder">Story</a>
+        <a href="/#download" style="color:var(--green)">Get Early Access</a>
+    </div>
+    <main>
+        <div class="article-wrap">
+            <div class="article-container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>›</span>
+                    <a href="/blog/">Blog</a> <span>›</span>
+                    <span>Pet Medication Tracking</span>
+                </nav>
+                <header class="article-header">
+                    <span class="article-tag">🐾 Pet Health Management</span>
+                    <h1>Pet Medication Tracking: Why a Notes App Isn't Enough</h1>
+                    <div class="article-meta">
+                        <span>March 6, 2026</span>
+                        <span>5 min read</span>
+                        <span>By VetGPT</span>
+                    </div>
+                </header>
+                <div class="article-body">
+                    <p>You have a system. Maybe it's a note in your phone. Maybe it's a photo of the prescription bottle in your camera roll. Maybe it's the sticky note on the fridge that says "Buster — 1 pill AM, half pill PM." Maybe it's nothing formal, just memory, because you've been doing this long enough that it's become routine.</p>
+                    <p>These systems mostly work. Until they don't.</p>
+                    <p>A prescription changes and the sticky note doesn't get updated. You go out of town and whoever's watching your pet isn't sure if this morning's dose has been given. Two of your pets are on similar medications in different doses and you almost give the wrong one to the wrong animal.</p>
+                    <p>None of these are careless owner problems. They're systems problems.</p>
+
+                    <h2>Why Pet Medication Management Is Harder Than It Looks</h2>
+                    <p><strong>Pets can't communicate.</strong> Did your cat take her pill? Did she eat around it? Did she spit it out behind the couch? You often don't know with certainty, which means you need a reliable administration log.</p>
+                    <p><strong>Timing can be critical.</strong> Some medications — like seizure medications — require precise dosing intervals. A missed dose or a doubled dose can have real clinical consequences.</p>
+                    <p><strong>Multi-pet households are chaos.</strong> If you have two dogs, one cat, and a rabbit — and more than one of them is medicated — the cognitive load of managing multiple schedules, multiple dosages, and multiple refill timelines is substantial.</p>
+                    <p><strong>Caregivers need to be in the loop.</strong> When your partner or pet sitter is responsible for medications while you're away, they need clear, accessible information — not a note pinned to the fridge they might miss.</p>
+
+                    <h2>What a Notes App Gets Wrong</h2>
+                    <p>A notes app can store information. What it can't do:</p>
+                    <ul>
+                        <li>Send you a reminder at 7:30am every morning for the next 90 days</li>
+                        <li>Record that a dose was given — with a timestamp — so there's no "did we give it this morning?" ambiguity</li>
+                        <li>Alert you when a medication is about to run out based on dose tracking</li>
+                        <li>Organize multiple pets' medications in a single view</li>
+                        <li>Track whether a medication change correlated with symptom changes</li>
+                        <li>Generate a complete medication history for a vet visit</li>
+                    </ul>
+
+                    <h2>The Real Cost of Missed Doses</h2>
+                    <p>For many medications, a missed dose is not catastrophic. But for others, it is. Epileptic dogs on phenobarbital need consistent blood levels to prevent seizures. Cats managing hyperthyroidism on methimazole need consistent dosing to keep thyroid levels stable. Dogs with Addison's disease have narrow windows — missed doses can lead to Addisonian crises that are life-threatening.</p>
+                    <p>This isn't meant to alarm. It's meant to make the case that medication tracking is clinical infrastructure, not organizational preference. Your pet's health depends on consistency. Consistency depends on systems. And systems depend on the right tools.</p>
+
+                    <h2>What Good Medication Tracking Looks Like</h2>
+                    <ul>
+                        <li><strong>Medication profile:</strong> Name, dosage, frequency, route of administration, prescribing vet, and any special instructions.</li>
+                        <li><strong>Administration log:</strong> Timestamped record of every dose given. This is the source of truth for "was it given today?"</li>
+                        <li><strong>Reminders:</strong> Customizable push notifications at the right times.</li>
+                        <li><strong>Refill tracking:</strong> Based on your dosing schedule, when will you run out?</li>
+                        <li><strong>Prescription storage:</strong> A photo or scan of the original prescription for reference.</li>
+                        <li><strong>Multi-pet view:</strong> A single dashboard that shows all active medications across all pets.</li>
+                    </ul>
+                    <div class="cta-box">
+                        <h3>Never miss a dose again</h3>
+                        <p>VetGPT includes built-in medication tracking with reminders, administration logs, and prescription storage — for every pet, every medication, in one place.</p>
+                        <a href="/#download" class="cta-btn">Get Early Access &mdash; Free</a>
+                    </div>
+                </div>
+                <div class="related">
+                    <h3>More from the VetGPT Blog</h3>
+                    <div class="related-grid">
+                        <a href="/blog/how-to-track-dog-medications.html" class="related-card">
+                            <p class="related-tag">🐕 Dogs</p>
+                            <h4>How to Track Your Dog's Medications (And Never Miss a Dose Again)</h4>
+                        </a>
+                        <a href="/blog/preparing-for-vet-visit.html" class="related-card">
+                            <p class="related-tag">🏥 Vet Visits</p>
+                            <h4>How to Prepare for a Vet Visit (So You Never Blank at the Worst Moment)</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
+                    <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
+                    <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                </ul>
+                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" width="22" height="22"> &copy; 2026 VetGPT &middot; Made with &hearts; for pet parents everywhere</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+        document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+    </script>
+</body>
+</html>
