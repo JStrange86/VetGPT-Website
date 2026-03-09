@@ -27,13 +27,88 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "VetGPT",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "iOS, Android",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "description": "AI-powered pet health tracking app supporting 64+ species with document scanning, voice recording, and personalized health insights.",
-        "url": "https://vetgpt.app"
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://vetgpt.app/#organization",
+                "name": "VetGPT",
+                "url": "https://vetgpt.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://vetgpt.app/images/logo.png"
+                },
+                "description": "VetGPT is the AI-powered pet health app built for every pet owner — supporting 64+ species including dogs, cats, reptiles, birds, fish, and exotic animals.",
+                "foundingDate": "2025",
+                "founder": {
+                    "@type": "Person",
+                    "name": "Josh Strange"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "support@vetgpt.app",
+                    "contactType": "customer support"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/vetgptapp/",
+                    "https://www.tiktok.com/@vegpt",
+                    "https://twitter.com/vetgptapp",
+                    "https://x.com/vetgptapp",
+                    "https://www.facebook.com/Vetgpt"
+                ]
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://vetgpt.app/#app",
+                "name": "VetGPT",
+                "alternateName": ["VetGPT App", "Vet GPT"],
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Pet Health",
+                "operatingSystem": "iOS, Android",
+                "url": "https://vetgpt.app",
+                "description": "AI-powered pet health tracking app supporting 64+ species. Scan vet documents, track medications, record appointments, and get personalized AI health insights for dogs, cats, reptiles, fish, birds, and exotic pets.",
+                "screenshot": "https://vetgpt.app/images/logo.png",
+                "publisher": {
+                    "@id": "https://vetgpt.app/#organization"
+                },
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "description": "Free plan — up to 2 pets"
+                    },
+                    {
+                        "@type": "Offer",
+                        "price": "2.99",
+                        "priceCurrency": "USD",
+                        "description": "Founding Member Premium — unlimited pets, all features"
+                    }
+                ],
+                "featureList": [
+                    "AI-powered vet document scanning",
+                    "Medication tracking and reminders",
+                    "Vet appointment history",
+                    "Voice recording at vet visits",
+                    "Pet health timeline",
+                    "64+ species support",
+                    "AI health insights"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://vetgpt.app/#website",
+                "url": "https://vetgpt.app",
+                "name": "VetGPT",
+                "publisher": {
+                    "@id": "https://vetgpt.app/#organization"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://vetgpt.app/blog/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
     }
     </script>
     
