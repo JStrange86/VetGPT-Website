@@ -2169,21 +2169,14 @@
                 button.textContent = originalText;
 
                 if (res.ok || res.status === 409) {
-                    // Success or already on list — show success UI either way
-                    if (source === 'hero') {
-                        document.getElementById('heroForm').style.display = 'none';
-                        document.getElementById('heroSuccess').style.display = 'block';
-                    } else if (source === 'final') {
-                        document.getElementById('finalForm').style.display = 'none';
-                        document.getElementById('finalSuccess').style.display = 'block';
-                    } else if (source === 'sticky') {
-                        stickyBar.classList.remove('visible');
-                        stickyBar.classList.add('dismissed');
-                        stickyDismissed = true;
-                        document.getElementById('finalForm').style.display = 'none';
-                        document.getElementById('finalSuccess').style.display = 'block';
-                        document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
-                    }
+                    // Success or already on list — hide ALL forms, show success everywhere
+                    document.getElementById('heroForm').style.display = 'none';
+                    document.getElementById('heroSuccess').style.display = 'block';
+                    document.getElementById('finalForm').style.display = 'none';
+                    document.getElementById('finalSuccess').style.display = 'block';
+                    stickyBar.classList.remove('visible');
+                    stickyBar.classList.add('dismissed');
+                    stickyDismissed = true;
                 } else {
                     throw new Error('Status ' + res.status);
                 }
