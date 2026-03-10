@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download VetGPT — Free on iOS</title>
+    <meta name="description" content="Download VetGPT free on iOS. AI-powered pet health for 64+ species. All premium features free during early release.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Download VetGPT Free">
+    <meta property="og:description" content="The AI pet health app that knows your pet's full history. 64+ species. Free on iOS.">
+    <meta property="og:image" content="https://vetgpt.app/og-image.png">
+    <meta property="og:url" content="https://vetgpt.app/download">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap"></noscript>
+
+    <style>
+        :root {
+            --bg: #0a0f1a;
+            --bg-card: rgba(255,255,255,0.04);
+            --border: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --text-secondary: #9ca3af;
+            --green: #10b981;
+            --green-glow: rgba(16,185,129,0.3);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* App icon */
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 40px var(--green-glow);
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+
+        /* Wordmark */
+        .app-name {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .app-name span { color: var(--green); }
+
+        .app-tagline {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        /* Stats row */
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .stat strong {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* iOS Download button */
+        .btn-appstore {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            background: var(--green);
+            color: #000;
+            text-decoration: none;
+            border-radius: 14px;
+            padding: 18px 24px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: opacity 0.15s, transform 0.15s;
+            margin-bottom: 12px;
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .btn-appstore:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-appstore:active { transform: scale(0.98); }
+
+        .btn-appstore svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            fill: #000;
+        }
+
+        .btn-appstore-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .btn-appstore-text small {
+            font-size: 0.72rem;
+            font-weight: 500;
+            opacity: 0.7;
+            font-family: var(--font-body);
+        }
+
+        .free-badge {
+            margin-left: auto;
+            background: rgba(0,0,0,0.15);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        /* Android section */
+        .android-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .android-form {
+            width: 100%;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .android-form input {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .android-form input:focus { border-color: var(--green); }
+        .android-form input::placeholder { color: var(--text-secondary); }
+
+        .android-form button {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .android-form button:hover { border-color: var(--green); color: var(--green); }
+
+        .android-success {
+            display: none;
+            color: var(--green);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        /* Footer link */
+        .back-link {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover { opacity: 1; }
+
+        /* Ambient glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap { position: relative; z-index: 1; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- App Icon -->
+        <div class="app-icon">
+            <img src="/images/app-icon.png" alt="VetGPT app icon" onerror="this.style.display='none';this.parentElement.innerHTML='🐾';">
+        </div>
+
+        <!-- Name + Tagline -->
+        <h1 class="app-name">Vet<span>GPT</span></h1>
+        <p class="app-tagline">The AI that already knows your pet.<br>Their meds. Their history. Their symptoms.</p>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat"><strong>64+</strong> Species</div>
+            <div class="stat"><strong>18</strong> AI Features</div>
+            <div class="stat"><strong>Free</strong> to Download</div>
+        </div>
+
+        <!-- iOS Button -->
+        <a href="https://apps.apple.com/app/id6757766151" class="btn-appstore" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span class="btn-appstore-text">
+                <small>Download on the</small>
+                App Store
+            </span>
+            <span class="free-badge">FREE</span>
+        </a>
+
+        <!-- Android waitlist -->
+        <p class="android-label">📱 Android coming soon — get notified:</p>
+        <form class="android-form" id="androidForm" onsubmit="handleAndroid(event)">
+            <input type="email" placeholder="your@email.com" required aria-label="Email for Android notification">
+            <button type="submit">Notify Me</button>
+        </form>
+        <p class="android-success" id="androidSuccess">✓ You're on the list! We'll let you know when Android launches.</p>
+
+        <a href="https://vetgpt.app" class="back-link">← vetgpt.app</a>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://qaqfslivculjeqmmgjdo.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhcWZzbGl2Y3VsamVxbW1namRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA3NzE0NDksImV4cCI6MjA1NjM0NzQ0OX0.sB13-ETCr7Uiibv36SjX-OKqZVaEajfDmyFJl0xIZe8';
+
+        async function handleAndroid(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            try {
+                await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_KEY,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ email, source: 'android-waitlist-download-page' })
+                });
+            } catch(err) {}
+            document.getElementById('androidForm').style.display = 'none';
+            document.getElementById('androidSuccess').style.display = 'block';
+        }
+
+        // Auto-detect: if Android, swap button appearance (still sends to App Store for now)
+        if (/android/i.test(navigator.userAgent)) {
+            document.querySelector('.android-label').style.display = 'none';
+            document.getElementById('androidForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
