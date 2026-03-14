@@ -36,13 +36,13 @@
     }
     .header-bar {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      padding: 12px 20px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
     }
-    .header-bar svg { width: 20px; height: 20px; fill: white; }
+    .header-logo { width: 28px; height: 28px; border-radius: 6px; }
     .header-bar-text { font-size: 13px; font-weight: 600; color: white; letter-spacing: 0.5px; }
     .container { max-width: 640px; margin: 0 auto; padding: 20px; }
     .share-badge {
@@ -69,7 +69,9 @@
       background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
       border-radius: 16px; display: flex; align-items: center;
       justify-content: center; font-size: 36px; flex-shrink: 0;
+      overflow: hidden;
     }
+    .pet-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .pet-info { flex: 1; min-width: 0; }
     .pet-name { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; line-height: 1.2; }
     .pet-breed { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
@@ -140,7 +142,7 @@
     @media (max-width: 480px) {
       .container { padding: 12px; }
       .pet-card-header { padding: 16px; }
-      .pet-avatar { width: 56px; height: 56px; font-size: 28px; border-radius: 12px; }
+      .pet-avatar { width: 56px; height: 56px; font-size: 28px; border-radius: 12px; overflow: hidden; }
       .pet-name { font-size: 20px; }
       .stat-item { padding: 10px 8px; }
       .stat-value { font-size: 16px; }
@@ -149,7 +151,7 @@
 </head>
 <body>
   <div class="header-bar">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    <img src="/images/app-icon.png" alt="VetGPT" class="header-logo" />
     <span class="header-bar-text">VERIFIED HEALTH REPORT</span>
   </div>
 
@@ -235,7 +237,7 @@
 
       // Pet card
       html += '<div class="pet-card"><div class="pet-card-header">';
-      html += '<div class="pet-avatar">' + getPetEmoji(pet.species) + '</div>';
+      html += '<div class="pet-avatar">' + (pet.profile_photo_url ? '<img src="' + esc(pet.profile_photo_url) + '" alt="' + esc(pet.name) + '" />' : getPetEmoji(pet.species)) + '</div>';
       html += '<div class="pet-info">';
       html += '<div class="pet-name">' + esc(pet.name || 'Unknown Pet') + '</div>';
       html += '<div class="pet-breed">' + esc(pet.breed || pet.custom_species || pet.species || 'Pet') + '</div>';
