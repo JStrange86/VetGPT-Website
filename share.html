@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Report - VetGPT</title>
+  <meta name="description" content="Secure veterinary health report shared via VetGPT">
+  <style>
+    :root {
+      --primary: #1DB954;
+      --primary-dark: #169c46;
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.1);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.1);
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.1);
+      --purple: #8b5cf6;
+      --bg-dark: #0a0a0a;
+      --bg-card: #141414;
+      --bg-elevated: #1a1a1a;
+      --bg-input: #222222;
+      --border: #2a2a2a;
+      --border-light: #333333;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .header-bar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .header-bar svg { width: 20px; height: 20px; fill: white; }
+    .header-bar-text { font-size: 13px; font-weight: 600; color: white; letter-spacing: 0.5px; }
+    .container { max-width: 640px; margin: 0 auto; padding: 20px; }
+    .share-badge {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 16px; margin-bottom: 20px;
+    }
+    .share-badge-icon {
+      width: 32px; height: 32px; background: var(--success-bg);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 16px;
+    }
+    .share-badge-info { text-align: left; }
+    .share-badge-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .share-badge-meta { font-size: 11px; color: var(--text-muted); }
+    .pet-card {
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+      border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; margin-bottom: 20px;
+    }
+    .pet-card-header { padding: 24px 20px 16px; display: flex; gap: 16px; align-items: flex-start; }
+    .pet-avatar {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      border-radius: 16px; display: flex; align-items: center;
+      justify-content: center; font-size: 36px; flex-shrink: 0;
+    }
+    .pet-info { flex: 1; min-width: 0; }
+    .pet-name { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; line-height: 1.2; }
+    .pet-breed { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+    .pet-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pet-tag { background: var(--bg-input); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+    .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border); }
+    .stat-item { background: var(--bg-card); padding: 14px 12px; text-align: center; }
+    .stat-value { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+    .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .alert-banner {
+      background: var(--danger-bg); border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px; padding: 16px; margin-bottom: 20px;
+    }
+    .alert-banner-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .alert-banner-icon { font-size: 18px; }
+    .alert-banner-title { font-size: 14px; font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 0.5px; }
+    .alert-item { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item-label { font-size: 11px; color: var(--danger); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .alert-item-value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+    .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 16px; overflow: hidden; }
+    .section-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .section-title { display: flex; align-items: center; gap: 10px; }
+    .section-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .section-icon-meds { background: rgba(139, 92, 246, 0.15); }
+    .section-icon-vaccines { background: rgba(59, 130, 246, 0.15); }
+    .section-icon-logs { background: rgba(245, 158, 11, 0.15); }
+    .section-icon-visits { background: rgba(16, 185, 129, 0.15); }
+    .section-icon-notes { background: rgba(107, 114, 128, 0.15); }
+    .section-icon-records { background: rgba(236, 72, 153, 0.15); }
+    .section-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .section-count { background: var(--bg-input); border-radius: 12px; padding: 4px 10px; font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+    .section-body { padding: 12px; }
+    .item { background: var(--bg-elevated); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+    .item:last-child { margin-bottom: 0; }
+    .item-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .item-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .item-details { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .item-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .item-meta-item { font-size: 12px; color: var(--text-muted); }
+    .item-meta-item strong { color: var(--text-secondary); }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; white-space: nowrap; }
+    .badge-success { background: var(--success-bg); color: var(--success); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .badge-neutral { background: var(--bg-input); color: var(--text-muted); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--purple); }
+    .empty-state { padding: 32px 20px; text-align: center; }
+    .empty-state-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+    .empty-state-text { font-size: 14px; color: var(--text-muted); }
+    .footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); margin-top: 20px; }
+    .footer-logo { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .footer-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .footer-text a { color: var(--primary); text-decoration: none; }
+    .loading-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; }
+    .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 14px; color: var(--text-muted); }
+    .error-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; max-width: 400px; margin: 0 auto; padding: 20px; }
+    .error-icon { font-size: 64px; margin-bottom: 20px; }
+    .error-title { font-size: 24px; margin-bottom: 12px; color: var(--danger); }
+    .error-message { color: var(--text-secondary); line-height: 1.6; }
+    @media print {
+      body { background: white; color: black; }
+      .header-bar { -webkit-print-color-adjust: exact; }
+      .pet-card, .section, .alert-banner { border-color: #ddd; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 12px; }
+      .pet-card-header { padding: 16px; }
+      .pet-avatar { width: 56px; height: 56px; font-size: 28px; border-radius: 12px; }
+      .pet-name { font-size: 20px; }
+      .stat-item { padding: 10px 8px; }
+      .stat-value { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    <span class="header-bar-text">VERIFIED HEALTH REPORT</span>
+  </div>
+
+  <div class="container" id="content">
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading health report...</div>
+    </div>
+  </div>
+
+  <script>
+    var API_BASE = 'https://qaqfslivculjeqmmgjdo.supabase.co/functions/v1/share';
+
+    function esc(s) {
+      if (!s) return '';
+      var d = document.createElement('div');
+      d.textContent = String(s);
+      return d.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return 'N/A';
+      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function calculateAge(dob) {
+      if (!dob) return 'Unknown';
+      var birth = new Date(dob);
+      var now = new Date();
+      var years = now.getFullYear() - birth.getFullYear();
+      var months = now.getMonth() - birth.getMonth();
+      if (years === 0) return months + ' month' + (months !== 1 ? 's' : '') + ' old';
+      if (years === 1 && months < 0) return (12 + months) + ' months old';
+      return years + ' year' + (years !== 1 ? 's' : '') + ' old';
+    }
+
+    function getPetEmoji(species) {
+      var emojis = { dog: '\uD83D\uDC15', cat: '\uD83D\uDC31', bird: '\uD83D\uDC26', fish: '\uD83D\uDC20', reptile: '\uD83E\uDD8E', rabbit: '\uD83D\uDC30', hamster: '\uD83D\uDC39', horse: '\uD83D\uDC34', turtle: '\uD83D\uDC22', snake: '\uD83D\uDC0D', parrot: '\uD83E\uDD9C' };
+      return emojis[(species || '').toLowerCase()] || '\uD83D\uDC3E';
+    }
+
+    function getVaccineStatus(nextDueDate) {
+      if (!nextDueDate) return { text: 'Unknown', cls: 'badge-neutral' };
+      var now = new Date();
+      var due = new Date(nextDueDate);
+      var days = Math.floor((due - now) / 86400000);
+      if (days < 0) return { text: 'Overdue ' + Math.abs(days) + 'd', cls: 'badge-danger' };
+      if (days <= 30) return { text: 'Due in ' + days + 'd', cls: 'badge-warning' };
+      return { text: 'Current', cls: 'badge-success' };
+    }
+
+    function parseAllergies(raw) {
+      if (!raw) return '';
+      try {
+        var arr = typeof raw === 'string' ? JSON.parse(raw) : raw;
+        if (Array.isArray(arr)) return arr.map(function(a) { return a.allergen || a.name || String(a); }).join(', ');
+      } catch (e) {}
+      return String(raw);
+    }
+
+    function renderReport(data) {
+      var pet = data.pet || {};
+      var link = data.link || {};
+      var meds = data.medications || [];
+      var vaccines = data.vaccines || [];
+      var logs = data.healthLogs || [];
+      var visits = data.vetVisits || [];
+      var records = data.medicalRecords || [];
+      var hasAlerts = pet.known_allergies || pet.known_conditions;
+      var medCount = meds.length;
+
+      document.title = (pet.name || 'Pet') + "'s Health Report - VetGPT";
+
+      var html = '';
+
+      // Share badge
+      html += '<div class="share-badge">';
+      html += '<div class="share-badge-icon">\uD83D\uDD12</div>';
+      html += '<div class="share-badge-info">';
+      html += '<div class="share-badge-title">Secure Health Report' + (link.vet_name ? ' for Dr. ' + esc(link.vet_name) : '') + '</div>';
+      html += '<div class="share-badge-meta">Generated by VetGPT \u2022 Valid until ' + formatDate(link.expires_at) + '</div>';
+      html += '</div></div>';
+
+      // Pet card
+      html += '<div class="pet-card"><div class="pet-card-header">';
+      html += '<div class="pet-avatar">' + getPetEmoji(pet.species) + '</div>';
+      html += '<div class="pet-info">';
+      html += '<div class="pet-name">' + esc(pet.name || 'Unknown Pet') + '</div>';
+      html += '<div class="pet-breed">' + esc(pet.breed || pet.custom_species || pet.species || 'Pet') + '</div>';
+      html += '<div class="pet-tags">';
+      if (pet.date_of_birth) html += '<span class="pet-tag">' + calculateAge(pet.date_of_birth) + '</span>';
+      if (pet.gender) html += '<span class="pet-tag">' + (pet.gender === 'male' ? '\u2642 Male' : '\u2640 Female') + '</span>';
+      html += '</div></div></div>';
+      html += '<div class="quick-stats">';
+      html += '<div class="stat-item"><div class="stat-value">' + (pet.weight_kg ? pet.weight_kg + ' kg' : '\u2014') + '</div><div class="stat-label">Weight</div></div>';
+      html += '<div class="stat-item"><div class="stat-value">' + medCount + '</div><div class="stat-label">Medications</div></div>';
+      html += '<div class="stat-item"><div class="stat-value">' + (pet.microchip_number ? '\u2713' : '\u2014') + '</div><div class="stat-label">Microchip</div></div>';
+      html += '</div></div>';
+
+      // Alerts
+      if (hasAlerts) {
+        html += '<div class="alert-banner"><div class="alert-banner-header">';
+        html += '<span class="alert-banner-icon">\u26A0\uFE0F</span>';
+        html += '<span class="alert-banner-title">Critical Information for Care Team</span></div>';
+        if (pet.known_allergies) {
+          html += '<div class="alert-item"><div class="alert-item-label">Known Allergies</div>';
+          html += '<div class="alert-item-value">' + esc(parseAllergies(pet.known_allergies)) + '</div></div>';
+        }
+        if (pet.known_conditions) {
+          html += '<div class="alert-item"><div class="alert-item-label">Medical Conditions</div>';
+          html += '<div class="alert-item-value">' + esc(pet.known_conditions) + '</div></div>';
+        }
+        html += '</div>';
+      }
+
+      // Medications
+      if (data.medications !== undefined) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-meds">\uD83D\uDC8A</div>';
+        html += '<span class="section-name">Current Medications</span></div>';
+        html += '<span class="section-count">' + medCount + '</span></div>';
+        html += '<div class="section-body">';
+        if (meds.length > 0) {
+          meds.forEach(function(med) {
+            html += '<div class="item"><div class="item-header">';
+            html += '<div class="item-name">' + esc(med.name) + '</div>';
+            html += '<span class="badge badge-success">Active</span></div>';
+            html += '<div class="item-details">';
+            if (med.dosage) html += '<strong>' + esc(med.dosage) + '</strong>';
+            if (med.frequency) html += ' \u2022 ' + esc(med.frequency);
+            if (med.notes) html += '<br>' + esc(med.notes);
+            html += '</div>';
+            if (med.start_date || (med.refills_remaining != null && med.refills_remaining !== 'null')) {
+              html += '<div class="item-meta">';
+              if (med.start_date) html += '<span class="item-meta-item"><strong>Started:</strong> ' + formatDate(med.start_date) + '</span>';
+              if (med.refills_remaining != null && med.refills_remaining !== null) html += '<span class="item-meta-item"><strong>Refills:</strong> ' + med.refills_remaining + '</span>';
+              html += '</div>';
+            }
+            html += '</div>';
+          });
+        } else {
+          html += '<div class="empty-state"><div class="empty-state-icon">\uD83D\uDC8A</div><div class="empty-state-text">No active medications</div></div>';
+        }
+        html += '</div></div>';
+      }
+
+      // Vaccines
+      if (data.vaccines !== undefined) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-vaccines">\uD83D\uDC89</div>';
+        html += '<span class="section-name">Vaccination Records</span></div>';
+        html += '<span class="section-count">' + vaccines.length + '</span></div>';
+        html += '<div class="section-body">';
+        if (vaccines.length > 0) {
+          vaccines.forEach(function(vax) {
+            var status = getVaccineStatus(vax.next_due_date);
+            html += '<div class="item"><div class="item-header">';
+            html += '<div class="item-name">' + esc(vax.vaccine_name) + '</div>';
+            html += '<span class="badge ' + status.cls + '">' + status.text + '</span></div>';
+            html += '<div class="item-details">';
+            html += '<strong>Administered:</strong> ' + formatDate(vax.date_administered);
+            if (vax.next_due_date) html += '<br><strong>Next Due:</strong> ' + formatDate(vax.next_due_date);
+            if (vax.administered_by) html += '<br><strong>By:</strong> ' + esc(vax.administered_by);
+            html += '</div></div>';
+          });
+        } else {
+          html += '<div class="empty-state"><div class="empty-state-icon">\uD83D\uDC89</div><div class="empty-state-text">No vaccination records</div></div>';
+        }
+        html += '</div></div>';
+      }
+
+      // Health Logs
+      if (data.healthLogs !== undefined) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-logs">\uD83D\uDCCA</div>';
+        html += '<span class="section-name">Recent Health Activity</span></div>';
+        html += '<span class="section-count">30 days</span></div>';
+        html += '<div class="section-body">';
+        if (logs.length > 0) {
+          logs.slice(0, 10).forEach(function(log) {
+            html += '<div class="item"><div class="item-header">';
+            html += '<div class="item-name">' + esc(log.log_type || log.title || 'Health Log') + '</div>';
+            html += '<span class="badge badge-neutral">' + formatDate(log.date_time || log.created_at) + '</span></div>';
+            html += '<div class="item-details">';
+            if (log.value) html += '<strong>Value:</strong> ' + esc(String(log.value)) + (log.unit ? esc(log.unit) : '');
+            if (log.description) html += (log.value ? '<br>' : '') + esc(log.description);
+            if (!log.value && !log.description) html += '<span style="color:var(--text-muted)">No details recorded</span>';
+            html += '</div></div>';
+          });
+        } else {
+          html += '<div class="empty-state"><div class="empty-state-icon">\uD83D\uDCCA</div><div class="empty-state-text">No health logs in the past 30 days</div></div>';
+        }
+        html += '</div></div>';
+      }
+
+      // Vet Visits
+      if (data.vetVisits !== undefined) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-visits">\uD83C\uDFE5</div>';
+        html += '<span class="section-name">Recent Vet Visits</span></div>';
+        html += '<span class="section-count">' + visits.length + '</span></div>';
+        html += '<div class="section-body">';
+        if (visits.length > 0) {
+          visits.forEach(function(visit) {
+            html += '<div class="item"><div class="item-header">';
+            html += '<div class="item-name">' + esc(visit.reason || 'Veterinary Visit') + '</div>';
+            html += '<span class="badge badge-purple">' + formatDate(visit.visit_date) + '</span></div>';
+            html += '<div class="item-details">';
+            if (visit.clinic_name) html += '<strong>Clinic:</strong> ' + esc(visit.clinic_name);
+            if (visit.vet_name) html += (visit.clinic_name ? '<br>' : '') + '<strong>Veterinarian:</strong> Dr. ' + esc(visit.vet_name);
+            if (visit.diagnosis) html += '<br><strong>Diagnosis:</strong> ' + esc(visit.diagnosis);
+            if (visit.treatment) html += '<br><strong>Treatment:</strong> ' + esc(visit.treatment);
+            if (visit.notes) html += '<br><strong>Notes:</strong> ' + esc(visit.notes);
+            html += '</div></div>';
+          });
+        } else {
+          html += '<div class="empty-state"><div class="empty-state-icon">\uD83C\uDFE5</div><div class="empty-state-text">No recent vet visits on record</div></div>';
+        }
+        html += '</div></div>';
+      }
+
+      // Medical Records
+      if (records.length > 0) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-records">\uD83D\uDCC4</div>';
+        html += '<span class="section-name">Medical Records</span></div>';
+        html += '<span class="section-count">' + records.length + '</span></div>';
+        html += '<div class="section-body">';
+        records.forEach(function(record) {
+          html += '<div class="item"><div class="item-header">';
+          html += '<div class="item-name">' + esc(record.title || record.record_type || 'Medical Record') + '</div>';
+          html += '<span class="badge badge-neutral">' + formatDate(record.record_date) + '</span></div>';
+          html += '<div class="item-details">' + (record.description || record.notes ? esc(record.description || record.notes) : '<span style="color:var(--text-muted)">No details</span>') + '</div></div>';
+        });
+        html += '</div></div>';
+      }
+
+      // Notes
+      if (pet.notes) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-notes">\uD83D\uDCDD</div>';
+        html += '<span class="section-name">Additional Notes</span></div></div>';
+        html += '<div class="section-body"><div class="item"><div class="item-details">' + esc(pet.notes) + '</div></div></div></div>';
+      }
+
+      // Microchip
+      if (pet.microchip_number) {
+        html += '<div class="section"><div class="section-header"><div class="section-title">';
+        html += '<div class="section-icon section-icon-notes">\uD83C\uDFF7\uFE0F</div>';
+        html += '<span class="section-name">Identification</span></div></div>';
+        html += '<div class="section-body"><div class="item"><div class="item-details">';
+        html += '<strong>Microchip Number:</strong> ' + esc(pet.microchip_number);
+        html += '</div></div></div></div>';
+      }
+
+      // Footer
+      html += '<div class="footer">';
+      html += '<div class="footer-logo">\uD83D\uDC3E VetGPT</div>';
+      html += '<div class="footer-text">This is a secure, time-limited health report.<br>';
+      html += 'Generated on ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '<br>';
+      html += '<a href="https://vetgpt.app">Learn more about VetGPT</a></div></div>';
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    function showError(title, message) {
+      document.getElementById('content').innerHTML =
+        '<div class="error-container">' +
+        '<div class="error-icon">\uD83D\uDD17</div>' +
+        '<h1 class="error-title">' + esc(title) + '</h1>' +
+        '<p class="error-message">' + esc(message) + '</p>' +
+        '<p style="margin-top:40px;font-size:14px;color:var(--text-muted)">VetGPT - Pet Health Management</p>' +
+        '</div>';
+    }
+
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('token');
+
+      if (!token) {
+        showError('Invalid Link', 'No share token provided.');
+        return;
+      }
+
+      fetch(API_BASE + '/' + encodeURIComponent(token) + '?format=json')
+        .then(function(res) {
+          if (!res.ok) {
+            return res.json().then(function(err) {
+              throw { status: res.status, data: err };
+            }).catch(function(e) {
+              if (e.status) throw e;
+              throw { status: res.status, data: { error: 'Request failed' } };
+            });
+          }
+          return res.json();
+        })
+        .then(function(data) {
+          renderReport(data);
+        })
+        .catch(function(err) {
+          var status = err.status || 0;
+          var msg = (err.data && err.data.message) || '';
+          if (status === 404) showError('Link Not Found', msg || 'This share link does not exist or has been removed.');
+          else if (status === 410) showError(msg.indexOf('Expired') >= 0 ? 'Link Expired' : 'Link Revoked', msg || 'This share link is no longer valid.');
+          else showError('Error', msg || 'Could not load the health report. Please try again.');
+        });
+    })();
+  </script>
+</body>
+</html>
