@@ -638,11 +638,7 @@
             width: 280px;
             aspect-ratio: 0.52;
         }
-        /* Health score phone: frame matches image ratio, cover prevents distortion */
-        .screenshots .screenshot-item:nth-child(2) .phone-frame {
-            width: 300px;
-            aspect-ratio: 0.598;
-        }
+        /* Health score image resized to match phone ratio — object-fit: cover fills cleanly */
         .screenshots .screenshot-item:nth-child(2) .phone-screen img {
             object-fit: cover;
             object-position: top center;
