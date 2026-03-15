@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18007593933"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18007593933');
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetGPT™ — AI Pet Health Tracker for Dogs, Cats, Reptiles & 60+ Species</title>
-    <meta name="description" content="VetGPT is the AI-powered pet health app that scans vet documents, tracks medications, records appointments, and gives personalized insights for 64+ species. Free for iOS & Android.">
+    <title>VetGPT — AI Pet Health Tracker for Dogs, Cats & 60+ Species</title>
+    <meta name="description" content="VetGPT knows your pet's full history. Scan prescriptions, track meds, log vet visits, and get AI health insights for 64+ species. Free on iOS & Android.">
     
     <!-- Impact Affiliate Verification -->
     <meta name='impact-site-verification' value='64709e92-8e03-4331-9188-e9e916281a61'>
 
     <!-- Open Graph -->
-    <meta property="og:title" content="VetGPT — AI Pet Health Tracking">
-    <meta property="og:description" content="Scan prescriptions, track medications, record vet visits, get AI insights. For dogs, cats, reptiles, fish & 60+ species.">
+    <meta property="og:title" content="VetGPT — AI Pet Health Tracker for Dogs, Cats & 60+ Species">
+    <meta property="og:description" content="VetGPT knows your pet's full history. Scan prescriptions, track meds, log vet visits, and get AI health insights for 64+ species. Free on iOS & Android.">
     <meta property="og:image" content="https://vetgpt.app/og-image.png">
     <meta property="og:url" content="https://vetgpt.app">
     <meta name="google-site-verification" content="cS_PEnntd5jCrhO8IQeaqdVgAfihW4sY8IhcbLePvEU" />
@@ -27,20 +35,99 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "VetGPT",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "iOS, Android",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "description": "AI-powered pet health tracking app supporting 64+ species with document scanning, voice recording, and personalized health insights.",
-        "url": "https://vetgpt.app"
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://vetgpt.app/#organization",
+                "name": "VetGPT",
+                "url": "https://vetgpt.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://vetgpt.app/images/logo.png"
+                },
+                "description": "VetGPT is the AI-powered pet health app built for every pet owner — supporting 64+ species including dogs, cats, reptiles, birds, fish, and exotic animals.",
+                "foundingDate": "2025",
+                "founder": {
+                    "@type": "Person",
+                    "name": "Josh Strange"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "support@vetgpt.app",
+                    "contactType": "customer support"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/vetgptapp/",
+                    "https://www.tiktok.com/@vegpt",
+                    "https://twitter.com/vetgptapp",
+                    "https://x.com/vetgptapp",
+                    "https://www.facebook.com/Vetgpt"
+                ]
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://vetgpt.app/#app",
+                "name": "VetGPT",
+                "alternateName": ["VetGPT App", "Vet GPT"],
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Pet Health",
+                "operatingSystem": "iOS, Android",
+                "url": "https://vetgpt.app",
+                "description": "AI-powered pet health tracking app supporting 64+ species. Scan vet documents, track medications, record appointments, and get personalized AI health insights for dogs, cats, reptiles, fish, birds, and exotic pets.",
+                "screenshot": "https://vetgpt.app/images/logo.png",
+                "publisher": {
+                    "@id": "https://vetgpt.app/#organization"
+                },
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "description": "Free plan — up to 2 pets"
+                    },
+                    {
+                        "@type": "Offer",
+                        "price": "2.99",
+                        "priceCurrency": "USD",
+                        "description": "Founding Member Premium — unlimited pets, all features"
+                    }
+                ],
+                "featureList": [
+                    "AI-powered vet document scanning",
+                    "Medication tracking and reminders",
+                    "Vet appointment history",
+                    "Voice recording at vet visits",
+                    "Pet health timeline",
+                    "64+ species support",
+                    "AI health insights"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://vetgpt.app/#website",
+                "url": "https://vetgpt.app",
+                "name": "VetGPT",
+                "publisher": {
+                    "@id": "https://vetgpt.app/#organization"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://vetgpt.app/blog/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
     }
     </script>
     
-    <!-- Fonts -->
+    <!-- Fonts (async load to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Preload LCP hero image -->
+    <link rel="preload" href="hero-phone.png" as="image" fetchpriority="high">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://vetgpt.app/">
@@ -270,7 +357,7 @@
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(10,10,10,0.97);
-            z-index: 999;
+            z-index: 1001;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -441,6 +528,12 @@
             font-weight: 500;
             margin-bottom: 16px;
         }
+        .hero-store-btns {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
         .hero-urgency {
             margin-top: 8px;
             font-size: 0.82rem;
@@ -466,6 +559,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1200px;
         }
         .phone-frame {
             position: relative;
@@ -492,10 +586,12 @@
                 0 25px 60px rgba(0,0,0,0.5),
                 0 0 60px var(--purple-glow),
                 0 0 120px rgba(16,185,129,0.15);
+            transform: rotateX(10deg) rotateY(-8deg);
+            transform-style: preserve-3d;
         }
         .hero-phone .phone-glow .phone-frame {
             box-shadow: none;
-            animation: phoneFloat 6s ease-in-out infinite;
+            animation: none;
         }
         @keyframes borderSpin {
             to { --border-angle: 360deg; }
@@ -531,28 +627,29 @@
             object-fit: cover;
             object-position: top center;
         }
+        .phone-screen video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
         /* Screenshot section phones: each sized to its image */
         .screenshots .phone-frame {
             width: 280px;
             aspect-ratio: 0.52;
         }
-        /* Health score phone: frame matches image ratio, cover prevents distortion */
-        .screenshots .screenshot-item:nth-child(2) .phone-frame {
-            width: 300px;
-            aspect-ratio: 0.598;
-        }
+        /* Health score image resized to match phone ratio — object-fit: cover fills cleanly */
         .screenshots .screenshot-item:nth-child(2) .phone-screen img {
             object-fit: cover;
             object-position: top center;
         }
-        /* Hero video (Rotato export with built-in phone frame) */
-        .hero-video {
-            max-width: 340px;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            animation: phoneFloat 6s ease-in-out infinite;
-            mix-blend-mode: lighten;
+        /* Hero phone: fill stretches image to exactly match frame */
+        .hero-phone .phone-frame {
+            width: 310px;
+            aspect-ratio: 0.604;
+        }
+        .hero-phone .phone-screen img {
+            object-fit: fill;
         }
         /* Placeholder for screenshots */
         .phone-placeholder {
@@ -579,7 +676,8 @@
             .hero-form { flex-direction: column; }
             .hero-form button { width: 100%; }
             .hero-phone { margin-top: 20px; }
-            .hero-phone .phone-frame { width: 240px; }
+            .hero-phone .phone-glow { transform: none; }
+            .hero-phone .phone-frame { width: 240px; animation: none; }
             .screenshots .phone-frame { width: 220px; }
             .screenshots .screenshot-item:nth-child(2) .phone-frame { width: 240px; }
             .hero-urgency { justify-content: center; }
@@ -1527,7 +1625,7 @@
     <header class="nav" id="nav" role="banner">
         <div class="nav-inner">
             <a href="#" class="nav-logo" aria-label="VetGPT Home">
-                <img src="logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"> VetGPT
+                <img src="logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"><span><span style="color:#ffffff;">Vet</span><span style="color:#10b981;">GPT</span></span>
             </a>
             <nav>
                 <ul class="nav-links">
@@ -1535,7 +1633,8 @@
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#journey">The Journey</a></li>
                     <li><a href="#founder">Story</a></li>
-                    <li><a href="#download" class="nav-cta">Get Early Access</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="https://apps.apple.com/app/vetgpt/id6757766151" class="nav-cta" target="_blank" rel="noopener">Download Free</a></li>
                 </ul>
             </nav>
             <button class="nav-hamburger" id="menuBtn" aria-label="Open menu">
@@ -1551,7 +1650,8 @@
         <a href="#how-it-works">How It Works</a>
         <a href="#journey">The Journey</a>
         <a href="#founder">Story</a>
-        <a href="#download" style="color:var(--green)">Get Early Access</a>
+        <a href="/blog/">Blog</a>
+        <a href="https://apps.apple.com/app/vetgpt/id6757766151" style="color:var(--green)" target="_blank" rel="noopener">Download Free</a>
     </div>
 
     <main id="main-content">
@@ -1564,23 +1664,33 @@
                 <div class="hero-inner">
                     <div class="hero-content">
                         <h1 class="reveal">It's 2am. Your pet is sick.<br><span class="accent-green">The internet is making it worse.</span></h1>
-                        <p class="hero-sub reveal reveal-delay-1">VetGPT™ is the AI that already knows your pet. Their meds. Their history. Their symptoms. Ask anything and get answers that actually understand your pet's situation.</p>
+                        <p class="hero-sub reveal reveal-delay-1">VetGPT is the AI that already knows your pet. Their meds. Their history. Their symptoms. Ask anything and get answers that actually understand your pet's situation.</p>
                         
-                        <div class="hero-success" id="heroSuccess" role="status" aria-live="polite">✓ You're on the list! We'll be in touch soon.</div>
-                        
-                        <form class="hero-form reveal reveal-delay-2" id="heroForm" onsubmit="handleSubmit(event, 'hero')">
-                            <input type="email" placeholder="Enter your email" required aria-label="Email address">
-                            <button type="submit">Get Early Access — Free</button>
-                        </form>
+                        <div class="hero-store-btns reveal reveal-delay-2">
+                            <a href="https://apps.apple.com/app/vetgpt/id6757766151" class="store-badge" aria-label="Download VetGPT on the App Store" target="_blank" rel="noopener">
+                                <span class="store-badge-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                                </span>
+                                <span class="store-badge-text">
+                                    <span class="store-badge-label">Download on the</span>
+                                    <span class="store-badge-store">App Store</span>
+                                </span>
+                            </a>
+                        </div>
                         <p class="hero-urgency reveal reveal-delay-3">
-                            <span class="urgency-dot"></span> Download now — all premium features free during early release
+                            <span class="urgency-dot"></span> Now live on iOS — all premium features free during early release
                         </p>
                     </div>
                     <div class="hero-phone reveal reveal-delay-2">
-                        <video class="hero-video" autoplay loop muted playsinline poster="hero-phone.png" aria-label="VetGPT app demo showing health tracking, AI chat, and pet dashboard">
-                            <source src="hero-loop.mp4" type="video/mp4">
-                            <img src="hero-phone.png" alt="VetGPT app showing pet health dashboard" width="256" height="546">
-                        </video>
+                        <div class="phone-glow">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <video autoplay muted loop playsinline>
+                                    <source src="hero-loop.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1820,7 +1930,7 @@
             <div class="container">
                 <div class="mid-cta-inner reveal">
                     <p class="mid-cta-text">Ready to try it?</p>
-                    <a href="#download" class="mid-cta-btn">Get Early Access — Free</a>
+                    <a href="https://apps.apple.com/app/vetgpt/id6757766151" class="mid-cta-btn" target="_blank" rel="noopener">Download Free on iOS</a>
                 </div>
             </div>
         </div>
@@ -1829,8 +1939,8 @@
         <section class="testimonial-section">
             <div class="container">
                 <div class="testimonial-card reveal">
-                    <p class="testimonial-label">From Our Early Users</p>
-                    <img src="jessica-avatar.png" alt="Guinea pig" class="testimonial-avatar" width="80" height="80" loading="lazy">
+
+                    <img src="jessica-avatar.png" alt="Jessica's guinea pig, a VetGPT user" class="testimonial-avatar" width="80" height="80" loading="lazy">
                     <p class="testimonial-quote">
                         When two of my guinea pigs fell ill at the same time, I had so many vet visits. All their info was already in one place and I never got them mixed up. The recording feature saved me. When the vet starts talking, my mind goes blank. Being able to go back and listen saved me.
                     </p>
@@ -1887,6 +1997,7 @@
                         </div>
                     </div>
                     <p class="founder-bottom reveal">You're not alone anymore.<br>Whether it's 2am or 2pm — VetGPT knows your pet and is ready to help.</p>
+                    <p class="founder-bottom reveal" style="font-size:0.85rem;opacity:0.7;margin-top:16px;">Built by a pet owner who lived this pain. Used by 30+ early adopters across 15+ species. Rated by real pet families.</p>
                 </div>
             </div>
         </section>
@@ -1944,20 +2055,14 @@
             <div class="final-cta-bg"></div>
             <div class="container">
                 <div class="final-inner">
-                    <p class="section-label reveal">✦ Early Access</p>
-                    <h2 class="section-title reveal">Be the first to try VetGPT</h2>
-                    <p class="section-sub reveal" style="margin: 0 auto;">We're launching soon on iOS &amp; Android. Download now and get all premium features free during early release.</p>
+                    <p class="section-label reveal">✦ Now Available</p>
+                    <h2 class="section-title reveal">Download VetGPT Free Today</h2>
+                    <p class="section-sub reveal" style="margin: 0 auto;">Now live on iOS. Android coming soon. Free to download — all premium features included.</p>
                     
-                    <div class="final-success" id="finalSuccess" role="status" aria-live="polite">✓ You're on the list! We'll be in touch soon.</div>
-                    
-                    <form class="final-form reveal" id="finalForm" onsubmit="handleSubmit(event, 'final')">
-                        <input type="email" placeholder="Enter your email" required aria-label="Email address">
-                        <button type="submit">Get Early Access — Free</button>
-                    </form>
-                    <p class="final-trust reveal">No spam, ever. Unsubscribe anytime.</p>
+
                     
                     <div class="final-badges reveal">
-                        <a href="#" class="store-badge" aria-label="Download on the App Store — Coming Soon">
+                        <a href="https://apps.apple.com/app/vetgpt/id6757766151" class="store-badge" aria-label="Download VetGPT on the App Store" target="_blank" rel="noopener">
                             <span class="store-badge-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             </span>
@@ -1965,7 +2070,6 @@
                                 <span class="store-badge-label">Download on the</span>
                                 <span class="store-badge-store">App Store</span>
                             </span>
-                            <span class="store-badge-soon">Soon</span>
                         </a>
                         <a href="#" class="store-badge" aria-label="Get it on Google Play — Coming Soon">
                             <span class="store-badge-icon">
@@ -1988,6 +2092,7 @@
         <div class="container">
             <div class="footer-inner">
                 <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
                     <li><a href="/exotic-pet-care.html">Exotic Pets</a></li>
                     <li><a href="/reptile-health-tracker.html">Reptiles</a></li>
                     <li><a href="/aquarium-fish-health.html">Aquarium</a></li>
@@ -2005,10 +2110,7 @@
     <div class="sticky-bar" id="stickyBar">
         <div class="sticky-inner">
             <p class="sticky-text"><strong>Free to download</strong> — all premium features included</p>
-            <form class="sticky-form" id="stickyForm" onsubmit="handleSubmit(event, 'sticky')">
-                <input type="email" placeholder="Your email" required aria-label="Email address">
-                <button type="submit">Get Early Access — Free</button>
-            </form>
+            <a href="https://apps.apple.com/app/vetgpt/id6757766151" class="sticky-download-btn" target="_blank" rel="noopener">Download on iOS</a>
             <button class="sticky-close" id="stickyClose" aria-label="Dismiss">&times;</button>
         </div>
     </div>
@@ -2114,88 +2216,7 @@
             link.addEventListener('click', closeMobile);
         });
 
-        // === Email validation ===
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        // === Supabase waitlist integration ===
-        const SUPABASE_URL = 'https://qaqfslivculjeqmmgjdo.supabase.co';
-        const SUPABASE_ANON = 'sb_publishable_nrIs7kTGxFC0IpV5juc8GQ_TeEli8ai';
-
-        // === Form submission with loading state + validation ===
-        async function handleSubmit(e, source) {
-            e.preventDefault();
-            const form = e.target;
-            const input = form.querySelector('input[type="email"]');
-            const button = form.querySelector('button[type="submit"]');
-            const email = input.value.trim().toLowerCase();
-
-            // Validate
-            if (!isValidEmail(email)) {
-                input.classList.add('input-error');
-                input.focus();
-                setTimeout(() => input.classList.remove('input-error'), 2000);
-                return;
-            }
-
-            // Prevent double submit
-            if (button.classList.contains('btn-loading')) return;
-
-            // Loading state
-            const originalText = button.textContent;
-            button.classList.add('btn-loading');
-            button.textContent = '';
-
-            try {
-                const res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_ANON,
-                        'Authorization': 'Bearer ' + SUPABASE_ANON,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({ email: email, source: source })
-                });
-
-                button.classList.remove('btn-loading');
-                button.textContent = originalText;
-
-                if (res.ok || res.status === 409) {
-                    // Success or already on list — show success UI either way
-                    if (source === 'hero') {
-                        document.getElementById('heroForm').style.display = 'none';
-                        document.getElementById('heroSuccess').style.display = 'block';
-                    } else if (source === 'final') {
-                        document.getElementById('finalForm').style.display = 'none';
-                        document.getElementById('finalSuccess').style.display = 'block';
-                    } else if (source === 'sticky') {
-                        stickyBar.classList.remove('visible');
-                        stickyBar.classList.add('dismissed');
-                        stickyDismissed = true;
-                        document.getElementById('finalForm').style.display = 'none';
-                        document.getElementById('finalSuccess').style.display = 'block';
-                        document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
-                    }
-                } else {
-                    throw new Error('Status ' + res.status);
-                }
-            } catch (err) {
-                console.error('Waitlist error:', err);
-                button.classList.remove('btn-loading');
-                button.textContent = originalText;
-                input.classList.add('input-error');
-                setTimeout(() => input.classList.remove('input-error'), 3000);
-            }
-        }
-
-        // Clear error state on input
-        document.querySelectorAll('input[type="email"]').forEach(input => {
-            input.addEventListener('input', () => {
-                input.classList.remove('input-error');
-            });
-        });
+        // Waitlist forms removed — app is now live on the App Store
     </script>
 </body>
 </html>
