@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VetGPT Creator Program</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="/images/app-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #121212; --navy-mid: #1E1E1E; --navy-light: #2a2a2a;
+    --green: #1DB954; --green-glow: rgba(29,185,84,0.15);
+    --white: #FFFFFF; --muted: #B3B3B3; --border: rgba(29,185,84,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+  .page { max-width: 780px; margin: 0 auto; padding: 48px 40px; position: relative; }
+  .page::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(16,185,129,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.04) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .content { position: relative; z-index: 1; }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .logo-lockup { display: flex; flex-direction: column; gap: 6px; }
+  .logo-text { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--green); }
+  .program-badge { display: inline-block; background: var(--green-glow); border: 1px solid var(--border); color: var(--green); font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; }
+  .header-right { text-align: right; }
+  .founders-pill { background: linear-gradient(135deg, var(--green), #059669); color: #fff; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+  .header-sub { font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.4; max-width: 180px; margin-left: auto; }
+
+  .intro { background: var(--navy-mid); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; }
+  .intro p { color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+  .intro strong { color: var(--white); }
+
+  .section-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .annual-hero { background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.04)); border: 1px solid rgba(16,185,129,0.35); border-radius: 10px; padding: 24px 28px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+  .annual-hero-left h3 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: var(--green); margin-bottom: 6px; line-height: 1.3; }
+  .annual-hero-left p { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .annual-hero-left p strong { color: var(--white); }
+  .commission-split { display: flex; flex-direction: column; gap: 10px; }
+  .comm-row { background: var(--navy-light); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.06); }
+  .comm-row.annual { border-color: rgba(16,185,129,0.3); }
+  .comm-label { font-size: 11.5px; color: var(--muted); }
+  .comm-amount { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; }
+  .comm-amount.green { color: var(--green); }
+  .comm-amount.dim { color: var(--muted); font-size: 15px; }
+  .comm-note { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
+  .comm-note.green { color: var(--green); opacity: 0.8; }
+
+  .tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+  .tier-card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 18px 20px; }
+  .tier-num { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .tier-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .tier-amount { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 12px; }
+  .tier-amount small { font-size: 12px; font-weight: 400; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+  .tier-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .tier-items li { font-size: 12px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
+  .tier-items li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 10px; top: 2px; }
+  .tier-items li strong { color: var(--white); }
+  .tier-tag { display: inline-block; background: rgba(16,185,129,0.1); border: 1px solid var(--border); color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+
+  /* Rules callout */
+  .rules-bar { background: rgba(16,185,129,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .rule-item { display: flex; gap: 10px; align-items: flex-start; }
+  .rule-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .rule-text { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+  .rule-text strong { color: var(--white); display: block; margin-bottom: 2px; font-size: 12px; }
+
+  .activation { background: linear-gradient(135deg, rgba(11,22,40,0.8), rgba(17,31,56,0.8)); border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid var(--green); border-radius: 8px; padding: 22px 24px; margin-bottom: 32px; }
+  .activation-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .activation-icon { width: 36px; height: 36px; background: var(--green-glow); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .activation-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); }
+  .activation-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  .activation-body { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+  .activation-body strong { color: var(--white); }
+  .resource-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .resource-pill { background: var(--navy-light); border: 1px solid var(--border); color: var(--green); font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: 500; }
+
+  .verify-section { margin-bottom: 32px; }
+  .verify-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .verify-card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 16px 18px; }
+  .verify-card-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .verify-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .verify-card p strong { color: var(--white); }
+
+  .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 32px; }
+  .ask-item { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; background: var(--navy-mid); border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
+  .ask-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .ask-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .ask-text strong { color: var(--white); }
+
+  .payment-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 36px; }
+  .payment-step { text-align: center; padding: 18px 14px; background: var(--navy-mid); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .step-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); opacity: 0.4; line-height: 1; margin-bottom: 8px; }
+  .step-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .step-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .footer { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-left { font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+  .footer-left strong { color: var(--white); }
+  .referral-box { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; text-align: right; }
+  .referral-label { font-family: 'Syne', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .referral-code { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--green); letter-spacing: 3px; }
+  .referral-note { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .page { padding: 30px; } }
+</style>
+</head>
+<body>
+<div class="page"><div class="content">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-lockup">
+      <div class="logo-text">Vet<span>GPT</span>™</div>
+      <div class="program-badge">Creator Program</div>
+    </div>
+    <div class="header-right">
+      <div class="founders-pill">⚡ Founder's Pricing Period</div>
+      <div class="header-sub">Price increases as we grow — your commission does too.</div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro">
+    <p>You're joining at the ground floor. VetGPT is an AI pet health app supporting 64+ species — the only app that records vet visits, scans prescriptions, and gives every pet owner an AI that actually knows their animal. <strong>We pay you to share it.</strong> Every video stays up forever. Every subscriber you refer keeps paying you 30% of net revenue for as long as they're subscribed.</p>
+  </div>
+
+  <!-- Annual push -->
+  <div class="section-label">Always Push Annuals — Here's Why</div>
+  <div class="annual-hero">
+    <div class="annual-hero-left">
+      <h3>Annual subs are 6.6× more valuable to you.</h3>
+      <p>Monthly signup earns you <strong>$0.76</strong>. Annual signup earns you <strong>$5.10</strong> — paid immediately, plus 30% of net on every renewal. Always direct your audience to the annual plan. It's the better deal for them too: $19.99/year vs $35.88 billed monthly.</p>
+    </div>
+    <div class="commission-split">
+      <div class="comm-row annual">
+        <div>
+          <div class="comm-label">Annual Plan — $19.99/yr</div>
+          <div class="comm-note green">✓ Always recommend this</div>
+        </div>
+        <div style="text-align:right">
+          <div class="comm-amount green">$5.10</div>
+          <div class="comm-note">30% of net per referral</div>
+        </div>
+      </div>
+      <div class="comm-row">
+        <div>
+          <div class="comm-label">Monthly Plan — $2.99/mo</div>
+          <div class="comm-note">Earns over time</div>
+        </div>
+        <div style="text-align:right">
+          <div class="comm-amount dim">$0.76</div>
+          <div class="comm-note">30% of net per referral/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content rules callout -->
+  <div class="section-label">Content Rules</div>
+  <div class="rules-bar">
+    <div class="rule-item">
+      <div class="rule-icon">📅</div>
+      <div class="rule-text">
+        <strong>One video per week</strong>
+        Max 4/month but spread out — one per week minimum. No batch posting.
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">🔄</div>
+      <div class="rule-text">
+        <strong>Different feature each time</strong>
+        Each of your 4 videos must cover a different feature. No repeating the same one.
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">📌</div>
+      <div class="rule-text">
+        <strong>Stay live for 30 days</strong>
+        Videos must remain posted for at least 30 days. Deleting early forfeits the bounty.
+      </div>
+    </div>
+  </div>
+
+  <!-- Tiers -->
+  <div class="section-label">How You Earn</div>
+  <div class="tier-grid">
+
+    <div class="tier-card">
+      <div class="tier-num">Tier 1</div>
+      <div class="tier-title">Content Bounties</div>
+      <div class="tier-amount">$20 <small>/ video</small></div>
+      <ul class="tier-items">
+        <li>Show your <strong>actual pet in the app</strong> — health score, logs, AI chat. Your pet is the star.</li>
+        <li>Cover <strong>one feature</strong> per video: AI chat, prescription scan, med tracking, health score, journey photos, or vet recording</li>
+        <li>Include your referral code in video or caption</li>
+        <li>Tag <strong>@vetgpt</strong> on your platform</li>
+        <li>30+ seconds · posted to your main platform</li>
+        <li><strong>One video per week · max 4/month · different feature each time</strong></li>
+        <li>Video must stay live for 30 days</li>
+        <li>Bonus: <strong>+$5</strong> at 1K views · <strong>+$10</strong> at 5K views</li>
+      </ul>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-num">Tier 2</div>
+      <div class="tier-title">Premium Referral Bonus <span class="tier-tag">This Month</span></div>
+      <div class="tier-amount">$3 <small>/ premium sub</small></div>
+      <ul class="tier-items">
+        <li><strong>$3</strong> for every new subscriber who uses your referral code at the premium paywall</li>
+        <li>This is <strong>on top of</strong> your ongoing 30% of net commission</li>
+        <li>Users enter your code at the paywall — tracked automatically</li>
+        <li>Only premium conversions are trackable — free signups don't count</li>
+        <li>Capped at <strong>$30/month</strong> per creator (10 subs)</li>
+        <li>Time-limited — first month of the program only</li>
+      </ul>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-num">Tier 3</div>
+      <div class="tier-title">Monthly Top Creator</div>
+      <div class="tier-amount">$50 <small>bonus</small></div>
+      <ul class="tier-items">
+        <li>Awarded to the creator with the most views <strong>or</strong> most premium signups that month — whichever is higher</li>
+        <li>Announced in the creator group chat</li>
+        <li>Friendly competition, real money</li>
+      </ul>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-num">Tier 4</div>
+      <div class="tier-title">Feature Bounties</div>
+      <div class="tier-amount">$5–10 <small>/ shipped</small></div>
+      <ul class="tier-items">
+        <li><strong>$5</strong> for a validated bug report that gets fixed</li>
+        <li><strong>$10</strong> for a feature request that ships</li>
+        <li>You use it daily — you'll spot things we miss</li>
+        <li>Capped at <strong>3 payouts per creator per month</strong></li>
+        <li>Recognition in the creator chat when your suggestion goes live</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Activation -->
+  <div class="activation">
+    <div class="activation-header">
+      <div class="activation-icon">🚀</div>
+      <div>
+        <div class="activation-title">Before You Post — Get Comfortable First</div>
+        <div class="activation-sub">The best content comes from genuine daily familiarity.</div>
+      </div>
+    </div>
+    <div class="activation-body">
+      If you haven't been using VetGPT daily yet, <strong>spend 3–5 days with it before filming</strong>. Add your pet's details, ask the AI a real question about your animal, explore the features that fit your pet's species. Your audience will instantly feel the difference between someone who genuinely uses an app and someone reading off a spec sheet.<br><br>
+      <strong>We'll give you everything you need — just ask.</strong>
+    </div>
+    <div class="resource-pills">
+      <span class="resource-pill">📋 Full Feature List</span>
+      <span class="resource-pill">💬 Talking Points by Feature</span>
+      <span class="resource-pill">❓ FAQ Answers</span>
+      <span class="resource-pill">🐾 Species-Specific Tips</span>
+      <span class="resource-pill">📸 Demo Assets</span>
+    </div>
+  </div>
+
+  <!-- Verification -->
+  <div class="verify-section">
+    <div class="section-label">Submitting & Verification</div>
+    <div class="verify-grid">
+      <div class="verify-card">
+        <div class="verify-card-title">📲 How to Submit</div>
+        <p>Once your video is live, drop the <strong>video link</strong> + a <strong>screenshot of your native analytics</strong> in the creator group chat. Josh verifies within 24 hours.</p>
+      </div>
+      <div class="verify-card">
+        <div class="verify-card-title">📊 What Analytics to Screenshot</div>
+        <p>Use your platform's <strong>creator dashboard</strong> — not the public view count. TikTok: Creator Center → Video. Instagram: Post Insights. Shows real reach, can't be gamed.</p>
+      </div>
+      <div class="verify-card">
+        <div class="verify-card-title">💳 Referral Tracking</div>
+        <p>Your code is entered by users at the <strong>premium paywall</strong> during signup — tracked automatically. Nothing to manage on your end.</p>
+      </div>
+      <div class="verify-card">
+        <div class="verify-card-title">💸 Payment Schedule</div>
+        <p>Paid <strong>bi-weekly</strong> via Venmo or PayPal. Content bounties within 48 hours of verification. Referral commissions on the bi-weekly cycle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- What we ask -->
+  <div class="section-label">What We Ask in Return</div>
+  <div class="ask-grid">
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Show your pet.</strong> Real animals, real app. Your followers are here for your pets — let them be the star.</div></div>
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Be honest.</strong> Genuine usage beats a scripted demo every time. Your audience trusts you because you're authentic.</div></div>
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Give feedback.</strong> Tell us what's confusing, missing, or great. You're our best product advisors.</div></div>
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Leave a review.</strong> An App Store review from a real user is worth more than any ad we could run.</div></div>
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Tag us.</strong> @vetgpt on TikTok and Instagram — helps us find your content and amplify it.</div></div>
+    <div class="ask-item"><div class="ask-dot"></div><div class="ask-text"><strong>Pass it on.</strong> Know someone with reptiles, fish, or exotics who'd be a good fit? Bring them in.</div></div>
+  </div>
+
+  <!-- Payment steps -->
+  <div class="section-label">How Payment Works</div>
+  <div class="payment-row">
+    <div class="payment-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Post Your Video</div>
+      <div class="step-desc">Drop the link + native analytics screenshot in the creator group chat</div>
+    </div>
+    <div class="payment-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Josh Verifies</div>
+      <div class="step-desc">Reviewed within 24 hours — confirmed or feedback given same day</div>
+    </div>
+    <div class="payment-step">
+      <div class="step-num">03</div>
+      <div class="step-title">You Get Paid</div>
+      <div class="step-desc">Venmo or PayPal — bi-weekly cycle, bounties within 48 hrs of verification</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      Questions? DM Josh directly — always.<br>
+      <strong>Commissions paid on net revenue received.</strong><br>
+      Referral signups tracked automatically at the premium paywall.
+    </div>
+    <div class="referral-box">
+      <div class="referral-label">Your Referral Code</div>
+      <div class="referral-code">[CODE]</div>
+      <div class="referral-note">Users enter this at the premium paywall during signup</div>
+    </div>
+  </div>
+
+</div></div>
+</body>
+</html>
