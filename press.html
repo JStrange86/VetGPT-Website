@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetGPT Press Kit</title>
+  <meta name="description" content="Press resources for VetGPT, the AI pet health app supporting 64+ species. Founder story, key facts, logos, and media contact.">
+  <meta property="og:title" content="VetGPT Press Kit">
+  <meta property="og:description" content="Press resources for VetGPT, the AI pet health app.">
+  <meta property="og:image" content="https://vetgpt.app/og-image.png">
+  <meta property="og:url" content="https://vetgpt.app/press">
+  <link rel="icon" type="image/png" href="/images/app-icon.png">
+  <link rel="canonical" href="https://vetgpt.app/press">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --green: #10b981;
+      --green-glow: rgba(16,185,129,0.15);
+      --purple: #8b5cf6;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; max-width: 800px; margin: 0 auto; }
+    .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; }
+    .nav a:hover { color: var(--text); }
+    .nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+
+    .hero { text-align: center; margin-bottom: 60px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .hero p { color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+    .section { margin-bottom: 48px; }
+    .section h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 16px; color: var(--green); }
+    .section p { color: var(--text-secondary); margin-bottom: 16px; font-size: 15px; }
+
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+    .card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .card p { color: var(--text-secondary); font-size: 14px; margin-bottom: 0; }
+
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .fact { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+    .fact-number { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--green); }
+    .fact-label { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+
+    .quote { border-left: 3px solid var(--green); padding: 16px 20px; margin: 24px 0; background: rgba(16,185,129,0.05); border-radius: 0 12px 12px 0; }
+    .quote p { color: var(--text); font-style: italic; font-size: 15px; margin-bottom: 0; }
+
+    .features-list { list-style: none; padding: 0; }
+    .features-list li { color: var(--text-secondary); font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+    .features-list li:last-child { border-bottom: none; }
+    .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    .contact-card { background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(139,92,246,0.1)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 32px; text-align: center; }
+    .contact-card h2 { color: var(--text); margin-bottom: 8px; }
+    .contact-card p { color: var(--text-secondary); margin-bottom: 16px; }
+    .contact-email { color: var(--green); font-size: 18px; font-weight: 600; text-decoration: none; }
+    .contact-email:hover { text-decoration: underline; }
+
+    .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; justify-content: center; }
+    .link-pill { display: inline-block; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 13px; transition: all 0.2s; }
+    .link-pill:hover { border-color: var(--green); color: var(--green); }
+
+    .logo-download { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+    .logo-preview { width: 80px; height: 80px; border-radius: 18px; border: 1px solid var(--border); }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 16px 60px; }
+      .facts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-logo">Vet<span>GPT</span></a>
+    <a href="/">Back to home</a>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Press Kit</h1>
+      <p>Everything you need to cover VetGPT. Story angles, key facts, logos, and contact.</p>
+    </div>
+
+    <!-- THE STORY -->
+    <div class="section">
+      <h2>The Story</h2>
+      <p>In late 2024, Phoenix father Josh Strange lost three dogs to cancer in the span of a few months while his wife was pregnant. He was recording vet visits just to process them later, and nothing existed that kept his pets' history in one place or made sense of it.</p>
+      <p>So he built VetGPT: an AI pet health assistant that knows your specific pet. Upload years of vet records and the AI knows every diagnosis, medication, and lab value. Ask about a symptom and it recalls the vet visit from three months ago you forgot. Record a vet appointment and get a plain-English summary of everything the vet said.</p>
+      <p>He even built a memorial into the app (the "Rainbow Bridge" In Memory section) because of his own losses. Every log, every vet visit, every photo is preserved when a pet passes.</p>
+      <p>VetGPT launched in early 2025 and is now live on iOS and Android, supporting 64+ species and used in 31 countries. AP News covered the launch.</p>
+    </div>
+
+    <!-- KEY FACTS -->
+    <div class="section">
+      <h2>Key Facts</h2>
+      <div class="facts-grid">
+        <div class="fact">
+          <div class="fact-number">64+</div>
+          <div class="fact-label">Species supported</div>
+        </div>
+        <div class="fact">
+          <div class="fact-number">31</div>
+          <div class="fact-label">Countries</div>
+        </div>
+        <div class="fact">
+          <div class="fact-number">iOS + Android</div>
+          <div class="fact-label">Platforms</div>
+        </div>
+        <div class="fact">
+          <div class="fact-number">$2.99/mo</div>
+          <div class="fact-label">Founding member pricing</div>
+        </div>
+      </div>
+      <p>Founded by Josh Strange in Phoenix, Arizona. Solo-built and bootstrapped. The app supports dogs, cats, reptiles, birds, fish, horses, exotic pets, and more, each with species-specific health tracking and AI advice.</p>
+    </div>
+
+    <!-- WHAT MAKES IT DIFFERENT -->
+    <div class="section">
+      <h2>What Makes VetGPT Different</h2>
+      <div class="quote">
+        <p>"Every pet app tracks health data. Only VetGPT turns that data into an AI that knows your specific pet."</p>
+      </div>
+      <ul class="features-list">
+        <li><span class="check">+</span> AI health assistant that accesses your pet's full medical history, medications, lab values, and vet visit notes when answering questions</li>
+        <li><span class="check">+</span> Document scanner: upload vet records, prescriptions, or lab results and the AI extracts diagnoses, medications, lab values, and follow-ups automatically</li>
+        <li><span class="check">+</span> Vet visit audio recording with AI transcription: never forget what the vet said</li>
+        <li><span class="check">+</span> Weekly AI photo comparison: take one photo a week and the AI tracks changes in coat, weight, posture, and eyes</li>
+        <li><span class="check">+</span> 64+ species with species-aware AI: different health advice for a bearded dragon than a golden retriever</li>
+        <li><span class="check">+</span> Health score (0-100) that adapts scoring by species, with category breakdowns</li>
+        <li><span class="check">+</span> Share complete health records with any vet in one tap (PDF or secure link)</li>
+        <li><span class="check">+</span> Family sharing so everyone in the household stays informed</li>
+        <li><span class="check">+</span> Vet-complementary: "We don't replace your vet. We make you the most prepared person in the exam room."</li>
+      </ul>
+    </div>
+
+    <!-- SPECIES -->
+    <div class="section">
+      <h2>Species Supported</h2>
+      <p>Dogs, cats, rabbits, guinea pigs, hamsters, ferrets, hedgehogs, sugar gliders, parrots, cockatiels, finches, canaries, chickens, ducks, bearded dragons, ball pythons, leopard geckos, turtles, tortoises, chameleons, frogs, axolotls, goldfish, bettas, tropical fish, koi, horses, goats, sheep, alpacas, miniature pigs, capybaras, tarantulas, hermit crabs, and many more.</p>
+      <p>Species-specific features include water chemistry tracking for fish, shedding cycle logs for reptiles, egg production tracking for poultry, husbandry logging for exotics, and molt cycle tracking for invertebrates.</p>
+    </div>
+
+    <!-- NOTABLE COVERAGE -->
+    <div class="section">
+      <h2>Previous Coverage</h2>
+      <div class="card">
+        <h3>Associated Press</h3>
+        <p>AP News covered VetGPT's launch, providing national wire coverage.</p>
+      </div>
+    </div>
+
+    <!-- LOGOS & ASSETS -->
+    <div class="section">
+      <h2>Logo & Assets</h2>
+      <div class="logo-download">
+        <img src="/images/app-icon.png" alt="VetGPT app icon" class="logo-preview">
+        <div>
+          <p style="color: var(--text); font-weight: 500; margin-bottom: 4px;">App Icon</p>
+          <p style="font-size: 13px;">Right-click to download. Available in PNG format.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDER BIO -->
+    <div class="section">
+      <h2>About the Founder</h2>
+      <p><strong>Josh Strange</strong> is a Phoenix-based technologist and pet owner. After losing three dogs to cancer in 2024, he built VetGPT as a solo developer using React Native, Supabase, Claude AI, and OpenAI Whisper. He lives in Phoenix with his wife, son, and two dachshunds (Cruz and Mosley).</p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-card">
+      <h2>Media Contact</h2>
+      <p>For press inquiries, interviews, or demo requests:</p>
+      <a href="mailto:press@vetgpt.app" class="contact-email">press@vetgpt.app</a>
+      <div class="links">
+        <a href="https://apps.apple.com/app/vetgpt/id6738029301" class="link-pill">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.vetgpt.app" class="link-pill">Google Play</a>
+        <a href="https://www.instagram.com/vetgptapp/" class="link-pill">Instagram</a>
+        <a href="https://www.tiktok.com/@vegpt" class="link-pill">TikTok</a>
+        <a href="https://x.com/vetgptapp" class="link-pill">X / Twitter</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
