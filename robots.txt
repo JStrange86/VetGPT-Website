@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /reviewers.html
+Disallow: /reviewers
 
 Sitemap: https://vetgpt.app/sitemap.xml
