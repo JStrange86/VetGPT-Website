@@ -44,6 +44,7 @@
         .nav-logo-img { width: 32px; height: 32px; object-fit: contain; border-radius: 8px; }
         .nav-cta { display: inline-block; padding: 0.5rem 1.25rem; background: var(--accent-cyan); color: #000; font-weight: 600; font-size: 0.85rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
         .nav-cta:hover { opacity: 0.9; }
+        .nav-mid { display:flex; gap:1.4rem; align-items:center; } .nav-mid a { color:#b9b9c8; text-decoration:none; font-size:0.9rem; font-weight:500; transition:color 0.2s; } .nav-mid a:hover { color:#fff; } @media(max-width:760px){ .nav-mid { display:none; } }
 
         .hero { padding: 8rem 2rem 5rem; text-align: center; position: relative; }
         .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(6,182,212,0.07) 0%, rgba(59,130,246,0.03) 40%, transparent 70%); pointer-events: none; }
@@ -216,6 +217,7 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="https://vetgpt.app" class="nav-logo"><img src="https://vetgpt.app/logo-black.png" alt="VetGPT" class="nav-logo-img" width="32" height="32"><span><span style="color:#ffffff;">Vet</span><span style="color:#10b981;">GPT</span><sup style="font-size:.5em;vertical-align:super;color:#10b981;font-weight:600;">™</sup></span></a>
+            <nav class="nav-mid"><a href="/reptile-health-tracker/">Reptiles</a><a href="/exotic-pet-care/">Exotics</a><a href="/aquarium-fish-health/">Aquarium</a><a href="/blog/">Blog</a></nav>
             <a href="/download/" class="nav-cta">Download Free</a>
         </div>
     </nav>
