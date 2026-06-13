@@ -1626,7 +1626,7 @@
     <header class="nav" id="nav" role="banner">
         <div class="nav-inner">
             <a href="#" class="nav-logo" aria-label="VetGPT Home">
-                <img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"><span><span style="color:#ffffff;">Vet</span><span style="color:#10b981;">GPT</span></span>
+                <img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"><span><span style="color:#ffffff;">Vet</span><span style="color:#10b981;">GPT</span><sup style="font-size:.5em;vertical-align:super;color:#10b981;font-weight:600;">™</sup></span>
             </a>
             <nav>
                 <ul class="nav-links">
@@ -2058,7 +2058,7 @@
                 <div class="final-inner">
                     <p class="section-label reveal">✦ Now Available</p>
                     <h2 class="section-title reveal">Download VetGPT Free Today</h2>
-                    <p class="section-sub reveal" style="margin: 0 auto;">Now live on iOS. Android coming soon. Free to download - all premium features included.</p>
+                    <p class="section-sub reveal" style="margin: 0 auto;">Now live on iOS and Android. Free to download.</p>
                     
 
                     
@@ -2072,7 +2072,7 @@
                                 <span class="store-badge-store">App Store</span>
                             </span>
                         </a>
-                        <a href="#" class="store-badge" aria-label="Get it on Google Play - Coming Soon">
+                        <a href="https://play.google.com/store/apps/details?id=com.vetgpt.app" class="store-badge" aria-label="Get it on Google Play" target="_blank" rel="noopener">
                             <span class="store-badge-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 1.28c-.2.22-.33.53-.33.93v19.57c0 .4.13.72.34.94l.05.05L14.3 11.73v-.25L3.23 1.23l-.05.05zM17.99 15.42l-3.7-3.7v-.25l3.7-3.69.08.05 4.38 2.49c1.25.71 1.25 1.87 0 2.58l-4.38 2.49-.08.03zM17.91 15.53L14.18 11.8 3.37 22.62c.41.43 1.09.49 1.85.06l12.69-7.15zM17.91 8.06L5.22 .91c-.76-.43-1.44-.37-1.85.06L14.18 11.8l3.73-3.74z"/></svg>
                             </span>
@@ -2080,7 +2080,6 @@
                                 <span class="store-badge-label">GET IT ON</span>
                                 <span class="store-badge-store">Google Play</span>
                             </span>
-                            <span class="store-badge-soon">Soon</span>
                         </a>
                     </div>
                 </div>
@@ -2107,15 +2106,6 @@
         </div>
     </footer>
 
-    <!-- ========== STICKY BOTTOM BAR ========== -->
-    <div class="sticky-bar" id="stickyBar">
-        <div class="sticky-inner">
-            <p class="sticky-text"><strong>Free to download</strong> - all premium features included</p>
-            <a href="https://apps.apple.com/app/vetgpt/id6757766151" class="sticky-download-btn" target="_blank" rel="noopener">Download on iOS</a>
-            <button class="sticky-close" id="stickyClose" aria-label="Dismiss">&times;</button>
-        </div>
-    </div>
-
     <!-- ========== JAVASCRIPT ========== -->
     <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
     <script>
@@ -2132,9 +2122,7 @@
 
         // === Nav scroll state + aurora parallax ===
         const nav = document.getElementById('nav');
-        const stickyBar = document.getElementById('stickyBar');
         const heroAurora = document.querySelector('.hero-aurora');
-        let stickyDismissed = false;
 
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
@@ -2143,24 +2131,10 @@
             } else {
                 nav.classList.remove('scrolled');
             }
-            if (!stickyDismissed) {
-                if (scrollY > 600) {
-                    stickyBar.classList.add('visible');
-                } else {
-                    stickyBar.classList.remove('visible');
-                }
-            }
             // Aurora parallax - subtle shift based on scroll
             if (heroAurora && scrollY < 900) {
                 heroAurora.style.transform = `translateY(${scrollY * 0.08}px)`;
             }
-        });
-
-        // === Sticky bar dismiss ===
-        document.getElementById('stickyClose').addEventListener('click', () => {
-            stickyBar.classList.remove('visible');
-            stickyBar.classList.add('dismissed');
-            stickyDismissed = true;
         });
 
         // === Mobile menu with focus trapping ===
