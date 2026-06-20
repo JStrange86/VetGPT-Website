@@ -311,33 +311,43 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://qaqfslivculjeqmmgjdo.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhcWZzbGl2Y3VsamVxbW1namRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA3NzE0NDksImV4cCI6MjA1NjM0NzQ0OX0.sB13-ETCr7Uiibv36SjX-OKqZVaEajfDmyFJl0xIZe8';
+        // Attribution + store-click tracking for paid/UTM traffic (added Jun 19, 2026).
+        // 1) Propagate incoming UTM params into the Google Play install referrer so Play
+        //    Console attributes the install to its source (e.g. TikTok paid). Apple ignores
+        //    URL referrers (ASA-API only), so the iOS link stays clean.
+        // 2) Fire a labeled GA4 'store_click' event (store: ios|android) on each button so
+        //    iOS vs Android intent is conversion-grade, not an unlabeled outbound click.
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+            var utmPairs = utmKeys
+                .map(function (k) { var v = params.get(k); return v ? k + '=' + v : null; })
+                .filter(Boolean);
 
-        async function handleAndroid(e) {
-            e.preventDefault();
-            const email = e.target.querySelector('input').value;
-            try {
-                await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_KEY,
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({ email, source: 'android-waitlist-download-page' })
-                });
-            } catch(err) {}
-            document.getElementById('androidForm').style.display = 'none';
-            document.getElementById('androidSuccess').style.display = 'block';
-        }
+            var iosBtn = document.querySelector('a[href*="apps.apple.com"]');
+            var androidBtn = document.querySelector('a[href*="play.google.com"]');
 
-        // Auto-detect: if Android, swap button appearance (still sends to App Store for now)
-        if (/android/i.test(navigator.userAgent)) {
-            document.querySelector('.android-label').style.display = 'none';
-            document.getElementById('androidForm').style.display = 'none';
-        }
+            // Google Play install referrer (URL-encoded UTM string), only when UTMs are present.
+            if (androidBtn && utmPairs.length) {
+                var base = androidBtn.getAttribute('href');
+                if (base.indexOf('referrer=') === -1) {
+                    var joiner = base.indexOf('?') === -1 ? '?' : '&';
+                    androidBtn.setAttribute('href', base + joiner + 'referrer=' + encodeURIComponent(utmPairs.join('&')));
+                }
+            }
+
+            function fireStoreClick(store) {
+                try {
+                    gtag('event', 'store_click', {
+                        store: store,
+                        utm_source: params.get('utm_source') || '',
+                        utm_campaign: params.get('utm_campaign') || ''
+                    });
+                } catch (e) {}
+            }
+            if (iosBtn) iosBtn.addEventListener('click', function () { fireStoreClick('ios'); });
+            if (androidBtn) androidBtn.addEventListener('click', function () { fireStoreClick('android'); });
+        })();
     </script>
 </body>
 </html>
