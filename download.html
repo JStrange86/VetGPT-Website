@@ -262,7 +262,10 @@
                     gtag('event', 'store_click', {
                         store: store,
                         utm_source: params.get('utm_source') || '',
-                        utm_campaign: params.get('utm_campaign') || ''
+                        utm_campaign: params.get('utm_campaign') || '',
+                        // sendBeacon survives the immediate app-switch when iOS opens the App Store,
+                        // so iOS taps aren't lost when Safari unloads before the event flushes.
+                        transport_type: 'beacon'
                     });
                 } catch (e) {}
             }
