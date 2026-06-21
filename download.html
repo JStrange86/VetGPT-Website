@@ -12,15 +12,15 @@
   </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download VetGPT™ - Free on iOS</title>
+    <title>Download VetGPT™ - Free on iOS &amp; Android</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="canonical" href="https://vetgpt.app/download/">
-    <meta name="description" content="Download VetGPT free on iOS. AI-powered pet health for 64+ species. All premium features free during early release.">
+    <meta name="description" content="Download VetGPT free on iOS and Android. AI-powered pet health for 64+ species. All premium features free during early release.">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Download VetGPT Free">
-    <meta property="og:description" content="The AI pet health app that knows your pet's full history. 64+ species. Free on iOS.">
+    <meta property="og:description" content="The AI pet health app that knows your pet's full history. 64+ species. Free on iOS &amp; Android.">
     <meta property="og:image" content="https://vetgpt.app/og-image.png">
     <meta property="og:url" content="https://vetgpt.app/download">
 
@@ -33,7 +33,6 @@
     <style>
         :root {
             --bg: #0a0f1a;
-            --bg-card: rgba(255,255,255,0.04);
             --border: rgba(255,255,255,0.08);
             --text: #ffffff;
             --text-secondary: #9ca3af;
@@ -60,11 +59,12 @@
 
         .wrap {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0;
+            position: relative;
+            z-index: 1;
         }
 
         /* App icon */
@@ -76,17 +76,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             box-shadow: 0 0 40px var(--green-glow);
             overflow: hidden;
+            font-size: 48px;
         }
 
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 22px;
-        }
+        .app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; }
 
         /* Wordmark */
         .app-name {
@@ -94,44 +90,29 @@
             font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .app-name span { color: var(--green); }
 
         .app-tagline {
-            font-size: 1rem;
+            font-size: 1.02rem;
             color: var(--text-secondary);
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 18px;
             line-height: 1.5;
         }
 
-        /* Stats row */
-        .stats {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 36px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .stat {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 8px 14px;
-            font-size: 0.82rem;
+        /* Single trust line */
+        .trust {
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            white-space: nowrap;
+            margin-bottom: 34px;
+            letter-spacing: 0.02em;
         }
+        .trust .star { color: var(--green); }
 
-        .stat strong {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        /* iOS Download button */
+        /* Primary store button */
         .btn-appstore {
             display: flex;
             align-items: center;
@@ -153,25 +134,10 @@
         .btn-appstore:hover { opacity: 0.9; transform: translateY(-1px); }
         .btn-appstore:active { transform: scale(0.98); }
 
-        .btn-appstore svg {
-            width: 28px;
-            height: 28px;
-            flex-shrink: 0;
-            fill: #000;
-        }
+        .btn-appstore svg { width: 28px; height: 28px; flex-shrink: 0; fill: #000; }
 
-        .btn-appstore-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .btn-appstore-text small {
-            font-size: 0.72rem;
-            font-weight: 500;
-            opacity: 0.7;
-            font-family: var(--font-body);
-        }
+        .btn-appstore-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .btn-appstore-text small { font-size: 0.72rem; font-weight: 500; opacity: 0.7; font-family: var(--font-body); }
 
         .free-badge {
             margin-left: auto;
@@ -182,69 +148,30 @@
             font-weight: 700;
         }
 
-        /* Android section */
-        .android-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .android-form {
-            width: 100%;
-            display: flex;
-            gap: 8px;
-            margin-bottom: 32px;
-        }
-
-        .android-form input {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 16px;
-            color: var(--text);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .android-form input:focus { border-color: var(--green); }
-        .android-form input::placeholder { color: var(--text-secondary); }
-
-        .android-form button {
+        /* Secondary (the non-matching platform) collapses to a quiet text link */
+        .btn-appstore.secondary {
             background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 16px;
-            color: var(--text);
+            box-shadow: none;
+            color: var(--text-secondary);
+            padding: 12px;
             font-family: var(--font-body);
-            font-size: 0.85rem;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: border-color 0.2s, color 0.2s;
+            font-weight: 500;
+            font-size: 0.88rem;
+            justify-content: center;
+            margin-bottom: 0;
+            margin-top: 4px;
         }
-
-        .android-form button:hover { border-color: var(--green); color: var(--green); }
-
-        .android-success {
-            display: none;
-            color: var(--green);
-            font-size: 0.85rem;
-            text-align: center;
-            margin-bottom: 32px;
-        }
+        .btn-appstore.secondary:hover { opacity: 1; color: var(--text); transform: none; }
 
         /* Footer link */
         .back-link {
-            font-size: 0.8rem;
+            margin-top: 28px;
+            font-size: 0.78rem;
             color: var(--text-secondary);
             text-decoration: none;
-            opacity: 0.6;
+            opacity: 0.5;
             transition: opacity 0.2s;
         }
-
         .back-link:hover { opacity: 1; }
 
         /* Ambient glow */
@@ -260,8 +187,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
-        .wrap { position: relative; z-index: 1; }
     </style>
 </head>
 <body>
@@ -269,21 +194,17 @@
 
         <!-- App Icon -->
         <div class="app-icon">
-            <img src="/images/app-icon.png" alt="VetGPT app icon" onerror="this.style.display='none';this.parentElement.innerHTML='🐾';">
+            <img src="/images/app-icon.png" alt="VetGPT app icon" onerror="this.style.display='none';this.parentElement.textContent='🐾';">
         </div>
 
         <!-- Name + Tagline -->
         <h1 class="app-name">Vet<span>GPT</span><sup style="font-size:.5em;vertical-align:super;color:#10b981;font-weight:600;">™</sup></h1>
         <p class="app-tagline">The AI that already knows your pet.<br>Their meds. Their history. Their symptoms.</p>
 
-        <!-- Stats -->
-        <div class="stats">
-            <div class="stat"><strong>64+</strong> Species</div>
-            <div class="stat"><strong>18</strong> AI Features</div>
-            <div class="stat"><strong>Free</strong> to Download</div>
-        </div>
+        <!-- One trust line -->
+        <div class="trust"><span class="star">★★★★★</span> &nbsp;·&nbsp; Free &nbsp;·&nbsp; 64+ species</div>
 
-        <!-- iOS Button -->
+        <!-- iOS button -->
         <a href="https://apps.apple.com/app/id6757766151" class="btn-appstore" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -295,7 +216,7 @@
             <span class="free-badge">FREE</span>
         </a>
 
-        <!-- Android (now live) -->
+        <!-- Android button -->
         <a href="https://play.google.com/store/apps/details?id=com.vetgpt.app" class="btn-appstore" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.18 1.28c-.2.22-.33.53-.33.93v19.57c0 .4.13.72.34.94l.05.05L14.3 11.73v-.25L3.23 1.23l-.05.05zM17.99 15.42l-3.7-3.7v-.25l3.7-3.69.08.05 4.38 2.49c1.25.71 1.25 1.87 0 2.58l-4.38 2.49-.08.03zM17.91 15.53L14.18 11.8 3.37 22.62c.41.43 1.09.49 1.85.06l12.69-7.15zM17.91 8.06L5.22 .91c-.76-.43-1.44-.37-1.85.06L14.18 11.8l3.73-3.74z"/>
@@ -311,12 +232,12 @@
     </div>
 
     <script>
-        // Attribution + store-click tracking for paid/UTM traffic (added Jun 19, 2026).
-        // 1) Propagate incoming UTM params into the Google Play install referrer so Play
-        //    Console attributes the install to its source (e.g. TikTok paid). Apple ignores
-        //    URL referrers (ASA-API only), so the iOS link stays clean.
-        // 2) Fire a labeled GA4 'store_click' event (store: ios|android) on each button so
-        //    iOS vs Android intent is conversion-grade, not an unlabeled outbound click.
+        // Download page: device-aware two-store routing + paid/UTM attribution (Jun 21, 2026).
+        // - Show ONE prominent store button for the visitor's OS; the other collapses to a quiet
+        //   link. Desktop/unknown sees both. The video says "iOS & Android" so both must work.
+        // - Propagate incoming UTM params into the Google Play install referrer (Play Console
+        //   attribution). Apple ignores URL referrers (ASA-API only) so the iOS link stays clean.
+        // - Fire a labeled GA4 store_click event (store: ios|android) carrying utm params.
         (function () {
             var params = new URLSearchParams(window.location.search);
             var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
@@ -347,6 +268,22 @@
             }
             if (iosBtn) iosBtn.addEventListener('click', function () { fireStoreClick('ios'); });
             if (androidBtn) androidBtn.addEventListener('click', function () { fireStoreClick('android'); });
+
+            // Device-aware: one primary button for the visitor's OS, the other as a quiet link.
+            function makeSecondary(btn, label) {
+                if (!btn) return;
+                btn.classList.add('secondary');
+                btn.textContent = label; // keeps href + click listener; just swaps the visible label
+            }
+            var ua = navigator.userAgent || '';
+            var isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+            var isAndroid = /android/i.test(ua);
+            if (isIOS && !isAndroid) {
+                makeSecondary(androidBtn, 'On Android instead?');
+            } else if (isAndroid) {
+                makeSecondary(iosBtn, 'On iPhone instead?');
+            }
+            // Desktop / unknown: leave both buttons full-size.
         })();
     </script>
 </body>
