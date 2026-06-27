@@ -232,12 +232,14 @@
     </div>
 
     <script>
-        // Download page: device-aware two-store routing + paid/UTM attribution (Jun 21, 2026).
-        // - Show ONE prominent store button for the visitor's OS; the other collapses to a quiet
-        //   link. Desktop/unknown sees both. The video says "iOS & Android" so both must work.
+        // Download page: device-aware AUTO-REDIRECT + paid/UTM attribution (updated Jun 27, 2026).
+        // - Mobile visitors are bounced straight to their store; the buttons stay rendered as a
+        //   manual fallback (redirect blocked / store app intercepts / user comes back). Desktop
+        //   or unknown UA sees both full-size buttons (can't install on desktop anyway).
         // - Propagate incoming UTM params into the Google Play install referrer (Play Console
         //   attribution). Apple ignores URL referrers (ASA-API only) so the iOS link stays clean.
-        // - Fire a labeled GA4 store_click event (store: ios|android) carrying utm params.
+        // - Fire a labeled GA4 store_click event (store: ios|android) via sendBeacon BEFORE the
+        //   redirect, so attribution survives the navigation. Append ?noredirect=1 to disable (QA).
         (function () {
             var params = new URLSearchParams(window.location.search);
             var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
@@ -272,7 +274,8 @@
             if (iosBtn) iosBtn.addEventListener('click', function () { fireStoreClick('ios'); });
             if (androidBtn) androidBtn.addEventListener('click', function () { fireStoreClick('android'); });
 
-            // Device-aware: one primary button for the visitor's OS, the other as a quiet link.
+            // Device-aware auto-redirect. The matching store stays as the primary (manual
+            // fallback) button; the other collapses to a quiet link.
             function makeSecondary(btn, label) {
                 if (!btn) return;
                 btn.classList.add('secondary');
@@ -281,12 +284,26 @@
             var ua = navigator.userAgent || '';
             var isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
             var isAndroid = /android/i.test(ua);
-            if (isIOS && !isAndroid) {
-                makeSecondary(androidBtn, 'On Android instead?');
-            } else if (isAndroid) {
-                makeSecondary(iosBtn, 'On iPhone instead?');
+            var noRedirect = params.get('noredirect') === '1';
+
+            function autoRedirect(primaryBtn, otherBtn, store, otherLabel) {
+                if (!primaryBtn) return;
+                makeSecondary(otherBtn, otherLabel);
+                var tagline = document.querySelector('.app-tagline');
+                if (tagline) tagline.textContent = 'Opening ' + (store === 'ios' ? 'the App Store' : 'Google Play') + '…';
+                fireStoreClick(store); // attribution first — sendBeacon survives the navigation
+                if (!noRedirect) {
+                    var url = primaryBtn.getAttribute('href'); // android href already has the referrer applied above
+                    setTimeout(function () { window.location.href = url; }, 100);
+                }
             }
-            // Desktop / unknown: leave both buttons full-size.
+
+            if (isIOS && !isAndroid) {
+                autoRedirect(iosBtn, androidBtn, 'ios', 'On Android instead?');
+            } else if (isAndroid) {
+                autoRedirect(androidBtn, iosBtn, 'android', 'On iPhone instead?');
+            }
+            // Desktop / unknown: leave both buttons full-size, no redirect.
         })();
     </script>
 </body>
