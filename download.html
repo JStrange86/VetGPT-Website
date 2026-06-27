@@ -259,6 +259,29 @@
                 }
             }
 
+            // Apple campaign attribution (iOS): Apple ignores the Play-style referrer param —
+            // it uses Custom Product Pages (ppid) + campaign tokens (ct/pt), which surface in
+            // App Store Connect -> App Analytics -> Campaigns. When UTMs are present we derive
+            // ct from utm_campaign (fallback utm_source) and pt from utm_source, so EVERY
+            // campaign is attributed automatically (no per-campaign edits). The 'kobe' CPP is
+            // the only Approved/live CPP today and is loaded for TikTok traffic; other sources
+            // still get ct/pt on the default page. Swap/extend the ppid map as CPPs go live.
+            if (iosBtn && utmPairs.length) {
+                var ct = params.get('utm_campaign') || params.get('utm_source');
+                var pt = params.get('utm_source');
+                var CPP_BY_SOURCE = { tiktok: 'd68f323f-9297-47b0-80ae-5940cc43673b' }; // kobe (live)
+                var appleParams = [];
+                var ppid = CPP_BY_SOURCE[(params.get('utm_source') || '').toLowerCase()];
+                if (ppid) appleParams.push('ppid=' + ppid);
+                if (ct) appleParams.push('ct=' + encodeURIComponent(ct));
+                if (pt) appleParams.push('pt=' + encodeURIComponent(pt));
+                var ibase = iosBtn.getAttribute('href');
+                if (appleParams.length && ibase.indexOf('ct=') === -1 && ibase.indexOf('ppid=') === -1) {
+                    var ijoiner = ibase.indexOf('?') === -1 ? '?' : '&';
+                    iosBtn.setAttribute('href', ibase + ijoiner + appleParams.join('&'));
+                }
+            }
+
             function fireStoreClick(store) {
                 try {
                     gtag('event', 'store_click', {
