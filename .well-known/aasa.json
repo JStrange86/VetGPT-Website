@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["ATXWC7JPLB.com.joshuastrange.vetgpt"],
+        "components": [
+          { "/": "/download", "comment": "email buttons + creator tracked links open the app when installed" },
+          { "/": "/download/*" },
+          { "/": "/open" },
+          { "/": "/open/*" }
+        ]
+      }
+    ]
+  }
+}
