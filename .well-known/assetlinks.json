@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.vetgpt.app",
+      "sha256_cert_fingerprints":
+        ["66:08:8F:B0:B2:9D:16:05:7B:C7:5B:12:BC:D7:6A:4A:47:B9:C7:38:DB:74:DF:6E:FB:5B:C2:E1:70:B9:FE:E8"]
+    }
+  }
+]
