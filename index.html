@@ -129,9 +129,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Preload LCP hero image -->
-    <link rel="preload" href="/hero-phone.png" as="image" fetchpriority="high">
-    
     <!-- Canonical -->
     <link rel="canonical" href="https://vetgpt.app/">
     
@@ -140,7 +137,7 @@
            CSS VARIABLES
            ============================================ */
         :root {
-            --bg: #0a0a0a;
+            --bg: #121212;
             --bg-elevated: #111111;
             --bg-card: rgba(255,255,255,0.04);
             --bg-card-hover: rgba(255,255,255,0.07);
@@ -149,8 +146,8 @@
             --text: #ffffff;
             --text-secondary: #9ca3af;
             --text-muted: #8b95a5;
-            --green: #10b981;
-            --green-glow: rgba(16,185,129,0.3);
+            --green: #1DB954;
+            --green-glow: rgba(29,185,84,0.3);
             --purple: #8b5cf6;
             --purple-glow: rgba(139,92,246,0.25);
             --pink: #ec4899;
@@ -275,7 +272,7 @@
             transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
         }
         .nav.scrolled {
-            background: rgba(10,10,10,0.85);
+            background: rgba(18,18,18,0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
@@ -320,7 +317,7 @@
         .nav-links a.nav-cta:hover { color: #000000; }
         .nav-cta {
             padding: 12px 24px;
-            background: #10b981;
+            background: #1DB954;
             color: #000000 !important;
             font-family: var(--font-display);
             font-weight: 800;
@@ -359,7 +356,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(10,10,10,0.97);
+            background: rgba(18,18,18,0.97);
             z-index: 1001;
             flex-direction: column;
             align-items: center;
@@ -524,8 +521,8 @@
         .hero-success {
             display: none;
             padding: 14px 20px;
-            background: rgba(16,185,129,0.1);
-            border: 1px solid rgba(16,185,129,0.3);
+            background: rgba(29,185,84,0.1);
+            border: 1px solid rgba(29,185,84,0.3);
             border-radius: 10px;
             color: var(--green);
             font-weight: 500;
@@ -588,7 +585,7 @@
             box-shadow:
                 0 25px 60px rgba(0,0,0,0.5),
                 0 0 60px var(--purple-glow),
-                0 0 120px rgba(16,185,129,0.15);
+                0 0 120px rgba(29,185,84,0.15);
             transform: rotateX(10deg) rotateY(-8deg);
             transform-style: preserve-3d;
         }
@@ -868,7 +865,7 @@
             margin: 0 auto 20px;
             border: 2px solid var(--green);
             color: var(--green);
-            background: rgba(16,185,129,0.08);
+            background: rgba(29,185,84,0.08);
         }
         .step-icon { font-size: 2.5rem; margin-bottom: 16px; }
         .step h3 {
@@ -980,8 +977,8 @@
             gap: 20px;
             flex-wrap: wrap;
             padding: 32px 40px;
-            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(139,92,246,0.08));
-            border: 1px solid rgba(16,185,129,0.15);
+            background: linear-gradient(135deg, rgba(29,185,84,0.08), rgba(139,92,246,0.08));
+            border: 1px solid rgba(29,185,84,0.15);
             border-radius: 16px;
         }
         .mid-cta-text {
@@ -1078,7 +1075,7 @@
             font-size: 0.7rem;
             padding: 3px 10px;
             border-radius: 20px;
-            background: rgba(16,185,129,0.1);
+            background: rgba(29,185,84,0.1);
             color: var(--green);
             margin-top: 8px;
         }
@@ -1246,7 +1243,7 @@
             margin: 0 auto 24px;
             display: block;
             border: 3px solid var(--green);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px rgba(29, 185, 84, 0.2);
         }
         .testimonial-quote {
             font-family: var(--font-display);
@@ -1289,9 +1286,9 @@
             font-size: 0.75rem;
             font-family: var(--font-mono);
             letter-spacing: 1px;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(29, 185, 84, 0.1);
             color: var(--green);
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(29, 185, 84, 0.2);
         }
 
         /* ============================================
@@ -1415,8 +1412,8 @@
         .final-success {
             display: none;
             padding: 16px 24px;
-            background: rgba(16,185,129,0.1);
-            border: 1px solid rgba(16,185,129,0.3);
+            background: rgba(29,185,84,0.1);
+            border: 1px solid rgba(29,185,84,0.3);
             border-radius: 10px;
             color: var(--green);
             font-weight: 500;
@@ -1483,7 +1480,7 @@
             right: 0;
             z-index: 900;
             padding: 12px 24px;
-            background: rgba(10,10,10,0.92);
+            background: rgba(18,18,18,0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid var(--border);
@@ -1614,7 +1611,7 @@
     <header class="nav" id="nav" role="banner">
         <div class="nav-inner">
             <a href="#" class="nav-logo" aria-label="VetGPT Home">
-                <img src="/logo-black.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"><span><span style="color:#ffffff;">Vet</span><span style="color:#10b981;">GPT</span><sup style="font-size:.5em;vertical-align:super;color:#10b981;font-weight:600;">™</sup></span>
+                <img src="/logo-nav.png" alt="VetGPT" class="nav-logo-img" width="34" height="34"><span><span style="color:#ffffff;">Vet</span><span style="color:#1DB954;">GPT</span><sup style="font-size:.5em;vertical-align:super;color:#1DB954;font-weight:600;">™</sup></span>
             </a>
             <nav>
                 <ul class="nav-links">
@@ -1689,7 +1686,7 @@
                         <div class="phone-glow">
                         <div class="phone-frame">
                             <div class="phone-screen">
-                                <video autoplay muted loop playsinline>
+                                <video autoplay muted loop playsinline poster="/hero-poster.jpg" preload="metadata">
                                     <source src="/hero-loop.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1722,7 +1719,7 @@
                         <div class="screenshot-item reveal">
                             <div class="screenshot-phone">
                                 <div class="phone-screen">
-                                    <img src="/ss-ai-chat.png" alt="VetGPT AI chat analyzing a lump on Kylie the Dachshund and recommending a vet visit" width="220" height="450" loading="lazy">
+                                    <img src="/ss-ai-chat.jpg" alt="VetGPT AI chat analyzing a lump on Kylie the Dachshund and recommending a vet visit" width="220" height="450" loading="lazy">
                                 </div>
                             </div>
                             <p class="screenshot-caption"><strong>AI extracts action items.</strong> Medications, appointments, and reminders - saved in one tap.</p>
@@ -1730,7 +1727,7 @@
                         <div class="screenshot-item reveal reveal-delay-1">
                             <div class="screenshot-phone">
                                 <div class="phone-screen">
-                                    <img src="/ss-health-score2.png" alt="VetGPT health score breakdown showing 87 out of 100 with preventive care, vet engagement, and vitals tracking" width="220" height="450" loading="lazy">
+                                    <img src="/ss-health-score2.jpg" alt="VetGPT health score breakdown showing 87 out of 100 with preventive care, vet engagement, and vitals tracking" width="220" height="450" loading="lazy">
                                 </div>
                             </div>
                             <p class="screenshot-caption"><strong>Know where you stand.</strong> AI health scores break down exactly what's going well - and what needs attention.</p>
@@ -1738,7 +1735,7 @@
                         <div class="screenshot-item reveal reveal-delay-2">
                             <div class="screenshot-phone">
                                 <div class="phone-screen">
-                                    <img src="/ss-goldfish.png" alt="VetGPT pet journey showing Elon the Goldfish with weekly photo tracking and health streak" width="220" height="450" loading="lazy">
+                                    <img src="/ss-goldfish.jpg" alt="VetGPT pet journey showing Elon the Goldfish with weekly photo tracking and health streak" width="220" height="450" loading="lazy">
                                 </div>
                             </div>
                             <p class="screenshot-caption"><strong>From goldfish to Great Danes.</strong> Track every species with photo journals, health streaks, and AI insights.</p>
@@ -2105,7 +2102,7 @@
                     <li><a href="/support/">Support</a></li>
                     <li><a href="mailto:hello@vetgpt.app">Contact</a></li>
                 </ul>
-                <p class="footer-copy"><img src="/logo-black.png" alt="" class="footer-logo" aria-hidden="true" width="22" height="22"> © 2026 VetGPT™ · Made with ❤️ for pet parents everywhere</p>
+                <p class="footer-copy"><img src="/logo-nav.png" alt="" class="footer-logo" aria-hidden="true" width="22" height="22"> © 2026 VetGPT™ · Made with ❤️ for pet parents everywhere</p>
             </div>
         </div>
     </footer>
