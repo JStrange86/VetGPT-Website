@@ -269,7 +269,11 @@
             if (iosBtn && utmPairs.length) {
                 var ct = params.get('utm_campaign') || params.get('utm_source');
                 var pt = params.get('utm_source');
-                var CPP_BY_SOURCE = { tiktok: 'd68f323f-9297-47b0-80ae-5940cc43673b' }; // kobe (live)
+                var CPP_BY_SOURCE = {
+                  tiktok: 'd68f323f-9297-47b0-80ae-5940cc43673b',            // kobe (live)
+                  rodriguezdarian: '21260437-b6be-4036-a799-c456142c0104',   // rodriguez CPP (submitted Jul 4, live on approval)
+                  hissedoffexotics: 'f2f0dec7-6ae6-4841-ae1c-abe0b8fe4fcd'   // hissedoff CPP (submitted Jul 4, live on approval)
+                };
                 var appleParams = [];
                 var ppid = CPP_BY_SOURCE[(params.get('utm_source') || '').toLowerCase()];
                 if (ppid) appleParams.push('ppid=' + ppid);

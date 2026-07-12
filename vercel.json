@@ -6,5 +6,37 @@
       "source": "/.well-known/apple-app-site-association",
       "destination": "/.well-known/aasa.json"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/rod",
+      "destination": "/download/?utm_source=rodriguezdarian&utm_campaign=rod_partner&ref=RODSQUAD",
+      "permanent": false
+    },
+    {
+      "source": "/hiss",
+      "destination": "/download/?utm_source=hissedoffexotics&utm_campaign=hiss_partner&ref=HISSEDOFF",
+      "permanent": false
+    },
+    {
+      "source": "/rod/",
+      "destination": "/download/?utm_source=rodriguezdarian&utm_campaign=rod_partner&ref=RODSQUAD",
+      "permanent": false
+    },
+    {
+      "source": "/hiss/",
+      "destination": "/download/?utm_source=hissedoffexotics&utm_campaign=hiss_partner&ref=HISSEDOFF",
+      "permanent": false
+    },
+    {
+      "source": "/hissedoff",
+      "destination": "/download/?utm_source=hissedoffexotics&utm_campaign=hiss_partner&ref=HISSEDOFF",
+      "permanent": false
+    },
+    {
+      "source": "/hissedoff/",
+      "destination": "/download/?utm_source=hissedoffexotics&utm_campaign=hiss_partner&ref=HISSEDOFF",
+      "permanent": false
+    }
   ]
 }

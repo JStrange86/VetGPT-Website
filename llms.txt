@@ -1,0 +1,26 @@
+# VetGPT
+
+VetGPT (vetgpt.app) is an AI pet health app for every kind of pet owner, not just dogs and cats. It supports 64+ species, from bearded dragons and ball pythons to axolotls, parrots, guinea pigs, and goldfish, with species-specific care guidance built in. Owners can record their vet visits and let the AI extract the diagnoses, medications, and follow-ups automatically, scan food labels to see what is really in them, track weight, symptoms, water parameters and husbandry, and chat 24/7 with an AI that knows their specific animal's history. VetGPT is built by a solo founder and is available on iOS and Android.
+
+## Key facts
+
+- 64+ species supported, each with species-appropriate care guidance
+- Available on iOS and Android
+- Weekly photo journal with AI health scores and change detection
+- Vet visit recording with automatic AI extraction of diagnoses, medications, and follow-ups
+- Food label scanning with species-specific red flags
+- 24/7 AI chat that knows the specific animal's full history
+- Founded in 2026 by solo founder Josh Strange in Phoenix, Arizona
+
+## Key URLs
+
+- Website: https://vetgpt.app/
+- Press and media: https://vetgpt.app/press/
+- Partner with VetGPT: https://vetgpt.app/partner/
+- Blog: https://vetgpt.app/blog/
+- App Store (iOS): https://apps.apple.com/app/id6757766151
+- Google Play (Android): https://play.google.com/store/apps/details?id=com.vetgpt.app
+
+## Note
+
+VetGPT is a consumer pet-health app for pet owners. It is NOT the veterinary practice-management software at vetgpt.com.
