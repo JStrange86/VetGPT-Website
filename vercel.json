@@ -9,6 +9,16 @@
   ],
   "redirects": [
     {
+      "source": "/dl/:code",
+      "destination": "/download/?utm_source=:code&utm_medium=social&utm_campaign=:code",
+      "permanent": false
+    },
+    {
+      "source": "/dl/:code/",
+      "destination": "/download/?utm_source=:code&utm_medium=social&utm_campaign=:code",
+      "permanent": false
+    },
+    {
       "source": "/rod",
       "destination": "/download/?utm_source=rodriguezdarian&utm_campaign=rod_partner&ref=RODSQUAD",
       "permanent": false
