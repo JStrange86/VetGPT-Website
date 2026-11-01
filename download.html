@@ -242,7 +242,9 @@
         //   redirect, so attribution survives the navigation. Append ?noredirect=1 to disable (QA).
         (function () {
             var params = new URLSearchParams(window.location.search);
-            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+            // S8 (Nov 1 2026): ref= (from /r/CODE and /join/CODE) rides into the Play install referrer with the UTMs,
+            // so the app can store the referral code (installReferrer.js). Apple ignores it, as with UTMs.
+            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ref'];
             var utmPairs = utmKeys
                 .map(function (k) { var v = params.get(k); return v ? k + '=' + v : null; })
                 .filter(Boolean);

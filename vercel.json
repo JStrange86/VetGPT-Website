@@ -9,6 +9,26 @@
   ],
   "redirects": [
     {
+      "source": "/r/:code",
+      "destination": "/download/?ref=:code&utm_source=referral&utm_medium=link&utm_campaign=:code",
+      "permanent": false
+    },
+    {
+      "source": "/r/:code/",
+      "destination": "/download/?ref=:code&utm_source=referral&utm_medium=link&utm_campaign=:code",
+      "permanent": false
+    },
+    {
+      "source": "/join/:code",
+      "destination": "/download/?ref=:code&utm_source=referral&utm_medium=link&utm_campaign=:code",
+      "permanent": false
+    },
+    {
+      "source": "/join/:code/",
+      "destination": "/download/?ref=:code&utm_source=referral&utm_medium=link&utm_campaign=:code",
+      "permanent": false
+    },
+    {
       "source": "/dl/:code",
       "destination": "/download/?utm_source=:code&utm_medium=social&utm_campaign=:code",
       "permanent": false
