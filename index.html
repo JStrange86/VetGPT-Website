@@ -12,7 +12,8 @@
   </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetGPT™ - AI Pet Health Tracker for Dogs, Cats & 60+ Species</title>
+    <title>VetGPT - AI Pet Health Tracker for Dogs, Cats & 60+ Species</title>
+    <link rel="preload" as="image" href="/hero-poster.jpg?v=7">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="description" content="VetGPT knows your pet's full history. Scan prescriptions, track meds, log vet visits, and get AI health insights for 64+ species. Free on iOS & Android.">
@@ -46,7 +47,7 @@
                 "url": "https://vetgpt.app",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://vetgpt.app/images/logo.png"
+                    "url": "https://vetgpt.app/images/logo-512.png"
                 },
                 "description": "VetGPT is the AI-powered pet health app built for every pet owner - supporting 64+ species including dogs, cats, reptiles, birds, fish, and exotic animals.",
                 "foundingDate": "2025",
@@ -77,7 +78,7 @@
                 "operatingSystem": "iOS, Android",
                 "url": "https://vetgpt.app",
                 "description": "AI-powered pet health tracking app supporting 64+ species. Scan vet documents, track medications, record appointments, and get personalized AI health insights for dogs, cats, reptiles, fish, birds, and exotic pets.",
-                "screenshot": "https://vetgpt.app/images/logo.png",
+                "screenshot": "https://vetgpt.app/images/logo-512.png",
                 "publisher": {
                     "@id": "https://vetgpt.app/#organization"
                 },
@@ -127,7 +128,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'"><noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript></noscript></noscript>
 
     <!-- Canonical -->
     <link rel="canonical" href="https://vetgpt.app/">
@@ -1686,9 +1687,8 @@
                         <div class="phone-glow">
                         <div class="phone-frame">
                             <div class="phone-screen">
-                                <video autoplay muted loop playsinline poster="/hero-poster.jpg?v=6" preload="metadata">
-                                    <source src="/hero-loop.mp4?v=6" type="video/mp4">
-                                </video>
+                                <video id="heroVideo" autoplay muted loop playsinline poster="/hero-poster.jpg?v=7" preload="none" width="540" height="1083" aria-hidden="true"></video>
+                                <script>(function(){var v=document.getElementById('heroVideo');if(!v)return;if(window.matchMedia('(min-width: 769px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){var s=document.createElement('source');s.src='/hero-loop.mp4?v=7';s.type='video/mp4';v.appendChild(s);v.load();v.play().catch(function(){});}})();</script>
                             </div>
                         </div>
                         </div>
@@ -1703,7 +1703,7 @@
                 <div class="proof-inner">
                     <div class="proof-item"><span class="proof-icon">🐾</span> <strong>64+</strong> Species Supported</div>
                     <div class="proof-item"><span class="proof-icon">✨</span> <strong>18</strong> AI-Powered Features</div>
-                    <div class="proof-item"><span class="proof-icon">👥</span> <strong>30+</strong> Pets Tracked</div>
+                    <div class="proof-item"><span class="proof-icon">⭐</span> <strong>4.8</strong> App Store Rating</div>
                     <div class="proof-item"><span class="proof-icon">📱</span> <strong>iOS</strong> &amp; <strong>Android</strong></div>
                 </div>
             </div>
@@ -1719,7 +1719,7 @@
                         <div class="screenshot-item reveal">
                             <div class="screenshot-phone">
                                 <div class="phone-screen">
-                                    <img src="/ss-ai-chat.jpg" alt="VetGPT AI chat analyzing a lump on Kylie the Dachshund and recommending a vet visit" width="220" height="450" loading="lazy">
+                                    <img src="/ss-ai-chat.jpg" alt="VetGPT AI chat analyzing a lump on Kylie the Dachshund and recommending a vet visit" width="220" height="450" loading="eager" fetchpriority="high">
                                 </div>
                             </div>
                             <p class="screenshot-caption"><strong>AI extracts action items.</strong> Medications, appointments, and reminders - saved in one tap.</p>
@@ -1999,7 +1999,7 @@
                         </div>
                     </div>
                     <p class="founder-bottom reveal">You're not alone anymore.<br>Whether it's 2am or 2pm - VetGPT knows your pet and is ready to help.</p>
-                    <p class="founder-bottom reveal" style="font-size:0.85rem;opacity:0.7;margin-top:16px;">Built by a pet owner who lived this pain. Used by 30+ early adopters across 15+ species. Rated by real pet families.</p>
+                    <p class="founder-bottom reveal" style="font-size:0.85rem;opacity:0.7;margin-top:16px;">Built by a pet owner who lived this pain. Rated 4.8 on the App Store by owners of dogs, cats and exotics. Rated by real pet families.</p>
                 </div>
             </div>
         </section>
@@ -2106,6 +2106,23 @@
                     <li><a href="https://instagram.com/vetgptapp" target="_blank" rel="noopener">Instagram</a></li>
                     <li><a href="https://www.facebook.com/profile.php?id=1009581995577684" target="_blank" rel="noopener">Facebook</a></li>
                     <li><a href="https://www.tiktok.com/@vetgpt" target="_blank" rel="noopener">TikTok</a></li>
+                </ul>
+                <ul class="footer-links" aria-label="Guides by species">
+                    <li><a href="/blog/bearded-dragon-not-eating/">Bearded dragon</a></li>
+                    <li><a href="/blog/leopard-gecko-not-pooping/">Leopard gecko</a></li>
+                    <li><a href="/blog/ball-python-health-checklist/">Ball python</a></li>
+                    <li><a href="/blog/crested-gecko-not-eating/">Crested gecko</a></li>
+                    <li><a href="/blog/axolotl-floating/">Axolotl</a></li>
+                    <li><a href="/blog/guinea-pig-not-eating/">Guinea pig</a></li>
+                    <li><a href="/blog/rabbit-not-eating-or-pooping/">Rabbit</a></li>
+                    <li><a href="/blog/betta-laying-at-bottom/">Betta</a></li>
+                    <li><a href="/blog/chicken-lethargic-standing-alone/">Chicken</a></li>
+                    <li><a href="/blog/tortoise-runny-nose/">Tortoise</a></li>
+                    <li><a href="/blog/parrot-fluffed-up-and-sleepy/">Parrot</a></li>
+                    <li><a href="/blog/hamster-lethargic-not-moving/">Hamster</a></li>
+                    <li><a href="/blog/senior-dog-pain-signs/">Senior dog</a></li>
+                    <li><a href="/blog/senior-cat-health-guide/">Senior cat</a></li>
+                    <li><a href="/blog/emergency-vet-guide/">Emergency vet</a></li>
                 </ul>
                 <p class="footer-copy"><img src="/logo-nav.png" alt="" class="footer-logo" aria-hidden="true" width="22" height="22"> © 2026 VetGPT™ · Made with ❤️ for pet parents everywhere</p>
             </div>
